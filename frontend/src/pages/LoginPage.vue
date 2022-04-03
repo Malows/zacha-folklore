@@ -21,21 +21,11 @@
               :rules="[ val => val && val.length > 0 || 'Campo obligatorio']"
             />
 
-            <q-input
+            <q-password
               v-model="password"
-              :type="passwordMeta.type"
               label="Contraseña"
               lazy-rules
-              :rules="[ val => val && val.length > 0 || 'Campo obligatorio']"
-            >
-              <template #append>
-                <q-icon
-                  class="cursor-pointer"
-                  :name="passwordMeta.icon"
-                  @click="isPassword = !isPassword"
-                />
-              </template>
-            </q-input>
+              :rules="[ val => val && val.length > 0 || 'Campo obligatorio']"/>
 
             <div class="text-center q-mt-lg">
               <q-btn
@@ -57,6 +47,7 @@
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { task } from 'src/utils/api'
+import QPassword from 'components/QPassword.vue'
 
 const router = useRouter()
 
@@ -64,24 +55,11 @@ const name = process.env.NAME
 
 const username = ref('')
 const password = ref('')
-const isPassword = ref(true)
 
 const payload = computed(() => ({
   username: username.value,
   password: password.value
 }))
-
-const passwordMeta = computed(() =>
-  isPassword.value
-    ? {
-        icon: 'visibility',
-        type: 'password'
-      }
-    : {
-        icon: 'visibility_off',
-        type: 'text'
-      }
-)
 
 const submitLogin = async () => {
   task(this, 'session/login', payload.value)
