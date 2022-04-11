@@ -23,6 +23,16 @@ class Reservation extends Model
     ];
 
     /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'is_paid' => 'boolean',
+        'is_used' => 'boolean',
+    ];
+
+    /**
      * Scope a query to only include unused reservations.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
