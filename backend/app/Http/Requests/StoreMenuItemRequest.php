@@ -12,7 +12,7 @@ class StoreMenuItemRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            //
+
         ];
     }
 }

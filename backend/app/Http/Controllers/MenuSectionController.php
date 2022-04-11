@@ -22,7 +22,7 @@ class MenuSectionController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreMenuSectionRequest  $request
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(StoreMenuSectionRequest $request): MenuSection
@@ -34,13 +34,13 @@ class MenuSectionController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\MenuSection  $menuSection
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(MenuSection $menuSection): MenuSection
     {
         $menuSection->load('items');
-        
+
         return $menuSection;
     }
 
@@ -49,7 +49,7 @@ class MenuSectionController extends Controller
      *
      * @param  \App\Http\Requests\UpdateMenuSectionRequest  $request
      * @param  \App\Models\MenuSection  $menuSection
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateMenuSectionRequest $request, MenuSection $menuSection): MenuSection
@@ -57,7 +57,7 @@ class MenuSectionController extends Controller
         $menuSection
             ->fill($request->all())
             ->save();
-        
+
         return $menuSection;
     }
 
@@ -65,13 +65,13 @@ class MenuSectionController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\MenuSection  $menuSection
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(MenuSection $menuSection): MenuSection
     {
         $menuSection->delete();
-        
+
         return $menuSection;
     }
 }

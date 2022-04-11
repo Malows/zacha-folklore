@@ -14,11 +14,11 @@ class MenuItemPolicy
      * Determine whether the user can view any models.
      *
      * @param  \App\Models\User  $user
+     *
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function viewAny(User $user)
     {
-        //
     }
 
     /**
@@ -26,22 +26,22 @@ class MenuItemPolicy
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\MenuItem  $menuItem
+     *
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function view(User $user, MenuItem $menuItem)
     {
-        //
     }
 
     /**
      * Determine whether the user can create models.
      *
      * @param  \App\Models\User  $user
+     *
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function create(User $user)
     {
-        //
     }
 
     /**
@@ -49,11 +49,11 @@ class MenuItemPolicy
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\MenuItem  $menuItem
+     *
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function update(User $user, MenuItem $menuItem)
     {
-        //
     }
 
     /**
@@ -61,11 +61,11 @@ class MenuItemPolicy
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\MenuItem  $menuItem
+     *
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function delete(User $user, MenuItem $menuItem)
     {
-        //
     }
 
     /**
@@ -73,11 +73,11 @@ class MenuItemPolicy
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\MenuItem  $menuItem
+     *
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function restore(User $user, MenuItem $menuItem)
     {
-        //
     }
 
     /**
@@ -85,10 +85,10 @@ class MenuItemPolicy
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\MenuItem  $menuItem
+     *
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function forceDelete(User $user, MenuItem $menuItem)
     {
-        //
     }
 }

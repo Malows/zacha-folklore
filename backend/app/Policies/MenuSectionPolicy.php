@@ -14,11 +14,11 @@ class MenuSectionPolicy
      * Determine whether the user can view any models.
      *
      * @param  \App\Models\User  $user
+     *
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function viewAny(User $user)
     {
-        //
     }
 
     /**
@@ -26,22 +26,22 @@ class MenuSectionPolicy
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\MenuSection  $menuSection
+     *
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function view(User $user, MenuSection $menuSection)
     {
-        //
     }
 
     /**
      * Determine whether the user can create models.
      *
      * @param  \App\Models\User  $user
+     *
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function create(User $user)
     {
-        //
     }
 
     /**
@@ -49,11 +49,11 @@ class MenuSectionPolicy
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\MenuSection  $menuSection
+     *
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function update(User $user, MenuSection $menuSection)
     {
-        //
     }
 
     /**
@@ -61,11 +61,11 @@ class MenuSectionPolicy
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\MenuSection  $menuSection
+     *
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function delete(User $user, MenuSection $menuSection)
     {
-        //
     }
 
     /**
@@ -73,11 +73,11 @@ class MenuSectionPolicy
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\MenuSection  $menuSection
+     *
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function restore(User $user, MenuSection $menuSection)
     {
-        //
     }
 
     /**
@@ -85,10 +85,10 @@ class MenuSectionPolicy
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\MenuSection  $menuSection
+     *
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function forceDelete(User $user, MenuSection $menuSection)
     {
-        //
     }
 }

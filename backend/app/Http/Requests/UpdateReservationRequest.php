@@ -9,10 +9,10 @@ class UpdateReservationRequest extends BaseRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            //
+
         ];
     }
 }
