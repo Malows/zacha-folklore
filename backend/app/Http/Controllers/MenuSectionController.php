@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreMenuSectionRequest;
 use App\Http\Requests\UpdateMenuSectionRequest;
 use App\Models\MenuSection;
+use Illuminate\Database\Eloquent\Collection;
 
 class MenuSectionController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *`
      *
-     * @return \Illuminate\Http\Response
+     * @return Collection<int, MenuSection>
      */
     public function index()
     {
@@ -21,9 +23,9 @@ class MenuSectionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreMenuSectionRequest  $request
+     * @param  StoreMenuSectionRequest  $request
      *
-     * @return \Illuminate\Http\Response
+     * @return MenuSection
      */
     public function store(StoreMenuSectionRequest $request): MenuSection
     {
@@ -33,9 +35,9 @@ class MenuSectionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\MenuSection  $menuSection
+     * @param  MenuSection  $menuSection
      *
-     * @return \Illuminate\Http\Response
+     * @return MenuSection
      */
     public function show(MenuSection $menuSection): MenuSection
     {
@@ -47,10 +49,10 @@ class MenuSectionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateMenuSectionRequest  $request
-     * @param  \App\Models\MenuSection  $menuSection
+     * @param  UpdateMenuSectionRequest  $request
+     * @param  MenuSection  $menuSection
      *
-     * @return \Illuminate\Http\Response
+     * @return MenuSection
      */
     public function update(UpdateMenuSectionRequest $request, MenuSection $menuSection): MenuSection
     {
@@ -64,9 +66,9 @@ class MenuSectionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\MenuSection  $menuSection
+     * @param  MenuSection  $menuSection
      *
-     * @return \Illuminate\Http\Response
+     * @return MenuSection
      */
     public function destroy(MenuSection $menuSection): MenuSection
     {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreReservationRequest;
 use App\Http\Requests\UpdateReservationRequest;
 use App\Models\Reservation;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
 
 class ReservationController extends Controller
@@ -12,7 +13,7 @@ class ReservationController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Collection<int, Reservation>
      */
     public function index()
     {
@@ -22,9 +23,9 @@ class ReservationController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreReservationRequest  $request
+     * @param  StoreReservationRequest  $request
      *
-     * @return \Illuminate\Http\Response
+     * @return Reservation
      */
     public function store(StoreReservationRequest $request): Reservation
     {
@@ -42,9 +43,9 @@ class ReservationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Reservation  $reservation
+     * @param  Reservation  $reservation
      *
-     * @return \Illuminate\Http\Response
+     * @return Reservation
      */
     public function show(Reservation $reservation): Reservation
     {
@@ -54,10 +55,10 @@ class ReservationController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateReservationRequest  $request
-     * @param  \App\Models\Reservation  $reservation
+     * @param  UpdateReservationRequest  $request
+     * @param  Reservation  $reservation
      *
-     * @return \Illuminate\Http\Response
+     * @return Reservation
      */
     public function update(UpdateReservationRequest $request, Reservation $reservation): Reservation
     {
@@ -71,9 +72,9 @@ class ReservationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Reservation  $reservation
+     * @param  Reservation  $reservation
      *
-     * @return \Illuminate\Http\Response
+     * @return Reservation
      */
     public function destroy(Reservation $reservation): Reservation
     {

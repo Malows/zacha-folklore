@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreMenuItemRequest;
 use App\Http\Requests\UpdateMenuItemRequest;
 use App\Models\MenuItem;
+use Illuminate\Database\Eloquent\Collection;
 
 class MenuItemController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Collection<int, MenuItem>
      */
     public function index()
     {
@@ -21,9 +22,9 @@ class MenuItemController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreMenuItemRequest  $request
+     * @param  StoreMenuItemRequest  $request
      *
-     * @return \Illuminate\Http\Response
+     * @return MenuItem
      */
     public function store(StoreMenuItemRequest $request): MenuItem
     {
@@ -33,9 +34,9 @@ class MenuItemController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\MenuItem  $menuItem
+     * @param  MenuItem  $menuItem
      *
-     * @return \Illuminate\Http\Response
+     * @return MenuItem
      */
     public function show(MenuItem $menuItem): MenuItem
     {
@@ -47,10 +48,10 @@ class MenuItemController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateMenuItemRequest  $request
-     * @param  \App\Models\MenuItem  $menuItem
+     * @param  UpdateMenuItemRequest  $request
+     * @param  MenuItem  $menuItem
      *
-     * @return \Illuminate\Http\Response
+     * @return MenuItem
      */
     public function update(UpdateMenuItemRequest $request, MenuItem $menuItem): MenuItem
     {
@@ -64,9 +65,9 @@ class MenuItemController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\MenuItem  $menuItem
+     * @param  MenuItem  $menuItem
      *
-     * @return \Illuminate\Http\Response
+     * @return MenuItem
      */
     public function destroy(MenuItem $menuItem): MenuItem
     {
