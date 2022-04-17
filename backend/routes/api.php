@@ -18,10 +18,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/user', [ProfileController::class, 'show']);
-    Route::post('/user', [ProfileController::class, 'update']);
-    Route::post('/user/password', [ProfileController::class, 'password']);
+Route::middleware('auth:api')->group(function () {
+    Route::prefix('/user')->controller(ProfileController::class)->group(function () {
+        Route::get('', 'show');
+        Route::post('', 'update');
+        Route::post('/password', 'password');
+    });
 
     Route::apiResources([
         'menu_items' => MenuItemController::class,
