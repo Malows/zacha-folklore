@@ -25,12 +25,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         // Executed when a test database is created...
-        ParallelTesting::setUpTestDatabase(function ($database, $token) {
+        ParallelTesting::setUpTestDatabase(function ($database) {
             Artisan::call('migrate:fresh', [
                 '--database' => $database,
                 '--seed' => true,
             ]);
-            // Artisan::call('db:seed');
         });
     }
 }

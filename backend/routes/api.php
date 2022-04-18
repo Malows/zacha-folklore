@@ -31,4 +31,7 @@ Route::middleware('auth:api')->group(function () {
         'reservations' => ReservationController::class,
         'users' => UserController::class,
     ]);
+
+    Route::get('/reservations/uuid/{reservation:uuid}', [ReservationController::class, 'show'])
+        ->name('reservations.show_uuid');
 });

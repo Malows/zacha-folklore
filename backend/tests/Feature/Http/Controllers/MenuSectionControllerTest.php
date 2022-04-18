@@ -32,7 +32,8 @@ class MenuSectionControllerTest extends TestCase
             ->assertStatus(200)
             ->assertJsonStructure([
                 '*' => [
-                    'name'
+                    'name',
+                    'order',
                 ],
             ]);
     }
@@ -59,6 +60,7 @@ class MenuSectionControllerTest extends TestCase
             ->assertStatus(201)
             ->assertJsonStructure([
                 'name',
+                'order',
             ]);
 
         $this->assertDatabaseCount('menu_sections', 1);
@@ -85,6 +87,7 @@ class MenuSectionControllerTest extends TestCase
             ->assertStatus(200)
             ->assertJsonStructure([
                 'name',
+                'order',
             ]);
     }
 
@@ -109,6 +112,7 @@ class MenuSectionControllerTest extends TestCase
             ->assertStatus(200)
             ->assertJsonStructure([
                 'name',
+                'order',
             ]);
 
         $this->assertDatabaseHas('menu_sections', ['name' => 'TEST NAME']);
@@ -135,6 +139,7 @@ class MenuSectionControllerTest extends TestCase
             ->assertStatus(200)
             ->assertJsonStructure([
                 'name',
+                'order',
             ]);
 
         $this->assertDatabaseMissing('menu_sections', ['id' => $section->id]);

@@ -5,6 +5,7 @@ namespace Tests\Feature\Http\Controllers;
 use App\Models\User;
 use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 class ProfileControllerTest extends TestCase
@@ -61,6 +62,41 @@ class ProfileControllerTest extends TestCase
 
         $this->assertDatabaseHas('users', [
             'name' => 'TEST NAME',
+        ]);
+    }
+
+    /**
+     * A basic feature test example.
+     *
+     * @return void
+     *
+     * @group profile
+     * @group controllers
+     */
+    public function test_profile_password()
+    {
+        $this->seed(UserSeeder::class);
+
+        $user = User::first();
+
+        $oldPassword = $user->password;
+
+        $data = ['name' => 'TEST PASSWORD'];
+
+        $this
+            ->actingAs($user, 'api')
+            ->postJson('api/user/password', $data)
+            ->assertStatus(200)
+            ->assertJsonStructure([
+                'name',
+                'email',
+            ]);
+
+        $user->refresh();
+
+        $this->assertNotEquals($oldPassword, $user->password);
+        $this->assertDatabaseHas('users', [
+            'password' => $user->password,
         ]);
     }
 }

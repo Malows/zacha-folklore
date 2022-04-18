@@ -1,12 +1,13 @@
 <?php
 
-namespace Tests\Feature\Http\ontrollers;
+namespace Tests\Feature\Http\Controllers;
 
 use App\Models\Reservation;
 use App\Models\User;
 use Database\Seeders\ReservationSeeder;
 use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class ReservationControllerTest extends TestCase
@@ -39,6 +40,8 @@ class ReservationControllerTest extends TestCase
                     'qr_url',
                     'email',
                     'phone',
+                    'is_paid',
+                    'is_used',
                 ],
             ]);
     }
@@ -57,12 +60,15 @@ class ReservationControllerTest extends TestCase
 
         $this->assertDatabaseCount('reservations', 0);
 
+        $disk = Storage::fake('reservations');
+
         $data = Reservation::factory()->make()->toArray();
 
-        $this
+        $response = $this
             ->actingAs(User::query()->first(), 'api')
-            ->postJson('api/reservations', $data)
-            ->assertStatus(201)
+            ->postJson('api/reservations', $data);
+
+        $response->assertStatus(201)
             ->assertJsonStructure([
                 'name',
                 'last_name',
@@ -71,9 +77,14 @@ class ReservationControllerTest extends TestCase
                 'qr_url',
                 'email',
                 'phone',
+                'is_paid',
+                'is_used',
             ]);
 
+        $uuid = $response->json('qr_path');
+
         $this->assertDatabaseCount('reservations', 1);
+        $disk->assertExists($uuid);
     }
 
     /**
@@ -103,6 +114,8 @@ class ReservationControllerTest extends TestCase
                 'qr_url',
                 'email',
                 'phone',
+                'is_paid',
+                'is_used',
             ]);
     }
 
@@ -133,6 +146,8 @@ class ReservationControllerTest extends TestCase
                 'qr_url',
                 'email',
                 'phone',
+                'is_paid',
+                'is_used',
             ]);
 
         $this->assertDatabaseHas('reservations', ['name' => 'TEST NAME']);
@@ -165,6 +180,8 @@ class ReservationControllerTest extends TestCase
                 'qr_url',
                 'email',
                 'phone',
+                'is_paid',
+                'is_used',
             ]);
 
         $this->assertDatabaseMissing('reservations', ['id' => $reservation->id]);

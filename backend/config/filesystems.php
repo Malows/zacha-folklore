@@ -56,6 +56,14 @@ return [
             'throw' => false,
         ],
 
+        'reservations' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/reservations'),
+            'url' => env('APP_URL').'/storage/reservations',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
     ],
 
     /*

@@ -29,7 +29,8 @@ class UserControllerTest extends TestCase
             ->assertStatus(200)
             ->assertJsonStructure([
                 '*' => [
-                    'name'
+                    'name',
+                    'email',
                 ],
             ]);
     }
@@ -55,7 +56,9 @@ class UserControllerTest extends TestCase
             ->postJson('api/users', $data)
             ->assertStatus(201)
             ->assertJsonStructure([
+                'id',
                 'name',
+                'email',
             ]);
 
         $this->assertDatabaseCount('users', 2);
@@ -80,7 +83,9 @@ class UserControllerTest extends TestCase
             ->getJson("api/users/{$user->id}")
             ->assertStatus(200)
             ->assertJsonStructure([
+                'id',
                 'name',
+                'email',
             ]);
     }
 
@@ -103,7 +108,9 @@ class UserControllerTest extends TestCase
             ->putJson("api/users/{$user->id}", ['name' => 'TEST NAME'])
             ->assertStatus(200)
             ->assertJsonStructure([
+                'id',
                 'name',
+                'email',
             ]);
 
         $this->assertDatabaseHas('users', ['name' => 'TEST NAME']);
@@ -128,7 +135,9 @@ class UserControllerTest extends TestCase
             ->deleteJson("api/users/{$user->id}")
             ->assertStatus(200)
             ->assertJsonStructure([
+                'id',
                 'name',
+                'email',
             ]);
 
         $this->assertDatabaseMissing('users', ['id' => $user->id]);

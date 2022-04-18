@@ -6,7 +6,9 @@ use App\Http\Requests\StoreReservationRequest;
 use App\Http\Requests\UpdateReservationRequest;
 use App\Models\Reservation;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ReservationController extends Controller
 {
@@ -31,9 +33,21 @@ class ReservationController extends Controller
     {
         $reservation = new Reservation($request->all());
 
-        $reservation->setAttribute('uuid', Str::uuid());
+        $reservation->uuid = Str::uuid();
 
-        // generate qr code
+        $disk = Storage::disk('reservations');
+        $name = $reservation->uuid . '.svg';
+        $route = route('reservations.show_uuid', $reservation->uuid);
+
+        $disk->put(
+            $name,
+            QrCode::format('svg')->size(500)->margin(1)->generate($route)
+        );
+
+        $reservation->qr_path = $name;
+        $reservation->qr_url = $disk->url($name);
+        $reservation->is_paid = false;
+        $reservation->is_used = false;
 
         $reservation->save();
 
@@ -81,5 +95,17 @@ class ReservationController extends Controller
         $reservation->delete();
 
         return $reservation;
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  Reservation  $reservation
+     *
+     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     */
+    public function download(Reservation $reservation): mixed
+    {
+        return Storage::disk('reservations')->download($reservation->qr_path);
     }
 }

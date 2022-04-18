@@ -6,6 +6,8 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "ext-gd": "*",
+        "ext-imagick": "*",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.2",
         "laravel/passport": "^10.4",
@@ -52,6 +54,15 @@
         ],
         "analyse": [
             "./vendor/bin/phpstan analyse"
+        ],
+        "t": [
+            "phpunit"
+        ],
+        "test": [
+            "@t"
+        ],
+        "test:coverage": [
+            "XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-html coverage --coverage-clover .phpunit.coverage.xml"
         ]
     },
     "extra": {
