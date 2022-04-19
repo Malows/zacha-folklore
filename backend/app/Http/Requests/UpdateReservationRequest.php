@@ -11,12 +11,14 @@ class UpdateReservationRequest extends BaseRequest
      */
     public function rules(): array
     {
+        $max = 'max:255';
+
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', $max],
+            'last_name' => ['required', 'string', $max],
             'amount' => ['nullable', 'integer', 'min:1'],
-            'email' => ['nullable', 'string', 'email', 'max:255'],
-            'phone' => ['nullable', 'string', 'max:255'],
+            'email' => ['nullable', 'string', 'email', $max],
+            'phone' => ['nullable', 'string', $max],
         ];
     }
 }
