@@ -81,7 +81,10 @@ class ProfileControllerTest extends TestCase
 
         $oldPassword = $user->password;
 
-        $data = ['name' => 'TEST PASSWORD'];
+        $data = [
+            'password' => 'TEST PASSWORD',
+            'password_confirmation' => 'TEST PASSWORD',
+        ];
 
         $this
             ->actingAs($user, 'api')

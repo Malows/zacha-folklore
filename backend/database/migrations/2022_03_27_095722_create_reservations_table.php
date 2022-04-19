@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('last_name');
 
+            $table->unsignedInteger('amount')->default(1);
+
             $table->uuid('uuid')->index();
             $table->string('qr_path')->nullable();
             $table->string('qr_url')->nullable();

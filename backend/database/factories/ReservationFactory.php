@@ -20,6 +20,7 @@ class ReservationFactory extends Factory
         return [
             'name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
+            'amount' => $this->faker->numberBetween(1, 10),
 
             'uuid' => Str::uuid(),
             'qr_path' => $this->faker->filePath(),

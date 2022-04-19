@@ -12,7 +12,7 @@ class UpdatePasswordRequest extends BaseRequest
     public function rules(): array
     {
         return [
-
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ];
     }
 }

@@ -50,6 +50,8 @@ class UserControllerTest extends TestCase
         $this->assertDatabaseCount('users', 1);
 
         $data = User::factory()->make()->toArray();
+        $data['password'] = 'password';
+        $data['password_confirmation'] = 'password';
 
         $this
             ->actingAs(User::query()->first(), 'api')
@@ -103,9 +105,12 @@ class UserControllerTest extends TestCase
 
         $user = User::first();
 
+        $data = $user->toArray();
+        $data['name'] = 'TEST NAME';
+
         $this
             ->actingAs(User::query()->first(), 'api')
-            ->putJson("api/users/{$user->id}", ['name' => 'TEST NAME'])
+            ->putJson("api/users/{$user->id}", $data)
             ->assertStatus(200)
             ->assertJsonStructure([
                 'id',

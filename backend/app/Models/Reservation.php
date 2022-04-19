@@ -13,6 +13,7 @@ class Reservation extends Model
     protected $fillable = [
         'name',
         'last_name',
+        'amount',
         'uuid',
         'qr_path',
         'qr_url',

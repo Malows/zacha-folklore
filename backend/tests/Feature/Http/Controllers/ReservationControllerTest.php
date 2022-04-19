@@ -35,6 +35,7 @@ class ReservationControllerTest extends TestCase
                 '*' => [
                     'name',
                     'last_name',
+                    'amount',
                     'uuid',
                     'qr_path',
                     'qr_url',
@@ -72,6 +73,7 @@ class ReservationControllerTest extends TestCase
             ->assertJsonStructure([
                 'name',
                 'last_name',
+                'amount',
                 'uuid',
                 'qr_path',
                 'qr_url',
@@ -109,6 +111,7 @@ class ReservationControllerTest extends TestCase
             ->assertJsonStructure([
                 'name',
                 'last_name',
+                'amount',
                 'uuid',
                 'qr_path',
                 'qr_url',
@@ -134,13 +137,17 @@ class ReservationControllerTest extends TestCase
 
         $reservation = Reservation::first();
 
+        $data = $reservation->toArray();
+        $data['name'] = 'TEST NAME';
+
         $this
             ->actingAs(User::query()->first(), 'api')
-            ->putJson("api/reservations/{$reservation->id}", ['name' => 'TEST NAME'])
+            ->putJson("api/reservations/{$reservation->id}", $data)
             ->assertStatus(200)
             ->assertJsonStructure([
                 'name',
                 'last_name',
+                'amount',
                 'uuid',
                 'qr_path',
                 'qr_url',
@@ -175,6 +182,7 @@ class ReservationControllerTest extends TestCase
             ->assertJsonStructure([
                 'name',
                 'last_name',
+                'amount',
                 'uuid',
                 'qr_path',
                 'qr_url',

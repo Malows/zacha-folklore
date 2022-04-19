@@ -12,7 +12,9 @@ class UpdateMenuItemRequest extends BaseRequest
     public function rules(): array
     {
         return [
-
+            'name' => ['required', 'string', 'max:255'],
+            'price' => ['required', 'numeric'],
+            'menu_section_id' => ['required', 'integer', 'exists:menu_sections,id'],
         ];
     }
 }

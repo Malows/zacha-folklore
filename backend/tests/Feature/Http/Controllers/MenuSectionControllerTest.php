@@ -106,9 +106,12 @@ class MenuSectionControllerTest extends TestCase
 
         $section = MenuSection::first();
 
+        $data = $section->toArray();
+        $data['name'] = 'TEST NAME';
+
         $this
             ->actingAs(User::query()->first(), 'api')
-            ->putJson("api/menu_sections/{$section->id}", ['name' => 'TEST NAME'])
+            ->putJson("api/menu_sections/{$section->id}", $data)
             ->assertStatus(200)
             ->assertJsonStructure([
                 'name',
