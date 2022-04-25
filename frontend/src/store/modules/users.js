@@ -1,5 +1,5 @@
-import genericModule from './generics'
-import { optionsMapper } from './generics/getters'
+import genericModule from '../generics'
+import { optionsMapper } from '../generics/getters'
 import { userService } from 'src/services/Crud'
 
 const users = genericModule({

@@ -32,7 +32,7 @@ const quasar = useQuasar()
 const store = useStore()
 const router = useRouter()
 
-function submit() {
+function submit () {
   // validation
   task(store, quasar, 'usersCreate', {
     name: name.value,

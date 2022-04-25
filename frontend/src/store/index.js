@@ -1,9 +1,11 @@
 import { store } from 'quasar/wrappers'
 import { createStore } from 'vuex'
 import persistedState from 'vuex-persistedstate'
-import makeSessionModule from 'laravel-passport-session-store'
 
-import users from './users'
+import menuSections from './modules/menuSections'
+import reservations from './modules/reservations'
+import users from './modules/users'
+import session from './modules/session'
 
 /*
  * If not building with SSR mode, you can
@@ -14,13 +16,6 @@ import users from './users'
  * with the Store instance.
  */
 
-const session = makeSessionModule({
-  prefix: process.env.STORAGE_PREFIX,
-  clientSecret: process.env.CLIENT_SECRET,
-  clientID: process.env.CLIENT_ID,
-  url: process.env.HOST
-})
-
 export default store(function (/* { ssrContext } */) {
   const Store = createStore({
     plugins: [
@@ -30,6 +25,8 @@ export default store(function (/* { ssrContext } */) {
     ],
 
     modules: {
+      menuSections,
+      reservations,
       session,
       users
     },

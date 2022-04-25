@@ -25,5 +25,5 @@ export const checkLocalAuth = (prefix) => {
 }
 
 export default boot(({ router }) => {
-  router.beforeEach(guardian(process.env.STORE_PREFIX))
+  router.beforeEach(guardian(process.env.STORAGE_PREFIX))
 })

@@ -46,9 +46,13 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
+import { useQuasar } from 'quasar'
 import { task } from 'src/utils/api'
 import QPassword from 'components/QPassword.vue'
 
+const store = useStore()
+const quasar = useQuasar()
 const router = useRouter()
 
 const name = process.env.NAME
@@ -62,9 +66,7 @@ const payload = computed(() => ({
 }))
 
 const submitLogin = async () => {
-  task(this, 'session/login', payload.value)
-    .then(() => {
-      router.push({ name: 'home' })
-    })
+  task(store, quasar, 'session/login', payload.value)
+    .then(() => router.push({ name: 'home' }))
 }
 </script>
