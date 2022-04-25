@@ -1,10 +1,18 @@
+.container {
+    max-width: 50rem;
+    width: 100%;
+}
+
 .menu-item {
     display: flex;
     justify-content: space-between;
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.75rem; /* 28px */
+    font-weight: 600;
 }
 
 .menu-section + .menu-section {
-    margin-top: 1.5rem;
+    margin-top: 3rem;
 }
 
 .menu-section__name {
