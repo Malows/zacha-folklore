@@ -25,7 +25,8 @@
               v-model="password"
               label="Contraseña"
               lazy-rules
-              :rules="[ val => val && val.length > 0 || 'Campo obligatorio']"/>
+              :rules="[ val => val && val.length > 0 || 'Campo obligatorio']"
+            />
 
             <div class="text-center q-mt-lg">
               <q-btn

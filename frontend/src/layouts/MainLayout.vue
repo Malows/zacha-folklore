@@ -1,8 +1,18 @@
 <template>
   <q-layout view="hHh lpR lFr">
-    <q-header reveal elevated class="bg-primary text-white">
+    <q-header
+      reveal
+      elevated
+      class="bg-primary text-white"
+    >
       <q-toolbar>
-        <q-btn dense flat round icon="menu" @click="toggleDrawer" />
+        <q-btn
+          dense
+          flat
+          round
+          icon="menu"
+          @click="toggleDrawer"
+        />
 
         <q-toolbar-title>
           <q-avatar>
@@ -13,14 +23,18 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="open" side="left" overlay bordered>
+    <q-drawer
+      v-model="open"
+      side="left"
+      overlay
+      bordered
+    >
       <drawer-items />
     </q-drawer>
 
     <q-page-container>
       <router-view />
     </q-page-container>
-
   </q-layout>
 </template>
 

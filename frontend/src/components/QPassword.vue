@@ -1,9 +1,9 @@
 <template>
   <q-input
-    :modelValue="props.modelValue"
-    @update:modelValue="onInput"
+    :model-value="props.modelValue"
     :type="passwordMeta.type"
     v-bind="$attrs"
+    @update:model-value="onInput"
   >
     <template #append>
       <q-icon
@@ -22,7 +22,8 @@ import { ref, computed } from 'vue'
 const props = defineProps({
 
   modelValue: {
-    type: String
+    type: String,
+    default: ''
   }
 })
 

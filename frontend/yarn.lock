@@ -75,13 +75,13 @@
   resolved "https://registry.yarnpkg.com/@positron/stack-trace/-/stack-trace-1.0.0.tgz#14fcc712a530038ef9be1ce6952315a839f466a8"
   integrity sha1-FPzHEqUwA475vhzmlSMVqDn0Zqg=
 
-"@quasar/app-vite@^1.0.0-alpha.0":
-  version "1.0.0-beta.12"
-  resolved "https://registry.yarnpkg.com/@quasar/app-vite/-/app-vite-1.0.0-beta.12.tgz#7a3a783eae01a57f3a594ff799375644e2378051"
-  integrity sha512-lsyCKV5CzVC/MTw3uUVXAag8TnehoYvfBlvAAAPBXWEtfYNasZsBq268GoDj0yznj/BVN7wm9mo4oBnyXAw63w==
+"@quasar/app-vite@^1.0.0-beta.14":
+  version "1.0.0-beta.14"
+  resolved "https://registry.yarnpkg.com/@quasar/app-vite/-/app-vite-1.0.0-beta.14.tgz#69fd45938897de3f95243e1efc0f8e4c1a8ab144"
+  integrity sha512-DODuw6AnF4/90xbSmOy5BBvunTZxMdyOVazIFUfii+KZdokJ5Nr7PXZdNSvm5nel4AiOFJzdvtN1n8tCqdf+YQ==
   dependencies:
     "@quasar/fastclick" "1.1.5"
-    "@quasar/vite-plugin" "^1.0.6"
+    "@quasar/vite-plugin" "^1.0.9"
     "@rollup/pluginutils" "^4.1.2"
     "@types/cordova" "0.0.34"
     "@types/express" "^4.17.13"
@@ -116,20 +116,20 @@
     vite "2.9.1"
     webpack-merge "^5.8.0"
 
-"@quasar/extras@^1.0.0":
-  version "1.13.5"
-  resolved "https://registry.yarnpkg.com/@quasar/extras/-/extras-1.13.5.tgz#5be677a800566192ea1bac8b9a796b5b66acd0f5"
-  integrity sha512-H4X3jwqOJpDrn1Pof1mJIpoHdBrZQSR9ZpnQ7RCkJsJccpTyQzs8Q6ehVXfIZrco2kd3UPitRQqEiW7k45ckLg==
+"@quasar/extras@^1.13.6":
+  version "1.13.6"
+  resolved "https://registry.yarnpkg.com/@quasar/extras/-/extras-1.13.6.tgz#7b0ebbe4d9438e599dbb6aafd2af132cf5692344"
+  integrity sha512-IpLPkB3/NXd1vrIo5UcWJR5ECSOqkpFGxZ14Tb3GwBaFPqkpIbpJHGETLLGd284lclI9m1+NNE36TpYyly5qCQ==
 
 "@quasar/fastclick@1.1.5":
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/@quasar/fastclick/-/fastclick-1.1.5.tgz#948e79c44098cced6c3d1645315683ebc29ed834"
   integrity sha512-p3JKgTjRlJ1YQXbqTw3Bsa4j0mQdt5dq+WfYvyb7MgKGdephHCKdR/kxA5PCTAmJanGJuDKqRdyGYX/hYN4KGw==
 
-"@quasar/vite-plugin@^1.0.6":
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/@quasar/vite-plugin/-/vite-plugin-1.0.8.tgz#6eccbf37573d364deb4bc14f5eee51702fc3460a"
-  integrity sha512-rsLIjLp02pjaBDaxMi6JRxGs1O3a0z7HV4zugrULhgfDtytO7DKebGqYghFqjBHBjUbGEQJdnVkT0qWH1NLIGw==
+"@quasar/vite-plugin@^1.0.9":
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/@quasar/vite-plugin/-/vite-plugin-1.0.9.tgz#130c277bf7ef10c964d6ac9fd1cbdf88670fcb3a"
+  integrity sha512-i3tOXLu9SvBG/u/VH/vlPpwzU3QHVtogoSl23Y3i9Clgo6XCtm9mHB0XnQvsLQgNfUTkAKJPKnGwAPQd9uBu1A==
 
 "@rollup/pluginutils@^4.1.2":
   version "4.2.0"
@@ -2537,10 +2537,10 @@ qs@6.9.7:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.9.7.tgz#4610846871485e1e048f44ae3b94033f0e675afe"
   integrity sha512-IhMFgUmuNpyRfxA90umL7ByLlgRXu6tIfKPpF5TmcfRLlLCckfP/g3IQmju6jjpu+Hh8rA+2p6A27ZSPOOHdKw==
 
-quasar@^2.6.0:
-  version "2.6.5"
-  resolved "https://registry.yarnpkg.com/quasar/-/quasar-2.6.5.tgz#f744e2f12c53430da58da413d31e0720cbd6a6fa"
-  integrity sha512-ABaFt6eXDtXwV6RUt8VW5xxvqb8gpflIdYc8+ucGFnZ5zKH20YzqHOlIg/jJOw3T/C1s8T/c6T4yxvhxxj/uxA==
+quasar@^2.6.6:
+  version "2.6.6"
+  resolved "https://registry.yarnpkg.com/quasar/-/quasar-2.6.6.tgz#00bc2acbe5ef2492f7b959f539fd2e469e7082a6"
+  integrity sha512-rXoGZROOXVutQX14l/ys0te/NrgQ754krI0Vz52pBXdznyS+dTL6AgGpr3JMwffoxpxhQyedrL2jOAMpq+Jsgw==
 
 queue-microtask@^1.2.2:
   version "1.2.3"

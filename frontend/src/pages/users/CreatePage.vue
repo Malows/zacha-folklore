@@ -1,16 +1,29 @@
 <template>
-  <q-page padding>
-    <h1>Crear Usuario</h1>
-
+  <page title="Crear Usuario">
     <q-form>
-      <q-input v-model="name" label="Nombre" />
-      <q-input v-model="email" label="Email" />
-      <q-password v-model="password" label="Contraseña" />
-      <q-password v-model="passwordConfirmation" label="Confirmar Contraseña" />
-      <q-btn color="primary" label="Enviar" @click="submit" />
+      <q-input
+        v-model="name"
+        label="Nombre"
+      />
+      <q-input
+        v-model="email"
+        label="Email"
+      />
+      <q-password
+        v-model="password"
+        label="Contraseña"
+      />
+      <q-password
+        v-model="passwordConfirmation"
+        label="Confirmar Contraseña"
+      />
+      <q-btn
+        color="primary"
+        label="Enviar"
+        @click="submit"
+      />
     </q-form>
-
-  </q-page>
+  </page>
 </template>
 
 <script setup>
@@ -21,6 +34,7 @@ import { useQuasar } from 'quasar'
 
 import { task } from 'src/utils/api'
 
+import Page from 'components/shared/pages/Page'
 import QPassword from 'components/QPassword.vue'
 
 const name = ref('')
