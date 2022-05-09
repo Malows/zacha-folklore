@@ -26,7 +26,7 @@ import { useQuasar } from 'quasar'
 
 import { pull, task } from 'src/utils/api'
 
-import Page from 'components/shared/pages/Page'
+import Page from 'components/shared/pages/Page.vue'
 
 const name = ref('')
 const email = ref('')

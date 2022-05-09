@@ -3,7 +3,11 @@
     title="Usuarios"
     :to="{ name: 'users create' }"
   >
-    <filterable-list :items="users" />
+    <filterable-list :items="users">
+      <template #default="{ item }">
+        <user-item :user="item" />
+      </template>
+    </filterable-list>
   </page-with-add>
 </template>
 
@@ -16,11 +20,14 @@ import { pull } from 'src/utils/api'
 
 import PageWithAdd from 'components/shared/pages/PageWithAdd.vue'
 import FilterableList from 'components/shared/filterable/FilterableList.vue'
+import UserItem from 'components/listItems/UserItem.vue'
 
 const store = useStore()
 const quasar = useQuasar()
 
-onMounted(() => pull(store, quasar, 'users/fetch'))
+onMounted(() => {
+  pull(store, quasar, 'users/fetch')
+})
 
-const users = computed(() => store.getters['users/usersOptions'])
+const users = computed(() => store.state.users.users)
 </script>

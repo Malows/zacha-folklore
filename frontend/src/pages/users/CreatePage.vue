@@ -34,7 +34,7 @@ import { useQuasar } from 'quasar'
 
 import { task } from 'src/utils/api'
 
-import Page from 'components/shared/pages/Page'
+import Page from 'components/shared/pages/Page.vue'
 import QPassword from 'components/QPassword.vue'
 
 const name = ref('')
