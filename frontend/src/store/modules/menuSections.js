@@ -7,9 +7,12 @@ const sections = genericModule({
   plural: 'menuSections',
   collection: 'menuSections',
   service: menuSectionService,
+  namespace: false,
   state: () => ({
     menuSections: []
   })
 })
 
-export default optionsMapper(sections.getters, { collection: 'menuSections' })
+sections.getters = optionsMapper(sections.getters, { collection: 'menuSections' })
+
+export default sections

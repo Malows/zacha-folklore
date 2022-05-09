@@ -7,9 +7,12 @@ const reservations = genericModule({
   plural: 'reservations',
   collection: 'reservations',
   service: reservationService,
+  namespace: false,
   state: () => ({
     reservations: []
   })
 })
 
-export default optionsMapper(reservations.getters, { collection: 'reservations' })
+reservations.getters = optionsMapper(reservations.getters, { collection: 'reservations' })
+
+export default reservations

@@ -31,10 +31,10 @@ export default function genericActions ({ plural, singular, namespace = true, se
       return response
     },
 
-    async [getAction] ({ commit }, uuid) {
-      const payload = typeof uuid === 'object'
-        ? uuid
-        : { uuid }
+    async [getAction] ({ commit }, id) {
+      const payload = typeof id === 'object'
+        ? id
+        : { id }
 
       const response = await service.get(payload)
 

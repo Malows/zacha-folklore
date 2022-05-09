@@ -7,9 +7,12 @@ const users = genericModule({
   plural: 'users',
   collection: 'users',
   service: userService,
+  namespace: false,
   state: () => ({
     users: []
   })
 })
 
-export default optionsMapper(users.getters, { collection: 'users' })
+users.getters = optionsMapper(users.getters, { collection: 'users' })
+
+export default users
