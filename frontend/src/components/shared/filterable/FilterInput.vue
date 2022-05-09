@@ -1,29 +1,30 @@
 <template>
   <q-input
     class="q-my-md"
-    :value="props.value"
+    :model-value="props.modelValue"
     type="search"
     outlined
     clearable
-    @input="onInput"
+    @update:model-value="onInput"
   >
     <template #append>
-      <q-icon(name="search") />
+      <q-icon name="search" />
     </template>
   </q-input>
 </template>
 
 <script setup>
 const props = defineProps({
-  value: {
+  modelValue: {
     type: String,
     default: ''
   }
 })
 
-const emits = defineEmits(['input'])
+const emits = defineEmits(['update:modelValue', 'change'])
 
 function onInput (value) {
-  emits('input', value)
+  emits('update:modelValue', value)
+  emits('change')
 }
 </script>

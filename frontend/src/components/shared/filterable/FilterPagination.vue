@@ -2,7 +2,7 @@
   <div class="row justify-center">
     <q-pagination
       class="q-mt-md col-auto"
-      :value="props.value"
+      :model-value="props.modelValue"
       :max="props.perPage"
       input
       @input="onInput"
@@ -12,7 +12,7 @@
 
 <script setup>
 const props = defineProps({
-  value: {
+  modelValue: {
     type: Number,
     default: 1
   },

@@ -2,7 +2,7 @@
   <div>
     <filter-input
       v-model="searchField"
-      @input="currentPage = 1"
+      @change="minPage"
     />
 
     <q-list>
@@ -64,4 +64,10 @@ const sliced = computed(() => {
     currentPage.value * props.itemsPerPage
   )
 })
+
+function minPage () {
+  currentPage.value = numberOfPages.value === 0
+    ? 0
+    : 1
+}
 </script>
