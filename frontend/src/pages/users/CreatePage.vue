@@ -18,6 +18,7 @@
         label="Confirmar Contraseña"
       />
       <q-btn
+        class="q-mt-md"
         color="primary"
         label="Enviar"
         @click="submit"
@@ -27,7 +28,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import { useQuasar } from 'quasar'
@@ -46,14 +47,16 @@ const quasar = useQuasar()
 const store = useStore()
 const router = useRouter()
 
+const payload = computed(() => ({
+  name: name.value,
+  email: email.value,
+  password: password.value,
+  password_confirmation: passwordConfirmation.value
+}))
+
 function submit () {
   // validation
-  task(store, quasar, 'usersCreate', {
-    name: name.value,
-    email: email.value,
-    password: password.value,
-    passwordConfirmation: passwordConfirmation.value
-  })
+  task(store, quasar, 'users/create', payload.value)
     .then(() => {
       quasar.notify('Usuario creado correctamente')
       router.push({ name: 'users index' })
