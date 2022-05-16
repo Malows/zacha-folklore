@@ -2,14 +2,14 @@
   <q-card>
     <q-card-section>
       <div class="text-h6 q-mb-sm">
-        Eliminar usuario
+        Eliminar reserva
       </div>
     </q-card-section>
 
     <q-card-section>
-      <p>
-        ¿Estás seguro de que quieres eliminar este usuario ({{ props.user.name }})?
-      </p>
+      <p>¿Estás seguro de que quieres eliminar esta reserva?</p>
+      <p>{{ props.reservation.last_name }}, {{ props.reservation.name }}</p>
+      <p>Cantidad: {{ props.reservation.amount }}</p>
     </q-card-section>
 
     <q-card-actions align="right">
@@ -33,7 +33,7 @@ import environment from 'src/composable/environment.js'
 import { task } from 'src/utils/api'
 
 const props = defineProps({
-  user: {
+  reservation: {
     type: Object,
     required: true
   }
@@ -42,10 +42,10 @@ const props = defineProps({
 const { router, store, quasar } = environment()
 
 function submit () {
-  task(store, quasar, 'users/remove', { id: props.user.id })
+  task(store, quasar, 'reservations/remove', { id: props.reservation.id })
     .then(() => {
-      quasar.notify('Usuario eliminado correctamente')
-      router.push({ name: 'users index' })
+      quasar.notify('Reserva eliminada correctamente')
+      router.push({ name: 'reservations index' })
     })
 }
 </script>

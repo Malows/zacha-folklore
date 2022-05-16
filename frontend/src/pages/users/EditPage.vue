@@ -34,7 +34,7 @@ const { router, store, quasar } = environment()
 const user = computed(() => store.getters['users/user'])
 
 onMounted(async () => {
-  await pull(store, quasar, 'users/get', router.params.userId)
+  await pull(store, quasar, 'users/get', { id: router.currentRoute.params.userId })
 
   if (user.value) {
     name.value = user.value.name
@@ -44,7 +44,8 @@ onMounted(async () => {
 
 function submit () {
   // validation
-  task(store, quasar, 'users/create', {
+  task(store, quasar, 'users/update', {
+    ...user.value,
     name: name.value,
     email: email.value
   })

@@ -31,11 +31,18 @@
 </template>
 
 <script setup>
+import environment from 'src/composable/environment'
+
 const items = [
   { icon: 'event', text: 'Evento', to: { name: 'events index' } },
   { icon: 'people', text: 'Reservas', to: { name: 'reservations index' } },
   { icon: 'person', text: 'Usuarios', to: { name: 'users index' } }
 ]
 
-const logout = () => {}
+const { router, store } = environment()
+
+const logout = () => {
+  store.dispatch('session/logout')
+  router.push({ name: 'login' })
+}
 </script>

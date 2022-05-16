@@ -1,1 +1,4 @@
 // app global css in SCSS form
+.qr-code {
+  width: clamp(200px, 100%, 300px);
+}
