@@ -14,7 +14,7 @@ export default function ({ singular, collection }) {
 
       const elements = state[collection]
 
-      return elements.find(x => x.uuid === params[idName])
+      return elements.find(x => x.id === parseInt(params[idName]))
     }
   }
 }

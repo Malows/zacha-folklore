@@ -4,12 +4,13 @@
     :offset="alignment.offset"
   >
     <q-fab
+      expandable
       :icon="alignment.icon"
       :direction="alignment.direction"
       :color="props.color"
-    />
-
-    <slot />
+    >
+      <slot />
+    </q-fab>
   </q-page-sticky>
 </template>
 

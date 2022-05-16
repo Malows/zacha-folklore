@@ -10,7 +10,7 @@
 
 <script setup>
 import Page from 'components/shared/pages/Page.vue'
-import StickyActions from 'components/stickyButtons/StickyActions.vue'
+import StickyActions from 'components/shared/stickyButtons/StickyActions.vue'
 
 const props = defineProps({
   title: {
