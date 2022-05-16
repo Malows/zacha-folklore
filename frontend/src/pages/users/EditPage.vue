@@ -20,10 +20,8 @@
 
 <script setup>
 import { ref, onMounted, computed } from 'vue'
-import { useRouter } from 'vue-router'
-import { useStore } from 'vuex'
-import { useQuasar } from 'quasar'
 
+import environment from 'src/composable/environment'
 import { pull, task } from 'src/utils/api'
 
 import Page from 'components/shared/pages/Page.vue'
@@ -31,9 +29,7 @@ import Page from 'components/shared/pages/Page.vue'
 const name = ref('')
 const email = ref('')
 
-const quasar = useQuasar()
-const store = useStore()
-const router = useRouter()
+const { router, store, quasar } = environment()
 
 const user = computed(() => store.getters['users/user'])
 
