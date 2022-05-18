@@ -75,10 +75,10 @@
   resolved "https://registry.yarnpkg.com/@positron/stack-trace/-/stack-trace-1.0.0.tgz#14fcc712a530038ef9be1ce6952315a839f466a8"
   integrity sha1-FPzHEqUwA475vhzmlSMVqDn0Zqg=
 
-"@quasar/app-vite@^1.0.0-beta.14":
-  version "1.0.0-beta.14"
-  resolved "https://registry.yarnpkg.com/@quasar/app-vite/-/app-vite-1.0.0-beta.14.tgz#69fd45938897de3f95243e1efc0f8e4c1a8ab144"
-  integrity sha512-DODuw6AnF4/90xbSmOy5BBvunTZxMdyOVazIFUfii+KZdokJ5Nr7PXZdNSvm5nel4AiOFJzdvtN1n8tCqdf+YQ==
+"@quasar/app-vite@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@quasar/app-vite/-/app-vite-1.0.0.tgz#6bb24b590e0107d45358db71250ceda934b5958d"
+  integrity sha512-htcWI8Y5m/dPb/Tui23LWWrtFc2Cu8q3vYbqr5nlbnlVdWwHQ2aXQayPnF1Ut8JSNfr3tDMStpGtikR3hBOjsw==
   dependencies:
     "@quasar/fastclick" "1.1.5"
     "@quasar/vite-plugin" "^1.0.9"
@@ -116,10 +116,10 @@
     vite "2.9.1"
     webpack-merge "^5.8.0"
 
-"@quasar/extras@^1.13.6":
-  version "1.13.6"
-  resolved "https://registry.yarnpkg.com/@quasar/extras/-/extras-1.13.6.tgz#7b0ebbe4d9438e599dbb6aafd2af132cf5692344"
-  integrity sha512-IpLPkB3/NXd1vrIo5UcWJR5ECSOqkpFGxZ14Tb3GwBaFPqkpIbpJHGETLLGd284lclI9m1+NNE36TpYyly5qCQ==
+"@quasar/extras@^1.14.0":
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/@quasar/extras/-/extras-1.14.0.tgz#cbdb2c8ea8f9ef551adea28592bf9f9f6c1c5165"
+  integrity sha512-4qVLqiKHV8tpvj/VgyxI5FlWCwQvWQzq15xlLeCDpzLOGeJruUXs+QCAB5gFgdDHPbU2ax2YgAxyGoQSCS7ACw==
 
 "@quasar/fastclick@1.1.5":
   version "1.1.5"
@@ -2537,10 +2537,10 @@ qs@6.9.7:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.9.7.tgz#4610846871485e1e048f44ae3b94033f0e675afe"
   integrity sha512-IhMFgUmuNpyRfxA90umL7ByLlgRXu6tIfKPpF5TmcfRLlLCckfP/g3IQmju6jjpu+Hh8rA+2p6A27ZSPOOHdKw==
 
-quasar@^2.6.6:
-  version "2.6.6"
-  resolved "https://registry.yarnpkg.com/quasar/-/quasar-2.6.6.tgz#00bc2acbe5ef2492f7b959f539fd2e469e7082a6"
-  integrity sha512-rXoGZROOXVutQX14l/ys0te/NrgQ754krI0Vz52pBXdznyS+dTL6AgGpr3JMwffoxpxhQyedrL2jOAMpq+Jsgw==
+quasar@^2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/quasar/-/quasar-2.7.0.tgz#f106818bd08e18b3289ec9b92b33c8f6a5cb497c"
+  integrity sha512-UjSWhEtHku1lIP7swRxRj15jRaiH96Nsyrhs/mPcQQXskuDpl5h5eQOFGKHNjgAbVvxXqQTk4aEE78N23bpK/A==
 
 queue-microtask@^1.2.2:
   version "1.2.3"

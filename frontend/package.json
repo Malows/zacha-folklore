@@ -11,15 +11,15 @@
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
-    "@quasar/extras": "^1.13.6",
+    "@quasar/extras": "^1.14.0",
     "laravel-passport-session-store": "^1.0.2",
-    "quasar": "^2.6.6",
+    "quasar": "^2.7.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0",
     "vuex": "^4.0.1"
   },
   "devDependencies": {
-    "@quasar/app-vite": "^1.0.0-beta.14",
+    "@quasar/app-vite": "^1.0.0",
     "autoprefixer": "^10.4.2",
     "date-fns": "^2.28.0",
     "dotenv": "^16.0.0",
