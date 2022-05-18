@@ -10,6 +10,7 @@
         label="Email"
       />
       <q-btn
+        class="q-mt-md"
         color="primary"
         label="Enviar"
         @click="submit"
@@ -29,12 +30,12 @@ import Page from 'components/shared/pages/Page.vue'
 const name = ref('')
 const email = ref('')
 
-const { router, store, quasar } = environment()
+const { route, router, store, quasar } = environment()
 
 const user = computed(() => store.getters['users/user'])
 
 onMounted(async () => {
-  await pull(store, quasar, 'users/get', { id: router.currentRoute.params.userId })
+  await pull(store, quasar, 'users/get', { id: route.params.userId })
 
   if (user.value) {
     name.value = user.value.name

@@ -17,7 +17,6 @@ export function onRequest (reservation) {
 }
 
 export function onResponse (reservation) {
-  console.log(reservation)
   return {
     id: reservation.id,
     name: reservation.name,
