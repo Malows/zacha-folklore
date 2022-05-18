@@ -68,12 +68,12 @@ const reservation = computed(() => store.getters['reservations/reservation'])
 const payload = computed(() => ({
   ...reservation.value,
   name: name.value,
-  last_name: lastName.value,
+  lastName: lastName.value,
   amount: amount.value ?? 0,
   email: email.value,
   phone: email.value,
-  is_paid: paid.value,
-  is_used: used.value
+  isPaid: paid.value,
+  isUsed: used.value
 }))
 
 onMounted(async () => {
@@ -81,12 +81,12 @@ onMounted(async () => {
 
   if (reservation.value) {
     name.value = reservation.value.name
-    lastName.value = reservation.value.last_name
+    lastName.value = reservation.value.lastName
     amount.value = reservation.value.amount
     email.value = reservation.value.email
     phone.value = reservation.value.phone
-    paid.value = reservation.value.is_paid
-    used.value = reservation.value.is_used
+    paid.value = reservation.value.isPaid
+    used.value = reservation.value.isUsed
   }
 })
 

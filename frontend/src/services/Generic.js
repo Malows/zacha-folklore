@@ -8,10 +8,13 @@ class Generic extends Service {
   /**
    * Get the url for the resource.
    */
-  constructor (url, idProperty = 'id') {
+  constructor (url, interceptors, idProperty = 'id') {
     super()
     this._url = url
     this._idProperty = idProperty
+    this.onRequest = interceptors.onRequest
+    this.onResponse = interceptors.onResponse
+    this.onListResponse = interceptors.onListResponse
   }
 
   /**
@@ -36,7 +39,9 @@ class Generic extends Service {
     return handle(
       fetch(this.url(), {
         headers: this.authHeader()
-      })
+      }),
+      this.onResponse,
+      this.onListResponse
     )
   }
 
@@ -51,7 +56,9 @@ class Generic extends Service {
     return handle(
       fetch(this.url(payload), {
         headers: this.authHeader()
-      })
+      }),
+      this.onResponse,
+      this.onListResponse
     )
   }
 
@@ -67,8 +74,10 @@ class Generic extends Service {
       fetch(this.url(), {
         headers: this.authHeader(),
         method: 'POST',
-        body: JSON.stringify(payload)
-      })
+        body: JSON.stringify(this.onRequest(payload))
+      }),
+      this.onResponse,
+      this.onListResponse
     )
   }
 
@@ -84,8 +93,10 @@ class Generic extends Service {
       fetch(this.url(payload), {
         headers: this.authHeader(),
         method: 'PUT',
-        body: JSON.stringify(payload)
-      })
+        body: JSON.stringify(this.onRequest(payload))
+      }),
+      this.onResponse,
+      this.onListResponse
     )
   }
 
@@ -101,7 +112,9 @@ class Generic extends Service {
       fetch(this.url(payload), {
         headers: this.authHeader(),
         method: 'DELETE'
-      })
+      }),
+      this.onResponse,
+      this.onListResponse
     )
   }
 }

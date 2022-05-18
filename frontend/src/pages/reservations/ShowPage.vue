@@ -22,7 +22,7 @@
     </inline-data>
 
     <inline-data label="Apellido">
-      {{ reservation.last_name }}
+      {{ reservation.lastName }}
     </inline-data>
 
     <inline-data label="Cantidad">
@@ -41,15 +41,15 @@
     <inline-data label="Pagada">
       <q-icon
         size="md"
-        :name="reservation.is_paid ? 'check' : 'close'"
-        :color="reservation.is_paid ? 'positive' : 'negative'"
+        :name="reservation.isPaid ? 'check' : 'close'"
+        :color="reservation.isPaid ? 'positive' : 'negative'"
       />
     </inline-data>
     <inline-data label="En uso">
       <q-icon
         size="md"
-        :name="reservation.is_used ? 'check' : 'close'"
-        :color="reservation.is_used ? 'positive' : 'negative'"
+        :name="reservation.isUsed ? 'check' : 'close'"
+        :color="reservation.isUsed ? 'positive' : 'negative'"
       />
     </inline-data>
 
@@ -58,12 +58,12 @@
     <h4>QR</h4>
 
     <inline-data label="URL de QR">
-      {{ reservation.qr_url }}
+      {{ reservation.qrUrl }}
     </inline-data>
 
     <q-img
       class="qr-code"
-      :src="reservation.qr_url"
+      :src="reservation.qrUrl"
     />
 
     <q-dialog v-model="modalDelete">

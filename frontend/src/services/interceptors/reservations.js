@@ -3,8 +3,10 @@ export function onRequest (reservation) {
     name: reservation.name,
     last_name: reservation.lastName,
     amount: reservation.amount,
-    email: reservation?.email,
-    phone: reservation?.phone
+    email: reservation?.email ?? null,
+    phone: reservation?.phone ?? null,
+    is_paid: reservation.isPaid,
+    is_used: reservation.isUsed
   }
 
   if (reservation.id) {
@@ -15,13 +17,17 @@ export function onRequest (reservation) {
 }
 
 export function onResponse (reservation) {
+  console.log(reservation)
   return {
     id: reservation.id,
     name: reservation.name,
     lastName: reservation.last_name,
     amount: reservation.amount,
     email: reservation.email,
-    phone: reservation.phone
+    phone: reservation.phone,
+    isPaid: reservation.is_paid,
+    isUsed: reservation.is_used,
+    qrUrl: reservation.qr_url
   }
 }
 

@@ -10,7 +10,7 @@ class HttpResponse {
 
 export default HttpResponse
 
-export async function handle (fetchPromise) {
+export async function handle (fetchPromise, onResponse = x => x, onListResponse = x => x) {
   const load = new HttpResponse({})
 
   try {
@@ -20,6 +20,10 @@ export async function handle (fetchPromise) {
     load.message = ''
     load.error = null
     load.data = await res.json()
+
+    load.data = Array.isArray(load.data)
+      ? onListResponse(load.data)
+      : onResponse(load.data)
   } catch (error) {
     const _error = error
     load.isOk = false

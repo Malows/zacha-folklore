@@ -8,7 +8,7 @@
 
     <q-card-section>
       <p>¿Estás seguro de que quieres eliminar esta reserva?</p>
-      <p>{{ props.reservation.last_name }}, {{ props.reservation.name }}</p>
+      <p>{{ props.reservation.lastName }}, {{ props.reservation.name }}</p>
       <p>Cantidad: {{ props.reservation.amount }}</p>
     </q-card-section>
 

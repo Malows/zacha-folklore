@@ -65,12 +65,12 @@ const { router, store, quasar } = environment()
 
 const payload = computed(() => ({
   name: name.value,
-  last_name: lastName.value,
+  lastName: lastName.value,
   amount: amount.value,
   email: email.value,
   phone: email.value,
-  is_paid: paid.value,
-  is_used: used.value
+  isPaid: paid.value,
+  isUsed: used.value
 }))
 
 function submit () {

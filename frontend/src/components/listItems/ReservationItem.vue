@@ -12,12 +12,12 @@
 
     <q-item-section>
       <q-item-label>
-        {{ props.reservation.last_name }}, {{ props.reservation.name }}
+        {{ props.reservation.lastName }}, {{ props.reservation.name }}
       </q-item-label>
     </q-item-section>
 
     <q-item-section
-      v-show="props.reservation.is_paid"
+      v-show="props.reservation.isPaid"
       avatar
     >
       <q-icon
@@ -26,7 +26,7 @@
       />
     </q-item-section>
     <q-item-section
-      v-show="props.reservation.is_used"
+      v-show="props.reservation.isUsed"
       avatar
     >
       <q-icon
