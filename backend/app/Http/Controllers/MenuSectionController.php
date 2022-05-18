@@ -17,7 +17,7 @@ class MenuSectionController extends Controller
      */
     public function index()
     {
-        return MenuSection::all();
+        return MenuSection::query()->with('items')->get();
     }
 
     /**
