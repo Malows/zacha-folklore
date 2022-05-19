@@ -21,8 +21,8 @@ const routes = [
 
       route('menu', 'menu index', () => import('pages/menu/IndexPage.vue')),
       route('menu/crear', 'menu create', () => import('pages/menu/CreatePage.vue')),
-      route('menu/:menuId', 'menu show', () => import('pages/menu/ShowPage.vue')),
-      route('menu/:menuId/editar', 'menu edit', () => import('pages/menu/EditPage.vue')),
+      route('menu/:menuSectionId', 'menu show', () => import('pages/menu/ShowPage.vue')),
+      route('menu/:menuSectionId/editar', 'menu edit', () => import('pages/menu/EditPage.vue')),
 
       route('reservas', 'reservations index', () => import('pages/reservations/IndexPage.vue')),
       route('reservas/crear', 'reservations create', () => import('pages/reservations/CreatePage.vue')),
