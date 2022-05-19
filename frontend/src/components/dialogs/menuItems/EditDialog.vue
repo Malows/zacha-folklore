@@ -1,5 +1,5 @@
 <template>
-  <q-card>
+  <q-card class="min-width-dialog">
     <q-card-section>
       <div class="text-h6 q-mb-sm">
         Editar item de menu
@@ -14,8 +14,13 @@
         />
         <q-input
           v-model.number="price"
+          type="number"
           label="Precio"
-        />
+        >
+          <template #prepend>
+            <q-icon name="attach_money" />
+          </template>
+        </q-input>
       </q-form>
     </q-card-section>
 
