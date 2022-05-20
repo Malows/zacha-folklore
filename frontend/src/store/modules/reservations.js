@@ -15,4 +15,8 @@ const reservations = genericModule({
 
 reservations.getters = optionsMapper(reservations.getters, { collection: 'reservations' })
 
+reservations.getters.notUsedReservations = function (state) {
+  return state.reservations.filter(reservation => !reservation.isUsed)
+}
+
 export default reservations

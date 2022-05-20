@@ -44,7 +44,7 @@ function submit () {
   task(store, quasar, 'menuItems/remove', { id: props.item.id })
     .then(() => pull(store, quasar, 'menuSections/get', { id: props.item.menuSectionId }))
     .then(() => {
-      quasar.notify('Item de menu eliminado correctamente')
+      quasar.notify('Item de menú eliminado correctamente')
     })
 }
 </script>

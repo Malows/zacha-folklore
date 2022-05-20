@@ -5,7 +5,7 @@
  * @returns
  */
 function only (object, keys) {
-  return keys.map(x => (object[x]).toLowerCase())
+  return keys.map(x => String(object[x]).toLowerCase())
 }
 
 /**
@@ -29,4 +29,8 @@ function compare (searchInput, searchFields) {
  */
 export function byName (searchField) {
   return compare(searchField, ['name'])
+}
+
+export function reservationFilter (searchField) {
+  return compare(searchField, ['name', 'lastName', 'amount'])
 }

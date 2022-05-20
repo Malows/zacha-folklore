@@ -2,7 +2,7 @@
   <q-card class="min-width-dialog">
     <q-card-section>
       <div class="text-h6 q-mb-sm">
-        Crear item de menu
+        Crear Item de Menú
       </div>
     </q-card-section>
 
@@ -68,7 +68,7 @@ function submit () {
   task(store, quasar, 'menuItems/create', payload.value)
     .then(() => pull(store, quasar, 'menuSections/get', { id: props.section.id }))
     .then(() => {
-      quasar.notify('Item de menu creado correctamente')
+      quasar.notify('Item de menú creado correctamente')
     })
 }
 </script>

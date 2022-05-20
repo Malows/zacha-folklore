@@ -34,8 +34,9 @@
 import environment from 'src/composable/environment'
 
 const items = [
+  { icon: 'home', text: 'Inicio', to: { name: 'home' } },
   // { icon: 'event', text: 'Evento', to: { name: 'events index' } },
-  { icon: 'menu_book', text: 'Menu', to: { name: 'menu index' } },
+  { icon: 'menu_book', text: 'Menú', to: { name: 'menu index' } },
   { icon: 'people', text: 'Reservas', to: { name: 'reservations index' } },
   { icon: 'person', text: 'Usuarios', to: { name: 'users index' } }
 ]

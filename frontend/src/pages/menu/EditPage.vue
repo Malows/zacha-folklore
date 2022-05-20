@@ -1,7 +1,7 @@
 <template>
   <page
     v-if="menuSection"
-    title="Editar Seccion de menu"
+    title="Editar Sección de Menú"
   >
     <q-form>
       <q-input
@@ -58,7 +58,7 @@ function submit () {
   // validation
   task(store, quasar, 'menuSections/update', payload.value)
     .then(() => {
-      quasar.notify('Seccion de menu editada correctamente')
+      quasar.notify('Sección de menú editada correctamente')
       router.push({ name: 'menu index' })
     })
 }

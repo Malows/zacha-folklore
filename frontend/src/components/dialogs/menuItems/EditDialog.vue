@@ -2,7 +2,7 @@
   <q-card class="min-width-dialog">
     <q-card-section>
       <div class="text-h6 q-mb-sm">
-        Editar item de menu
+        Editar Item de Menú
       </div>
     </q-card-section>
 
@@ -79,7 +79,7 @@ function submit () {
   task(store, quasar, 'menuItems/update', payload.value)
     .then(() => pull(store, quasar, 'menuSections/get', { id: props.section.id }))
     .then(() => {
-      quasar.notify('Item de menu editado correctamente')
+      quasar.notify('Item de menú editado correctamente')
     })
 }
 </script>

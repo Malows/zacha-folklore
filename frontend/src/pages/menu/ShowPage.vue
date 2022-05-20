@@ -1,7 +1,7 @@
 <template>
   <page-with-actions
     v-if="menuSection"
-    title="Ver Seccion de menu"
+    title="Ver Sección de Menú"
   >
     <template #actions>
       <action

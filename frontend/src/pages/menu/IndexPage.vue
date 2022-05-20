@@ -1,6 +1,6 @@
 <template>
   <page-with-add
-    title="Menu"
+    title="Menú"
     :to="{ name: 'menu create' }"
   >
     <filterable-list :items="sections">

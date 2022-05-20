@@ -45,7 +45,7 @@ const { router, store, quasar } = environment()
 function submit () {
   task(store, quasar, 'menuSections/remove', { id: props.section.id })
     .then(() => {
-      quasar.notify('Seccion de menu eliminada correctamente')
+      quasar.notify('Sección de menú eliminada correctamente')
       router.push({ name: 'menu index' })
     })
 }

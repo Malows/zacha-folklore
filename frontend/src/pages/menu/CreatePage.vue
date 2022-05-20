@@ -1,5 +1,5 @@
 <template>
-  <page title="Crear Seccion de Menu">
+  <page title="Crear Sección de Menú">
     <q-form>
       <q-input
         v-model="name"
@@ -56,7 +56,7 @@ function submit () {
   // validation
   task(store, quasar, 'menuSections/create', payload.value)
     .then(() => {
-      quasar.notify('Seccion de Menu creada correctamente')
+      quasar.notify('Sección de Menú creada correctamente')
       router.push({ name: 'menu index' })
     })
 }
