@@ -32,7 +32,17 @@ const routes = [
       route('usuarios', 'users index', () => import('pages/users/IndexPage.vue')),
       route('usuarios/crear', 'users create', () => import('pages/users/CreatePage.vue')),
       route('usuarios/:userId', 'users show', () => import('pages/users/ShowPage.vue')),
-      route('usuarios/:userId/editar', 'users edit', () => import('pages/users/EditPage.vue'))
+      route('usuarios/:userId/editar', 'users edit', () => import('pages/users/EditPage.vue')),
+
+      {
+        path: '/qr/:uuid',
+        redirect: to => {
+          return {
+            name: 'reservations show',
+            params: { reservationId: to.params.uuid }
+          }
+        }
+      }
     ]
   },
 

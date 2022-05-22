@@ -20,7 +20,6 @@ import { QInput, QIcon } from 'quasar'
 import { ref, computed } from 'vue'
 
 const props = defineProps({
-
   modelValue: {
     type: String,
     default: ''

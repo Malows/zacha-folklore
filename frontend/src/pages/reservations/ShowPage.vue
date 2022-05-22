@@ -97,7 +97,7 @@ const editRoute = computed(() => ({
 
 onMounted(async () => {
   if (!reservation.value) {
-    await pull(store, quasar, 'reservations/get', Number(route.params.reservationId))
+    await pull(store, quasar, 'reservations/get', route.params.reservationId)
   }
 })
 

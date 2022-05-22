@@ -26,7 +26,8 @@ export function onResponse (reservation) {
     phone: reservation.phone,
     isPaid: reservation.is_paid,
     isUsed: reservation.is_used,
-    qrUrl: reservation.qr_url
+    qrUrl: reservation.qr_url,
+    uuid: reservation.uuid
   }
 }
 

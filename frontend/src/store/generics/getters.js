@@ -14,7 +14,13 @@ export default function ({ singular, collection }) {
 
       const elements = state[collection]
 
-      return elements.find(x => x.id === parseInt(params[idName]))
+      return elements.find(x => {
+        const sameID = x.id === parseInt(params[idName])
+
+        const sameUUID = x?.uuid === params[idName]
+
+        return sameID || sameUUID
+      })
     }
   }
 }
