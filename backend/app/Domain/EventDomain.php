@@ -22,4 +22,26 @@ class EventDomain
 
         $event->save();
     }
+
+    static public function tryToGetActiveEvent() {
+        $event = Event::active()->first();
+
+        if ($event) {
+            return $event;
+        }
+
+        $event = Event::nextEvent()->first();
+
+        if ($event) {
+            Event::update([ 'is_active' => false ]);
+
+            $event->is_active = true;
+
+            $event->save();
+
+            return $event;
+        }
+
+        return null;
+    }
 }

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Domain\EventDomain;
+use App\Domain\ReservationDomain;
 use App\Http\Requests\StoreReservationRequest;
 use App\Http\Requests\UpdateReservationRequest;
 use App\Models\Reservation;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ReservationController extends Controller
 {
@@ -31,27 +31,17 @@ class ReservationController extends Controller
      */
     public function store(StoreReservationRequest $request): Reservation
     {
-        $reservation = new Reservation($request->all());
+        $event = EventDomain::tryToGetActiveEvent();
 
-        $reservation->uuid = Str::uuid();
+        if (!$event) {
+            abort(404);
+        }
 
-        $disk = Storage::disk('reservations');
-        $name = $reservation->uuid . '.svg';
-        $route = route('reservations.show_uuid', $reservation->uuid);
-
-        $disk->put(
-            $name,
-            QrCode::format('svg')->size(500)->margin(1)->generate($route)
+        return ReservationDomain::factory(
+            $event,
+            new Reservation($request->all()),
+            Storage::disk('reservations')
         );
-
-        $reservation->qr_path = $name;
-        $reservation->qr_url = $disk->url($name);
-        $reservation->is_paid = false;
-        $reservation->is_used = false;
-
-        $reservation->save();
-
-        return $reservation;
     }
 
     /**
@@ -76,6 +66,8 @@ class ReservationController extends Controller
      */
     public function update(UpdateReservationRequest $request, Reservation $reservation): Reservation
     {
+        $event = $reservation->event()->first();
+
         $reservation
             ->fill($request->all())
             ->save();

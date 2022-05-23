@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Event extends Model
 {
@@ -35,5 +36,36 @@ class Event extends Model
     public function reservations()
     {
         return $this->hasMany(Reservation::class);
+    }
+
+    /**
+     * Scope a query to only include unused reservations.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     *
+     * @return void
+     */
+    public function scopeActive(Builder $query)
+    {
+        $now = Carbon::now();
+
+        $query
+            ->where('is_active', true)
+            ->whereDate('event_day', '>=', $now);
+    }
+
+    /**
+     * Scope a query to only include unused reservations.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     *
+     * @return void
+     */
+    public function scopeNextEvent(Builder $query)
+    {
+        $now = Carbon::now();
+
+        $query
+            ->whereDate('event_day', '>', $now);
     }
 }
