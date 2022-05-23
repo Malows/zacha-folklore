@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Event;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -30,6 +31,8 @@ return new class extends Migration
 
             $table->boolean('is_paid')->default(true);
             $table->boolean('is_used')->default(false);
+
+            $table->foreignIdFor(Event::class);
 
             $table->timestamps();
             $table->softDeletes();

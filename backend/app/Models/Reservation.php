@@ -21,6 +21,7 @@ class Reservation extends Model
         'phone',
         'is_paid',
         'is_used',
+        'event_id',
     ];
 
     /**
@@ -32,6 +33,14 @@ class Reservation extends Model
         'is_paid' => 'boolean',
         'is_used' => 'boolean',
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function event()
+    {
+        return $this->belongsTo(Event::class);
+    }
 
     /**
      * Scope a query to only include unused reservations.
