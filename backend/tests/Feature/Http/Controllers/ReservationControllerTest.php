@@ -2,8 +2,10 @@
 
 namespace Tests\Feature\Http\Controllers;
 
+use App\Models\Event;
 use App\Models\Reservation;
 use App\Models\User;
+use Database\Seeders\EventSeeder;
 use Database\Seeders\ReservationSeeder;
 use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -25,6 +27,7 @@ class ReservationControllerTest extends TestCase
     public function test_reservations_index()
     {
         $this->seed(UserSeeder::class);
+        $this->seed(EventSeeder::class);
         $this->seed(ReservationSeeder::class);
 
         $this
@@ -43,6 +46,7 @@ class ReservationControllerTest extends TestCase
                     'phone',
                     'is_paid',
                     'is_used',
+                    'event_id',
                 ],
             ]);
     }
@@ -58,10 +62,13 @@ class ReservationControllerTest extends TestCase
     public function test_reservations_store()
     {
         $this->seed(UserSeeder::class);
+        $this->seed(EventSeeder::class);
 
         $this->assertDatabaseCount('reservations', 0);
 
         $disk = Storage::fake('reservations');
+
+        $activeEvent = Event::query()->active()->first();
 
         $data = Reservation::factory()->make()->toArray();
 
@@ -81,6 +88,10 @@ class ReservationControllerTest extends TestCase
                 'phone',
                 'is_paid',
                 'is_used',
+                'event_id',
+            ])
+            ->assertJson([
+                'event_id' => $activeEvent->id,
             ]);
 
         $uuid = $response->json('qr_path');
@@ -100,6 +111,7 @@ class ReservationControllerTest extends TestCase
     public function test_reservations_show()
     {
         $this->seed(UserSeeder::class);
+        $this->seed(EventSeeder::class);
         $this->seed(ReservationSeeder::class);
 
         $reservation = Reservation::first();
@@ -119,6 +131,7 @@ class ReservationControllerTest extends TestCase
                 'phone',
                 'is_paid',
                 'is_used',
+                'event_id',
             ]);
     }
 
@@ -133,6 +146,7 @@ class ReservationControllerTest extends TestCase
     public function test_reservations_update()
     {
         $this->seed(UserSeeder::class);
+        $this->seed(EventSeeder::class);
         $this->seed(ReservationSeeder::class);
 
         $reservation = Reservation::first();
@@ -155,6 +169,7 @@ class ReservationControllerTest extends TestCase
                 'phone',
                 'is_paid',
                 'is_used',
+                'event_id',
             ]);
 
         $this->assertDatabaseHas('reservations', ['name' => 'TEST NAME']);
@@ -171,6 +186,7 @@ class ReservationControllerTest extends TestCase
     public function test_reservations_delete()
     {
         $this->seed(UserSeeder::class);
+        $this->seed(EventSeeder::class);
         $this->seed(ReservationSeeder::class);
 
         $reservation = Reservation::first();
@@ -190,6 +206,7 @@ class ReservationControllerTest extends TestCase
                 'phone',
                 'is_paid',
                 'is_used',
+                'event_id',
             ]);
 
         $this->assertDatabaseMissing('reservations', ['id' => $reservation->id]);

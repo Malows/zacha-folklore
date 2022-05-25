@@ -3,7 +3,7 @@
 namespace Tests\Unit\Http\Requests\EventRequests;
 
 use App\Http\Requests\EventRequests\UpdateRequest as Request;
-use Tests\Unit\Http\Requests\EventRequests\BaseRequestTest;
+use Tests\Unit\Http\Requests\BaseRequestTest;
 
 class UpdateRequestTest extends BaseRequestTest
 {

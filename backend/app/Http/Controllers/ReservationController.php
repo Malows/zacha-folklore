@@ -33,7 +33,7 @@ class ReservationController extends Controller
     {
         $event = EventDomain::tryToGetActiveEvent();
 
-        if (!$event) {
+        if (! $event) {
             abort(404);
         }
 
@@ -67,6 +67,8 @@ class ReservationController extends Controller
     public function update(UpdateReservationRequest $request, Reservation $reservation): Reservation
     {
         $event = $reservation->event()->first();
+
+        EventDomain::updateReservationsAmounts($event);
 
         $reservation
             ->fill($request->all())

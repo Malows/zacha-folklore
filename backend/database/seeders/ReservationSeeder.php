@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Event;
 use App\Models\Reservation;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -20,19 +21,24 @@ class ReservationSeeder extends Seeder
             return;
         }
 
+        $event = Event::query()->active()->first();
+
         Reservation::factory()->count(5)->create([
             'is_paid' => false,
             'is_used' => false,
+            'event_id' => $event->id,
         ]);
 
         Reservation::factory()->count(5)->create([
             'is_paid' => true,
             'is_used' => false,
+            'event_id' => $event->id,
         ]);
 
         Reservation::factory()->count(5)->create([
             'is_paid' => true,
             'is_used' => true,
+            'event_id' => $event->id,
         ]);
     }
 }

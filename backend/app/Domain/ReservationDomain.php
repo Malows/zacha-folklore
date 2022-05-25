@@ -9,7 +9,7 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ReservationDomain
 {
-    static public function factory(Event $event, Reservation $reservation, $disk): Reservation
+    public static function factory(Event $event, Reservation $reservation, $disk): Reservation
     {
         $uuid = Str::uuid();
         $route = route('reservations.show_uuid', $uuid);
@@ -29,6 +29,8 @@ class ReservationDomain
         $reservation->is_used = false;
 
         $reservation->save();
+
+        EventDomain::updateReservationAmounts($event);
 
         return $reservation;
     }

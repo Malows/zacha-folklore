@@ -7,7 +7,8 @@ use App\Models\Reservation;
 
 class EventDomain
 {
-    static public function addReservation(Event $event, Reservation $reservation) {
+    public static function addReservation(Event $event, Reservation $reservation)
+    {
         $event->reserved_tickets += $reservation->amount;
 
         if ($reservation->is_paid) {
@@ -17,13 +18,15 @@ class EventDomain
         $event->save();
     }
 
-    static public function makeReservationUnpaid(Event $event, Reservation $reservation) {
+    public static function makeReservationUnpaid(Event $event, Reservation $reservation)
+    {
         $event->pre_paid_reserved_tickets -= $reservation->amount;
 
         $event->save();
     }
 
-    static public function tryToGetActiveEvent() {
+    public static function tryToGetActiveEvent()
+    {
         $event = Event::active()->first();
 
         if ($event) {
@@ -43,5 +46,18 @@ class EventDomain
         }
 
         return null;
+    }
+
+    public static function updateReservationAmounts(Event $event)
+    {
+        $reservations = $event->reservations()->get();
+
+        $event->reserved_tickets = $reservations->sum('amount');
+        $event->pre_paid_reserved_tickets = $reservations
+            ->sum(fn ($reservation) => $reservation->is_paid ? $reservation->amount : 0);
+
+        $event->save();
+
+        return $event;
     }
 }
