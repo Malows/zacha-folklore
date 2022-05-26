@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\MenuItemController;
 use App\Http\Controllers\MenuSectionController;
 use App\Http\Controllers\ProfileController;
@@ -26,6 +27,7 @@ Route::middleware('auth:api')->group(function () {
     });
 
     Route::apiResources([
+        'events' => EventController::class,
         'menu_items' => MenuItemController::class,
         'menu_sections' => MenuSectionController::class,
         'reservations' => ReservationController::class,
