@@ -9,10 +9,16 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ReservationDomain
 {
+    /**
+     * Reservation factory
+     *
+     * @param Reservation $reservation
+     *
+     * @return string
+     */
     public static function factory(Event $event, Reservation $reservation, $disk): Reservation
     {
         $uuid = Str::uuid();
-        $route = route('reservations.show_uuid', $uuid);
         $name = $uuid . '.svg';
 
         $reservation->event_id = $event->id;
@@ -20,7 +26,10 @@ class ReservationDomain
 
         $disk->put(
             $name,
-            QrCode::format('svg')->size(500)->margin(1)->generate($route)
+            QrCode::format('svg')
+                ->size(500)
+                ->margin(1)
+                ->generate(ReservationDomain::getQrMessage($uuid))
         );
 
         $reservation->qr_path = $name;
@@ -33,5 +42,17 @@ class ReservationDomain
         EventDomain::updateReservationAmounts($event);
 
         return $reservation;
+    }
+
+    /**
+     * Generate the QR message for the QR code.
+     *
+     * @param string $uuid
+     *
+     * @return string
+     */
+    private static function getQrMessage(string $uuid): string
+    {
+        return url("/app/#/qr/{$uuid}");
     }
 }
