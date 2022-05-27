@@ -11,6 +11,11 @@
 const { configure } = require('quasar/wrappers')
 
 module.exports = configure(function (ctx) {
+  const envPath = ctx.prod ? '.env.prod' : '.env.dev'
+  const env = require('dotenv').config({ path: envPath })
+
+  const publicPath = ctx.prod ? '/app' : '/'
+
   return {
     eslint: {
       // fix: true,
@@ -65,11 +70,9 @@ module.exports = configure(function (ctx) {
 
       // rebuildCache: true, // rebuilds Vite/linter/etc cache on startup
 
-      publicPath: '/app',
+      publicPath,
       // analyze: true,
-      env: require('dotenv').config({
-        path: ctx.dev ? '.env' : '.env.prod'
-      }).parsed
+      env: env.parsed
       // rawDefine: {}
       // ignorePublicFolder: true,
       // minify: false,

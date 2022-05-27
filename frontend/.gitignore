@@ -29,5 +29,4 @@ yarn-error.log*
 *.sln
 .vscode
 
-.env
-.env.prod
+.env*
