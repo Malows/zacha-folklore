@@ -311,6 +311,20 @@
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.2.31.tgz#c90de7126d833dcd3a4c7534d534be2fb41faa4e"
   integrity sha512-ymN2pj6zEjiKJZbrf98UM2pfDd6F2H7ksKw7NDt/ZZ1fh5Ei39X5tABugtT03ZRlWd9imccoK0hE8hpjpU7irQ==
 
+"@vuelidate/core@^2.0.0-alpha.41":
+  version "2.0.0-alpha.41"
+  resolved "https://registry.yarnpkg.com/@vuelidate/core/-/core-2.0.0-alpha.41.tgz#eb4644aa45755c20901b4b8d20e1fecfd5389142"
+  integrity sha512-fST7s5wiLW8ZNTexe8+7fDdBZYT7HjbuA43/XDtKTlHs1BMRDDaBoFLZbHSqmHisQvGXa7zLG9bvG8X5cHZaxg==
+  dependencies:
+    vue-demi "^0.12.0"
+
+"@vuelidate/validators@^2.0.0-alpha.29":
+  version "2.0.0-alpha.29"
+  resolved "https://registry.yarnpkg.com/@vuelidate/validators/-/validators-2.0.0-alpha.29.tgz#0d5e245f0de42473f440fd83df8cad8e18e529d1"
+  integrity sha512-azVc2Fwx0umgJjVatzDwnVEdEGNhEdUISQKcLwTDJuNUFS9n1CUqMzfNW+CCTw1Wp8RwYiDS9/qKnEZs4ubF5w==
+  dependencies:
+    vue-demi "^0.12.0"
+
 accepts@~1.3.5, accepts@~1.3.8:
   version "1.3.8"
   resolved "https://registry.yarnpkg.com/accepts/-/accepts-1.3.8.tgz#0bf0be125b67014adcb0b0921e62db7bffe16b2e"
@@ -3094,6 +3108,11 @@ void-elements@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/void-elements/-/void-elements-3.1.0.tgz#614f7fbf8d801f0bb5f0661f5b2f5785750e4f09"
   integrity sha1-YU9/v42AHwu18GYfWy9XhXUOTwk=
+
+vue-demi@^0.12.0:
+  version "0.12.5"
+  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.12.5.tgz#8eeed566a7d86eb090209a11723f887d28aeb2d1"
+  integrity sha512-BREuTgTYlUr0zw0EZn3hnhC3I6gPWv+Kwh4MCih6QcAeaTlaIX0DwOVN0wHej7hSvDPecz4jygy/idsgKfW58Q==
 
 vue-eslint-parser@^8.0.1:
   version "8.3.0"

@@ -42,9 +42,9 @@ const payload = computed(() => ({
 }))
 
 onMounted(async () => {
-  let sample = sections.value
+  let sample = sections?.value ?? []
 
-  if (sample?.length === 0) {
+  if (sample.length === 0) {
     sample = await pull(store, quasar, 'menuSections/fetch')
     sample = sample.data
   }

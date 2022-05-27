@@ -18,7 +18,7 @@ export function onResponse (section) {
     id: section.id,
     name: section.name,
     order: section.order,
-    items: itemsListResponse(section.items)
+    items: itemsListResponse(section.items ?? [])
   }
 }
 

@@ -2,35 +2,38 @@
   <page title="Crear Reserva">
     <q-form>
       <q-input
-        v-model="name"
+        v-model="payload.name"
         label="Nombre"
+        :rules="[x => x.length > 0 || 'El nombre es obligatorio']"
       />
       <q-input
-        v-model="lastName"
+        v-model="payload.lastName"
         label="Apellido"
+        :rules="[x => x.length > 0 || 'El apellido es obligatorio']"
       />
       <q-input
-        v-model.number="amount"
+        v-model.number="payload.amount"
         type="number"
         label="Cantidad"
+        :rules="[x => x > 0 || 'La cantidad debe ser mayor que 0']"
       />
       <q-input
-        v-model="email"
+        v-model="payload.email"
         label="Email"
       />
       <q-input
-        v-model="phone"
+        v-model="payload.phone"
         label="Telefono"
       />
 
       <div class="q-mt-md">
         <q-toggle
-          v-model="paid"
+          v-model="payload.paid"
           label="Pagado"
         />
 
         <q-toggle
-          v-model="used"
+          v-model="payload.used"
           label="Ya usado"
         />
       </div>
@@ -46,36 +49,40 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { reactive } from 'vue'
+// import useVuelidate from '@vuelidate/core'
+// import { required, email, minValue } from '@vuelidate/validators'
 
 import environment from 'src/composable/environment'
 import { task } from 'src/utils/api'
 
 import Page from 'components/shared/pages/Page.vue'
 
-const name = ref('')
-const lastName = ref('')
-const amount = ref(1)
-const email = ref('')
-const phone = ref('')
-const paid = ref(true)
-const used = ref(false)
+const payload = reactive({
+  name: '',
+  lastName: '',
+  amount: 0,
+  email: '',
+  phone: '',
+  paid: false,
+  used: false
+})
+
+/*
+const rules = {
+  name: { required },
+  lastName: { required },
+  amount: { required, minValue: minValue(1) },
+  email: { email }
+}
+*/
 
 const { router, store, quasar } = environment()
 
-const payload = computed(() => ({
-  name: name.value,
-  lastName: lastName.value,
-  amount: amount.value,
-  email: email.value,
-  phone: email.value,
-  isPaid: paid.value,
-  isUsed: used.value
-}))
+// const $v = useVuelidate(rules, payload)
 
 function submit () {
-  // validation
-  task(store, quasar, 'reservations/create', payload.value)
+  task(store, quasar, 'reservations/create', payload)
     .then(() => {
       quasar.notify('Reserva creada correctamente')
       router.push({ name: 'reservations index' })

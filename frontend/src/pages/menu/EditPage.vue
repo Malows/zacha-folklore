@@ -40,13 +40,13 @@ const order = ref(1)
 const menuSection = computed(() => store.getters['menuSections/menuSection'])
 
 const payload = computed(() => ({
-  ...menuSection,
+  ...menuSection.value,
   name: name.value,
   order: order.value
 }))
 
 onMounted(async () => {
-  await pull(store, quasar, 'menuSections/get', { id: route.params.menuId })
+  await pull(store, quasar, 'menuSections/get', { id: route.params.menuSectionId })
 
   if (menuSection.value) {
     name.value = menuSection.value.name
