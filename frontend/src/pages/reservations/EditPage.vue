@@ -7,12 +7,12 @@
       <q-input
         v-model="name"
         label="Nombre"
-        :rules="[x => x || 'El nombre es obligatorio']"
+        :rules="[x => x.length > 0 || 'El nombre es obligatorio']"
       />
       <q-input
         v-model="lastName"
         label="Apellido"
-        :rules="[x => x || 'El apellido es obligatorio']"
+        :rules="[x => x.length > 0 || 'El apellido es obligatorio']"
       />
       <q-input
         v-model.number="amount"

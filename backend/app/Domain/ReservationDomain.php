@@ -34,8 +34,8 @@ class ReservationDomain
 
         $reservation->qr_path = $name;
         $reservation->qr_url = $disk->url($name);
-        $reservation->is_paid = false;
-        $reservation->is_used = false;
+        // $reservation->is_paid = false;
+        // $reservation->is_used = false;
 
         $reservation->save();
 

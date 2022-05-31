@@ -36,7 +36,7 @@ class EventDomain
         $event = Event::nextEvent()->first();
 
         if ($event) {
-            Event::update([ 'is_active' => false ]);
+            Event::query()->update([ 'is_active' => false ]);
 
             $event->is_active = true;
 
@@ -48,7 +48,7 @@ class EventDomain
         return null;
     }
 
-    public static function updateReservationAmounts(Event $event)
+    public static function updateReservationsAmounts(Event $event)
     {
         $reservations = $event->reservations()->get();
 
