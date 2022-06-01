@@ -19,14 +19,14 @@ class ReservationDomain
     public static function factory(Event $event, Reservation $reservation, $disk): Reservation
     {
         $uuid = Str::uuid();
-        $name = $uuid . '.svg';
+        $name = $uuid . '.png';
 
         $reservation->event_id = $event->id;
         $reservation->uuid = $uuid;
 
         $disk->put(
             $name,
-            QrCode::format('svg')
+            QrCode::format('png')
                 ->size(500)
                 ->margin(1)
                 ->generate(ReservationDomain::getQrMessage($uuid))
