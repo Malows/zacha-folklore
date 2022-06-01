@@ -5,7 +5,7 @@
   "orientation": "portrait",
   "background_color": "#ffffff",
   "theme_color": "#027be3",
-  "start_url": "https://zacha.malows.dev/",
+  "start_url": "https://zacha.malows.dev/app/",
   "display": "standalone",
   "icons": [
     {
