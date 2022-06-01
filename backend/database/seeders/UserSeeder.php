@@ -21,10 +21,26 @@ class UserSeeder extends Seeder
                 'email' => env('ADMIN_USER_EMAIL'),
                 'password' => Hash::make(env('ADMIN_USER_PASSWORD')),
             ],
+            [
+                'name' => env('COMMON_USER_NAME'),
+                'email' => env('COMMON_USER_EMAIL'),
+                'password' => Hash::make(env('COMMON_USER_PASSWORD')),
+            ],
         ];
 
-        if (DB::table('users')->count() == 0) {
-            DB::table('users')->insert($users);
+        if (DB::table('users')->count() < 2) {
+            foreach ($users as $user) {
+                $this->checkOrCreateUser($user);
+            }
+        }
+    }
+
+    private function checkOrCreateUser($user)
+    {
+        $user = DB::table('users')->where('email', $user['email'])->first();
+
+        if (!$user) {
+            DB::table('users')->insert($user);
         }
     }
 }

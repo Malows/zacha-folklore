@@ -33,7 +33,7 @@ class ReservationController extends Controller
     {
         $event = EventDomain::tryToGetActiveEvent();
 
-        abort_unless($event, 422, "Missing active event");
+        abort_unless($event, 422, 'Missing active event');
 
         return ReservationDomain::factory(
             $event,
