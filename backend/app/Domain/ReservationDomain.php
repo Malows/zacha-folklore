@@ -39,7 +39,7 @@ class ReservationDomain
 
         $reservation->save();
 
-        EventDomain::updateReservationAmounts($event);
+        EventDomain::updateReservationsAmounts($event);
 
         return $reservation;
     }
