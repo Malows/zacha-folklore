@@ -46,9 +46,9 @@ const eventDay = computed(() => toPlainString(reservation.value?.event?.eventDay
 /* const contact = computed(() => {
   const { email, phone } = reservation?.value ?? {}
 
-  if (email && phone) return `email: ${email} - telefono: ${phone}`
+  if (email && phone) return `email: ${email} - teléfono: ${phone}`
   if (email) return `email: ${email}`
-  if (phone) return `telefono: ${phone}`
+  if (phone) return `teléfono: ${phone}`
 
   return '-'
 }) */

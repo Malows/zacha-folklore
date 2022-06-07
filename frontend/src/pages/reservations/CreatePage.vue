@@ -23,7 +23,7 @@
       />
       <q-input
         v-model="payload.phone"
-        label="Telefono"
+        label="Teléfono"
       />
 
       <div class="q-mt-md">

@@ -26,7 +26,7 @@
       />
       <q-input
         v-model="phone"
-        label="Telefono"
+        label="Teléfono"
       />
       <div class="q-mt-md">
         <q-toggle

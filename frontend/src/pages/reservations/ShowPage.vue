@@ -33,7 +33,7 @@
       {{ reservation.email }}
     </inline-data>
 
-    <inline-data label="Telefono">
+    <inline-data label="Teléfono">
       {{ reservation.phone }}
     </inline-data>
 
