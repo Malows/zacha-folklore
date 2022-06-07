@@ -59,7 +59,7 @@ onMounted(async () => {
   const response = await pull(store, quasar, 'reservations/get', route.params.uuid)
 
   if (checkLocalAuth(process.env.STORAGE_PREFIX)) {
-    router.push({ name: 'reservations show', params: { reservationId: response.data.id } })
+    router.push({ name: 'reservations quick', params: { reservationId: response.data.id } })
   }
 })
 </script>
