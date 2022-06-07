@@ -51,6 +51,8 @@ class ReservationController extends Controller
      */
     public function show(Reservation $reservation): Reservation
     {
+        $reservation->load('event');
+
         return $reservation;
     }
 
