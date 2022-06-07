@@ -1,3 +1,5 @@
+import { onResponse as eventResponse } from './events'
+
 export function onRequest (reservation) {
   const data = {
     name: reservation.name,
@@ -27,7 +29,10 @@ export function onResponse (reservation) {
     isPaid: reservation.is_paid,
     isUsed: reservation.is_used,
     qrUrl: reservation.qr_url,
-    uuid: reservation.uuid
+    uuid: reservation.uuid,
+    event: reservation.event
+      ? eventResponse(reservation.event)
+      : null
   }
 }
 

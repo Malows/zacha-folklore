@@ -28,29 +28,21 @@ const routes = [
       route('reservas/crear', 'reservations create', () => import('pages/reservations/CreatePage.vue')),
       route('reservas/:reservationId', 'reservations show', () => import('pages/reservations/ShowPage.vue')),
       route('reservas/:reservationId/editar', 'reservations edit', () => import('pages/reservations/EditPage.vue')),
+      route('reservas/:reservationId/quick', 'reservations quick', () => import('pages/reservations/QuickPage.vue')),
 
       route('usuarios', 'users index', () => import('pages/users/IndexPage.vue')),
       route('usuarios/crear', 'users create', () => import('pages/users/CreatePage.vue')),
       route('usuarios/:userId', 'users show', () => import('pages/users/ShowPage.vue')),
-      route('usuarios/:userId/editar', 'users edit', () => import('pages/users/EditPage.vue')),
-
-      {
-        path: '/qr/:uuid',
-        redirect: to => {
-          return {
-            name: 'reservations show',
-            params: { reservationId: to.params.uuid }
-          }
-        }
-      }
+      route('usuarios/:userId/editar', 'users edit', () => import('pages/users/EditPage.vue'))
     ]
   },
 
   {
-    path: '/login',
+    path: '/',
     component: () => import('layouts/BlankLayout.vue'),
     children: [
-      publicRoute('', 'login', () => import('src/pages/LoginPage.vue'))
+      publicRoute('/login', 'login', () => import('src/pages/LoginPage.vue')),
+      publicRoute('qr/:uuid', 'qr', () => import('src/pages/QrPage.vue'))
     ]
   },
 

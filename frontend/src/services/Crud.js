@@ -20,7 +20,7 @@ class ReservationService extends Generic {
 
     return handle(
       fetch(url, {
-        headers: this.authHeader()
+        headers: this.commonHeader()
       }),
       this.onResponse,
       this.onListResponse
