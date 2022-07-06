@@ -5,7 +5,7 @@
       :model-value="props.modelValue"
       :max="props.perPage"
       input
-      @input="onInput"
+      @update:model-value="onInput"
     />
   </div>
 </template>
@@ -23,9 +23,9 @@ const props = defineProps({
   }
 })
 
-const emits = defineEmits(['input'])
+const emits = defineEmits(['update:modelValue'])
 
 function onInput (value) {
-  emits('input', value)
+  emits('update:modelValue', value)
 }
 </script>
