@@ -36,7 +36,7 @@ class EventDomain
         $event = Event::nextEvent()->first();
 
         if ($event) {
-            Event::query()->update([ 'is_active' => false ]);
+            Event::query()->update(['is_active' => false]);
 
             $event->is_active = true;
 

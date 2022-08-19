@@ -19,7 +19,6 @@ class UpdatePasswordRequestTest extends BaseRequestTest
         $keys = array_keys($keys);
         sort($keys);
 
-
         $this->assertEquals(1, count($keys));
         $this->assertEquals(['password'], $keys);
     }

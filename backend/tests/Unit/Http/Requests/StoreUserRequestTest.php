@@ -19,7 +19,6 @@ class StoreUserRequestTest extends BaseRequestTest
         $keys = array_keys($keys);
         sort($keys);
 
-
         $this->assertEquals(3, count($keys));
         $this->assertEquals(['email', 'name', 'password'], $keys);
     }

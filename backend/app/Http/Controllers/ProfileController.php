@@ -13,7 +13,6 @@ class ProfileController extends Controller
      * Display the specified resource.
      *
      * @param  Request  $request
-     *
      * @return mixed
      */
     public function show(Request $request): mixed
@@ -25,7 +24,6 @@ class ProfileController extends Controller
      * Update the specified resource in storage.
      *
      * @param  UpdateUserRequest  $request
-     *
      * @return mixed
      */
     public function update(UpdateUserRequest $request): mixed
@@ -43,7 +41,6 @@ class ProfileController extends Controller
      * Update the specified resource in storage.
      *
      * @param  UpdatePasswordRequest  $request
-     *
      * @return mixed
      */
     public function password(UpdatePasswordRequest $request): mixed

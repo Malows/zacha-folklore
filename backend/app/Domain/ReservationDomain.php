@@ -12,14 +12,14 @@ class ReservationDomain
     /**
      * Reservation factory
      *
-     * @param Reservation $reservation
+     * @param  Reservation  $reservation
      *
      * @return string
      */
     public static function factory(Event $event, Reservation $reservation, $disk): Reservation
     {
         $uuid = Str::uuid();
-        $name = $uuid . '.png';
+        $name = $uuid.'.png';
 
         $reservation->event_id = $event->id;
         $reservation->uuid = $uuid;
@@ -47,8 +47,7 @@ class ReservationDomain
     /**
      * Generate the QR message for the QR code.
      *
-     * @param string $uuid
-     *
+     * @param  string  $uuid
      * @return string
      */
     private static function getQrMessage(string $uuid): string

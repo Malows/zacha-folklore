@@ -24,7 +24,6 @@ class UserController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  StoreUserRequest  $request
-     *
      * @return User
      */
     public function store(StoreUserRequest $request): User
@@ -42,7 +41,6 @@ class UserController extends Controller
      * Display the specified resource.
      *
      * @param  User  $user
-     *
      * @return User
      */
     public function show(User $user): User
@@ -55,7 +53,6 @@ class UserController extends Controller
      *
      * @param  UpdateUserRequest  $request
      * @param  User  $user
-     *
      * @return User
      */
     public function update(UpdateUserRequest $request, User $user): User
@@ -71,7 +68,6 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  User  $user
-     *
      * @return User
      */
     public function destroy(User $user): User

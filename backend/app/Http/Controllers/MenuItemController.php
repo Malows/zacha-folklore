@@ -23,7 +23,6 @@ class MenuItemController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  StoreMenuItemRequest  $request
-     *
      * @return MenuItem
      */
     public function store(StoreMenuItemRequest $request): MenuItem
@@ -35,7 +34,6 @@ class MenuItemController extends Controller
      * Display the specified resource.
      *
      * @param  MenuItem  $menuItem
-     *
      * @return MenuItem
      */
     public function show(MenuItem $menuItem): MenuItem
@@ -50,7 +48,6 @@ class MenuItemController extends Controller
      *
      * @param  UpdateMenuItemRequest  $request
      * @param  MenuItem  $menuItem
-     *
      * @return MenuItem
      */
     public function update(UpdateMenuItemRequest $request, MenuItem $menuItem): MenuItem
@@ -66,7 +63,6 @@ class MenuItemController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  MenuItem  $menuItem
-     *
      * @return MenuItem
      */
     public function destroy(MenuItem $menuItem): MenuItem

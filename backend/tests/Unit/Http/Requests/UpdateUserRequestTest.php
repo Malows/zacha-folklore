@@ -19,7 +19,6 @@ class UpdateUserRequestTest extends BaseRequestTest
         $keys = array_keys($keys);
         sort($keys);
 
-
         $this->assertEquals(2, count($keys));
         $this->assertEquals(['email', 'name'], $keys);
     }

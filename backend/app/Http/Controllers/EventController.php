@@ -23,7 +23,6 @@ class EventController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  StoreRequest  $request
-     *
      * @return Event
      */
     public function store(StoreRequest $request): Event
@@ -35,7 +34,6 @@ class EventController extends Controller
      * Display the specified resource.
      *
      * @param  Event  $event
-     *
      * @return Event
      */
     public function show(Event $event): Event
@@ -48,7 +46,6 @@ class EventController extends Controller
      *
      * @param  UpdateRequest  $request
      * @param  Event  $event
-     *
      * @return Event
      */
     public function update(UpdateRequest $request, Event $event): Event
@@ -68,7 +65,6 @@ class EventController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  Event  $event
-     *
      * @return Event
      */
     public function destroy(Event $event): Event
@@ -83,7 +79,6 @@ class EventController extends Controller
      *
      * @param  AddTicketsRequest  $request
      * @param  Event  $event
-     *
      * @return Event
      */
     public function addCommonTickets(AddTicketsRequest $request, Event $event): Event

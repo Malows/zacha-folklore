@@ -39,7 +39,7 @@ class UserSeeder extends Seeder
     {
         $fetched = DB::table('users')->where('email', $user['email'])->first();
 
-        if (!$fetched) {
+        if (! $fetched) {
             DB::table('users')->insert($user);
         }
     }

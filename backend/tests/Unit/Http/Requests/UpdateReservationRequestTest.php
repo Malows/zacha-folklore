@@ -19,7 +19,6 @@ class UpdateReservationRequestTest extends BaseRequestTest
         $keys = array_keys($keys);
         sort($keys);
 
-
         $this->assertEquals(5, count($keys));
         $this->assertEquals(['amount', 'email', 'last_name', 'name', 'phone'], $keys);
     }

@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'ide' => "vscode",
+    'ide' => 'vscode',
 
     /*
     |--------------------------------------------------------------------------
@@ -96,7 +96,7 @@ return [
             'lineLimit' => 120,
             'absoluteLineLimit' => 140,
             'ignoreComments' => false,
-        ]
+        ],
     ],
 
     /*
@@ -111,11 +111,11 @@ return [
     */
 
     'requirements' => [
-//        'min-quality' => 0,
-//        'min-complexity' => 0,
-//        'min-architecture' => 0,
-//        'min-style' => 0,
-//        'disable-security-check' => false,
+        //        'min-quality' => 0,
+        //        'min-complexity' => 0,
+        //        'min-architecture' => 0,
+        //        'min-style' => 0,
+        //        'disable-security-check' => false,
     ],
 
     /*

@@ -15,7 +15,6 @@ class ReservationPolicy
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Reservation  $reservation
-     *
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function update(User $user, Reservation $reservation)

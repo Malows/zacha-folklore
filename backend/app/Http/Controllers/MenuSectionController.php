@@ -24,7 +24,6 @@ class MenuSectionController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  StoreMenuSectionRequest  $request
-     *
      * @return MenuSection
      */
     public function store(StoreMenuSectionRequest $request): MenuSection
@@ -36,7 +35,6 @@ class MenuSectionController extends Controller
      * Display the specified resource.
      *
      * @param  MenuSection  $menuSection
-     *
      * @return MenuSection
      */
     public function show(MenuSection $menuSection): MenuSection
@@ -51,7 +49,6 @@ class MenuSectionController extends Controller
      *
      * @param  UpdateMenuSectionRequest  $request
      * @param  MenuSection  $menuSection
-     *
      * @return MenuSection
      */
     public function update(UpdateMenuSectionRequest $request, MenuSection $menuSection): MenuSection
@@ -67,7 +64,6 @@ class MenuSectionController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  MenuSection  $menuSection
-     *
      * @return MenuSection
      */
     public function destroy(MenuSection $menuSection): MenuSection

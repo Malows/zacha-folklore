@@ -26,7 +26,6 @@ class ReservationController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  StoreReservationRequest  $request
-     *
      * @return Reservation
      */
     public function store(StoreReservationRequest $request): Reservation
@@ -46,7 +45,6 @@ class ReservationController extends Controller
      * Display the specified resource.
      *
      * @param  Reservation  $reservation
-     *
      * @return Reservation
      */
     public function show(Reservation $reservation): Reservation
@@ -61,7 +59,6 @@ class ReservationController extends Controller
      *
      * @param  UpdateReservationRequest  $request
      * @param  Reservation  $reservation
-     *
      * @return Reservation
      */
     public function update(UpdateReservationRequest $request, Reservation $reservation): Reservation
@@ -81,7 +78,6 @@ class ReservationController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  Reservation  $reservation
-     *
      * @return Reservation
      */
     public function destroy(Reservation $reservation): Reservation
@@ -95,7 +91,6 @@ class ReservationController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  Reservation  $reservation
-     *
      * @return \Symfony\Component\HttpFoundation\StreamedResponse
      */
     public function download(Reservation $reservation): mixed
