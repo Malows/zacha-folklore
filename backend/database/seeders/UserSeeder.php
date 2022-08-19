@@ -37,9 +37,9 @@ class UserSeeder extends Seeder
 
     private function checkOrCreateUser($user)
     {
-        $user = DB::table('users')->where('email', $user['email'])->first();
+        $fetched = DB::table('users')->where('email', $user['email'])->first();
 
-        if (!$user) {
+        if (!$fetched) {
             DB::table('users')->insert($user);
         }
     }

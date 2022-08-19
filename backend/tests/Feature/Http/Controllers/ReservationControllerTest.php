@@ -86,8 +86,8 @@ class ReservationControllerTest extends TestCase
                 'qr_url',
                 'email',
                 'phone',
-                'is_paid',
-                'is_used',
+                // 'is_paid',
+                // 'is_used',
                 'event_id',
             ])
             ->assertJson([
@@ -209,6 +209,6 @@ class ReservationControllerTest extends TestCase
                 'event_id',
             ]);
 
-        $this->assertDatabaseMissing('reservations', ['id' => $reservation->id]);
+        $this->assertDatabaseMissing('reservations', ['id' => $reservation->id, 'deleted_at' => null]);
     }
 }

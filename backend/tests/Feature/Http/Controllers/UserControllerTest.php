@@ -47,7 +47,9 @@ class UserControllerTest extends TestCase
     {
         $this->seed(UserSeeder::class);
 
-        $this->assertDatabaseCount('users', 1);
+        $USERS_AMOUNT = 2; // the admin and the common one
+
+        $this->assertDatabaseCount('users', $USERS_AMOUNT);
 
         $data = User::factory()->make()->toArray();
         $data['password'] = 'password';
@@ -63,7 +65,7 @@ class UserControllerTest extends TestCase
                 'email',
             ]);
 
-        $this->assertDatabaseCount('users', 2);
+        $this->assertDatabaseCount('users', $USERS_AMOUNT + 1);
     }
 
     /**
