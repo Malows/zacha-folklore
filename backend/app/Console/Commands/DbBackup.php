@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Carbon;
 
 class DbBackup extends Command
 {
@@ -28,13 +29,13 @@ class DbBackup extends Command
     public function handle()
     {
         $user = env('DB_USERNAME');
-        $password = env('DB_PASSWORD');
+        $pass = env('DB_PASSWORD');
         $host = env('DB_HOST');
-        $database = env('DB_DATABASE');
+        $db = env('DB_DATABASE');
 
         $filename = "backup-" . Carbon::now()->format('Y-m-d') . ".gz";
 
-        $command = "mysqldump --user={$user} --password={$password} --host={$host} {$database}  | gzip > " . storage_path() . "/app/backup/" . $filename;
+        $command = "mysqldump --user={$user} --password={$pass} --host={$host} {$db} | gzip > " . storage_path() . "/app/backup/" . $filename;
         $returnVar = NULL;
         $output  = NULL;
         exec($command, $output, $returnVar);
