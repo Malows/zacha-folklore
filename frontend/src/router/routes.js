@@ -19,6 +19,11 @@ const routes = [
 
       route('evento', 'events index', () => import('pages/EventPage.vue')),
 
+      route('eventos', 'events index', () => import('pages/events/IndexPage.vue')),
+      route('eventos/crear', 'events create', () => import('pages/events/CreatePage.vue')),
+      route('eventos/:eventId', 'events show', () => import('pages/events/ShowPage.vue')),
+      route('eventos/:eventId/editar', 'events edit', () => import('pages/events/EditPage.vue')),
+
       route('menu', 'menu index', () => import('pages/menu/IndexPage.vue')),
       route('menu/crear', 'menu create', () => import('pages/menu/CreatePage.vue')),
       route('menu/:menuSectionId', 'menu show', () => import('pages/menu/ShowPage.vue')),

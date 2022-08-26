@@ -6,6 +6,7 @@ export const LOGIN = `${HOST}/oauth/token`
 export const USER_URL = `${URL}/user`
 
 // crud
+export const EVENTS_URL = `${URL}/events`
 export const RESERVATIONS_URL = `${URL}/reservations`
 // export const PRODUCTS_URL = `${URL}/menu`
 export const MENU_SECTIONS_URL = `${URL}/menu_sections`

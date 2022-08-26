@@ -2,6 +2,7 @@ import { store } from 'quasar/wrappers'
 import { createStore } from 'vuex'
 import persistedState from 'vuex-persistedstate'
 
+import events from './modules/events'
 import menuItems from './modules/menuItems'
 import menuSections from './modules/menuSections'
 import reservations from './modules/reservations'
@@ -26,6 +27,7 @@ export default store(function (/* { ssrContext } */) {
     ],
 
     modules: {
+      events,
       menuItems,
       menuSections,
       reservations,
