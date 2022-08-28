@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('events', function (Blueprint $table) {
+            $table->string('name')->after('id')->default('');
             $table->string('address')->after('event_day')->nullable();
             $table->json('location')->after('event_day')->nullable();
         });
