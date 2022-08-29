@@ -17,6 +17,10 @@
       {{ eventDay }}
     </h5>
 
+    <div>
+      <base-map />
+    </div>
+
     <p class="text-body1">
       {{ reservation.name }} {{ reservation.lastName }}
     </p>
@@ -38,6 +42,8 @@ import { checkLocalAuth } from 'src/boot/routeGuardian'
 import environment from 'src/composable/environment'
 import { pull } from 'src/utils/api'
 import { toPlainString } from 'src/utils/date'
+
+import BaseMap from 'src/components/shared/BaseMap.vue'
 
 const { store, quasar, route, router } = environment()
 
