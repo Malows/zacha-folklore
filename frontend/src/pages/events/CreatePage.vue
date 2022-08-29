@@ -4,39 +4,32 @@
       <q-input
         v-model="payload.name"
         label="Nombre"
-        :rules="[x => x.length > 0 || 'El nombre es obligatorio']"
-      />
-      <q-input
-        v-model="payload.lastName"
-        label="Apellido"
-        :rules="[x => x.length > 0 || 'El apellido es obligatorio']"
-      />
-      <q-input
-        v-model.number="payload.amount"
-        type="number"
-        label="Cantidad"
-        :rules="[x => x > 0 || 'La cantidad debe ser mayor que 0']"
-      />
-      <q-input
-        v-model="payload.email"
-        label="Email"
-      />
-      <q-input
-        v-model="payload.phone"
-        label="Teléfono"
       />
 
-      <div class="q-mt-md">
-        <q-toggle
-          v-model="payload.paid"
-          label="Pagado"
-        />
+      <q-input
+        v-model="payload.eventDay"
+        label="Dia del evento"
+      />
 
-        <q-toggle
-          v-model="payload.used"
-          label="Ya usado"
-        />
-      </div>
+      <q-input
+        v-model="payload.startedAt"
+        label="Hora de inicio"
+      />
+
+      <q-toggle
+        v-model="payload.isActive"
+        label="Evento activo"
+      />
+
+      <q-input
+        v-model="payload.address"
+        label="Direccion"
+      />
+
+      <q-input
+        v-model="payload.location"
+        label="Mapa"
+      />
 
       <q-btn
         class="q-mt-md"
@@ -60,32 +53,22 @@ import Page from 'components/shared/pages/Page.vue'
 
 const payload = reactive({
   name: '',
-  lastName: '',
-  amount: 0,
-  email: '',
-  phone: '',
-  paid: false,
-  used: false
+  eventDay: null,
+  startedAt: null,
+  isActive: false,
+  address: '',
+  location: null
 })
-
-/*
-const rules = {
-  name: { required },
-  lastName: { required },
-  amount: { required, minValue: minValue(1) },
-  email: { email }
-}
-*/
 
 const { router, store, quasar } = environment()
 
 // const $v = useVuelidate(rules, payload)
 
 function submit () {
-  task(store, quasar, 'reservations/create', payload)
+  task(store, quasar, 'events/create', payload)
     .then(() => {
-      quasar.notify('Reserva creada correctamente')
-      router.push({ name: 'reservations index' })
+      quasar.notify('Evento creado correctamente')
+      router.push({ name: 'events index' })
     })
 }
 </script>

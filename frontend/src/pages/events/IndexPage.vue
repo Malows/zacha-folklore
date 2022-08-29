@@ -5,7 +5,7 @@
   >
     <filterable-list :items="events">
       <template #default="{ item }">
-        <reservation-item :reservation="item" />
+        <event-item :event="item" />
       </template>
     </filterable-list>
   </page-with-add>
@@ -19,7 +19,7 @@ import { pull } from 'src/utils/api'
 
 import PageWithAdd from 'components/shared/pages/PageWithAdd.vue'
 import FilterableList from 'components/shared/filterable/FilterableList.vue'
-import ReservationItem from 'components/listItems/ReservationItem.vue'
+import EventItem from 'components/listItems/EventItem.vue'
 
 const { store, quasar } = environment()
 

@@ -1,6 +1,6 @@
 <template>
   <page-with-actions
-    v-if="reservation"
+    v-if="event"
     title="Ver Evento"
   >
     <template #actions>
@@ -18,56 +18,35 @@
     </template>
 
     <inline-data label="Nombre">
-      {{ reservation.name }}
+      {{ event.name }}
     </inline-data>
 
-    <inline-data label="Apellido">
-      {{ reservation.lastName }}
+    <inline-data label="Dia del evento">
+      {{ event.eventDay }}
     </inline-data>
 
-    <inline-data label="Cantidad">
-      {{ reservation.amount }}
+    <inline-data label="Hora de inicio">
+      {{ event.startedAt }}
     </inline-data>
 
-    <inline-data label="Email">
-      {{ reservation.email }}
-    </inline-data>
-
-    <inline-data label="Teléfono">
-      {{ reservation.phone }}
-    </inline-data>
-
-    <q-separator />
-    <inline-data label="Pagada">
+    <inline-data label="Evento activo">
       <q-icon
         size="md"
-        :name="reservation.isPaid ? 'check' : 'close'"
-        :color="reservation.isPaid ? 'positive' : 'negative'"
-      />
-    </inline-data>
-    <inline-data label="En uso">
-      <q-icon
-        size="md"
-        :name="reservation.isUsed ? 'check' : 'close'"
-        :color="reservation.isUsed ? 'positive' : 'negative'"
+        :name="icon.type"
+        :color="icon.color"
       />
     </inline-data>
 
-    <q-separator />
-
-    <h4>QR</h4>
-
-    <inline-data label="URL de QR">
-      {{ reservation.qrUrl }}
+    <inline-data label="Direccion">
+      {{ event.address }}
     </inline-data>
 
-    <q-img
-      class="qr-code"
-      :src="reservation.qrUrl"
-    />
+    <inline-data label="Ubicacion">
+      {{ event.location }}
+    </inline-data>
 
     <q-dialog v-model="modalDelete">
-      <delete-dialog :reservation="reservation" />
+      <delete-dialog :event="event" />
     </q-dialog>
   </page-with-actions>
 </template>
@@ -82,22 +61,23 @@ import { pull } from 'src/utils/api'
 import PageWithActions from 'components/shared/pages/PageWithActions.vue'
 import Action from 'components/shared/stickyButtons/Action.vue'
 import InlineData from 'components/shared/InlineData.vue'
-import DeleteDialog from 'components/dialogs/reservations/DeleteDialog.vue'
+import DeleteDialog from 'components/dialogs/events/DeleteDialog.vue'
 
 const { store, quasar, route } = environment()
 
-const reservation = computed(() => store.getters['reservations/reservation'])
+const event = computed(() => store.getters['events/event'])
+const icon = computed(() => event.value?.isActive ? { type: 'check', color: 'positive' } : { type: 'close', color: 'negative' })
 
 const [modalDelete, showModalDelete] = modalFactory()
 
 const editRoute = computed(() => ({
-  name: 'reservations edit',
-  params: { reservationId: reservation.value?.id ?? '' }
+  name: 'events edit',
+  params: { eventId: event.value?.id ?? '' }
 }))
 
 onMounted(async () => {
-  if (!reservation.value) {
-    await pull(store, quasar, 'reservations/get', route.params.reservationId)
+  if (!event.value) {
+    await pull(store, quasar, 'events/get', route.params.eventId)
   }
 })
 
