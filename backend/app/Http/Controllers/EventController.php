@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Domain\EventDomain;
 use App\Http\Requests\EventRequests\AddTicketsRequest;
 use App\Http\Requests\EventRequests\StoreRequest;
 use App\Http\Requests\EventRequests\UpdateRequest;
@@ -51,9 +52,7 @@ class EventController extends Controller
     public function update(UpdateRequest $request, Event $event): Event
     {
         if ($request->has('is_active') && $request->get('is_active')) {
-            Event::query()
-                ->where(['is_active' => true])
-                ->update(['is_active' => false]);
+            EventDomain::deactivateOtherEvents($event);
         }
 
         $event->fill($request->all())->save();
