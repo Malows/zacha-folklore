@@ -13,6 +13,9 @@ class Event extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
+        'name',
+        'address',
+        'location',
         'event_day',
         'started_at',
         'is_active',
@@ -30,6 +33,7 @@ class Event extends Model
         'event_day' => 'date',
         'started_at' => 'datetime',
         'is_active' => 'boolean',
+        'location' => 'array',
     ];
 
     /**
