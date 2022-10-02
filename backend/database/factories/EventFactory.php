@@ -17,6 +17,12 @@ class EventFactory extends Factory
     public function definition()
     {
         return [
+            'name' => $this->faker->name,
+            'address' => $this->faker->streetAddress,
+            'location' => [
+                'lat' => $this->faker->latitude,
+                'lng' => $this->faker->longitude,
+            ],
             'event_day' => $this->faker->dateTimeBetween('-1 month', '+3 months'),
             'started_at' => $this->faker->dateTimeBetween('-1 month', '+3 months'),
             'is_active' => $this->faker->boolean,
