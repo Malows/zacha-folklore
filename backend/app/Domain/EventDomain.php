@@ -60,4 +60,12 @@ class EventDomain
 
         return $event;
     }
+
+    public static function deactivateOtherEvents(Event $event)
+    {
+        Event::query()
+            ->where('id', '!=', $event->id)
+            ->where(['is_active' => true])
+            ->update(['is_active' => false]);
+    }
 }
