@@ -25,10 +25,24 @@ class EventFactory extends Factory
             ],
             'event_day' => $this->faker->dateTimeBetween('-1 month', '+3 months'),
             'started_at' => $this->faker->dateTimeBetween('-1 month', '+3 months'),
-            'is_active' => $this->faker->boolean,
+            'is_active' => false,
             'reserved_tickets' => $this->faker->numberBetween(0, 100),
             'pre_paid_reserved_tickets' => $this->faker->numberBetween(0, 100),
             'common_tickets' => $this->faker->numberBetween(0, 100),
         ];
+    }
+
+    /**
+     * Indicate that the event is active.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function active()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'is_active' => true,
+            ];
+        });
     }
 }
