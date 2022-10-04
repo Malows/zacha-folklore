@@ -133,10 +133,7 @@ class EventDomainTest extends TestCase
         $old_amount = $event->reserved_tickets;
         $old_amount_paid = $event->pre_paid_reserved_tickets;
 
-        $reservation = Reservation::factory()->state([
-            'is_paid' => false,
-            'amount' => 1,
-        ])->make();
+        $reservation = Reservation::factory()->make(['amount' => 1]);
 
         EventDomain::addReservation($event, $reservation);
 
@@ -171,14 +168,39 @@ class EventDomainTest extends TestCase
 
         $old_amount_paid = $event->pre_paid_reserved_tickets;
 
-        $reservation = Reservation::factory()->state([
-            'amount' => 1,
-        ])->make();
+        $reservation = Reservation::factory()->make(['amount' => 1]);
 
         EventDomain::makeReservationUnpaid($event, $reservation);
 
         $event->refresh();
 
         $this->assertEquals($event->pre_paid_reserved_tickets, $old_amount_paid - 1);
+    }
+
+    /**
+     * A basic feature test example.
+     *
+     * @return void
+     *
+     * @group events
+     * @group domain
+     */
+    public function test_update_reservations_amounts()
+    {
+        $event = Event::factory()->create();
+
+        $event = EventDomain::updateReservationsAmounts($event);
+
+        $this->assertEquals(0, $event->reserved_tickets);
+        $this->assertEquals(0, $event->pre_paid_reserved_tickets);
+
+        Reservation::factory()->create(['event_id' => $event->id]);
+
+        Reservation::factory()->paid()->create(['event_id' => $event->id]);
+
+        $event = EventDomain::updateReservationsAmounts($event);
+
+        $this->assertGreaterThan(0, $event->reserved_tickets);
+        $this->assertGreaterThan(0, $event->pre_paid_reserved_tickets);
     }
 }
