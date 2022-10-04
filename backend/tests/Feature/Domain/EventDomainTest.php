@@ -81,7 +81,7 @@ class EventDomainTest extends TestCase
 
         Event::query()->update([
             'is_active' => false,
-            'event_day' => Carbon::yesterday()
+            'event_day' => Carbon::yesterday(),
         ]);
 
         $first = Event::query()->first();
@@ -108,7 +108,7 @@ class EventDomainTest extends TestCase
 
         Event::query()->update([
             'is_active' => false,
-            'event_day' => Carbon::yesterday()
+            'event_day' => Carbon::yesterday(),
         ]);
 
         $active = EventDomain::tryToGetActiveEvent();

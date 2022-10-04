@@ -7,6 +7,7 @@ use App\Models\User;
 use Database\Seeders\EventSeeder;
 use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Carbon;
 use Tests\TestCase;
 
 class EventControllerTest extends TestCase
@@ -151,6 +152,25 @@ class EventControllerTest extends TestCase
             ]);
 
         $this->assertDatabaseHas('events', ['name' => 'TEST NAME']);
+
+        // check override of active event
+        Event::query()->update(['is_active' => false]);
+        $item->event_day = Carbon::tomorrow();
+        $item->is_active = true;
+        $item->save();
+
+        $other = Event::query()->where('id', '!=', $item->id)->first();
+
+        $this
+            ->actingAs(User::query()->first(), 'api')
+            ->putJson("api/events/{$other->id}", ['is_active' => true, 'event_day' => Carbon::tomorrow()])
+            ->assertStatus(200);
+
+        $item->refresh();
+        $other->refresh();
+
+        $this->assertFalse($item->is_active);
+        $this->assertTrue($other->is_active);
     }
 
     /**
