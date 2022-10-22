@@ -13,7 +13,7 @@ class ReservationDomain
      * Reservation factory
      *
      * @param  Reservation  $reservation
-     * @return string
+     * @return Reservation
      */
     public static function factory(Event $event, Reservation $reservation, $disk): Reservation
     {
