@@ -21,9 +21,10 @@ class MenuItemSeeder extends Seeder
         }
 
         foreach (MenuSection::cursor() as $section) {
-            MenuItem::factory()->count(5)->create([
-                'menu_section_id' => $section->id,
-            ]);
+            MenuItem::factory()
+                ->for($section)
+                ->count(5)
+                ->create();
         }
     }
 }

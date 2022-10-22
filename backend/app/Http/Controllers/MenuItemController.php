@@ -41,7 +41,7 @@ class MenuItemController extends Controller
      */
     public function show(MenuItem $menuItem): MenuItem
     {
-        $menuItem->load('menu_section');
+        $menuItem->load('menuSection');
 
         return $menuItem;
     }

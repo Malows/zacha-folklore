@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Event;
 use App\Models\MenuSection;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\App;
@@ -19,6 +20,13 @@ class MenuSectionSeeder extends Seeder
             return;
         }
 
-        MenuSection::factory()->count(10)->create();
+        $event = Event::query()->get()->isEmpty()
+            ? Event::factory()->create()
+            : Event::first();
+
+        MenuSection::factory()
+            ->for($event)
+            ->count(10)
+            ->create();
     }
 }

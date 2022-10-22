@@ -19,7 +19,7 @@ class MenuSectionController extends Controller
      */
     public function index(Event $event)
     {
-        return $event->menu_sections()->with('menuItems')->get();
+        return $event->menuSections()->with('menuItems')->get();
     }
 
     /**

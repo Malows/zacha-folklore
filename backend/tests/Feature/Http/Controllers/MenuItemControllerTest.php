@@ -29,9 +29,11 @@ class MenuItemControllerTest extends TestCase
         $this->seed(MenuItemSeeder::class);
         $this->seed(UserSeeder::class);
 
+        $section = MenuSection::first();
+
         $this
             ->actingAs(User::query()->first(), 'api')
-            ->getJson('api/menu_items')
+            ->getJson("api/menu_sections/{$section->id}/menu_items")
             ->assertStatus(200)
             ->assertJsonStructure([
                 '*' => [
@@ -57,12 +59,13 @@ class MenuItemControllerTest extends TestCase
 
         $this->assertDatabaseCount('menu_items', 0);
 
-        $data = MenuItem::factory()->make()->toArray();
-        $data['menu_section_id'] = MenuSection::query()->inRandomOrder()->first()->id;
+        $section = MenuSection::first();
+
+        $data = MenuItem::factory()->recycle($section)->make()->toArray();
 
         $this
             ->actingAs(User::query()->first(), 'api')
-            ->postJson('api/menu_items', $data)
+            ->postJson("api/menu_sections/{$section->id}/menu_items", $data)
             ->assertStatus(201)
             ->assertJsonStructure([
                 'name',
