@@ -13,6 +13,7 @@ class MenuSectionController extends Controller
     /**
      * Display a listing of the resource.
      *`
+     *
      * @param  Event  $event
      * @return Collection<int, MenuSection>
      */

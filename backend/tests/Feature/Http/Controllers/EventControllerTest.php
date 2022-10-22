@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Http\Controllers;
 
-use App\Models\MenuSection;
-use App\Models\MenuItem;
 use App\Models\Event;
+use App\Models\MenuItem;
+use App\Models\MenuSection;
 use App\Models\User;
 use Database\Seeders\EventSeeder;
 use Database\Seeders\UserSeeder;

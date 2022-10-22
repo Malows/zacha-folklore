@@ -37,6 +37,5 @@ class UpdateMenuSectionRequestTest extends BaseRequestTest
         $this->assertEquals(['required', 'string', 'max:255'], $rules['name']);
         $this->assertEquals(['required', 'integer', 'min:0'], $rules['order']);
         $this->assertEquals(['required', 'integer', 'exists:events,id'], $rules['event_id']);
-
     }
 }
