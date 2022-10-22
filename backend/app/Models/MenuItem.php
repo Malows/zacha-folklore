@@ -15,7 +15,10 @@ class MenuItem extends Model
         'menu_section_id',
     ];
 
-    public function section()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function menuSection()
     {
         return $this->belongsTo(MenuSection::class);
     }

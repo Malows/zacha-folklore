@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Event;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,6 +20,7 @@ class MenuSectionFactory extends Factory
         return [
             'name' => $this->faker->word,
             'order' => $this->faker->unique()->randomDigit(),
+            'event_id' => Event::factory(),
         ];
     }
 }

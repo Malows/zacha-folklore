@@ -2,6 +2,8 @@
 
 namespace Tests\Feature\Http\Controllers;
 
+use App\Models\MenuSection;
+use App\Models\MenuItem;
 use App\Models\Event;
 use App\Models\User;
 use Database\Seeders\EventSeeder;
@@ -207,5 +209,36 @@ class EventControllerTest extends TestCase
 
         $this->assertNull(Event::find($item->id));
         $this->assertDatabaseHas('events', ['id' => $item->id]);
+    }
+
+    /**
+     * A basic feature test example.
+     *
+     * @return void
+     *
+     * @group events
+     * @group controllers
+     */
+    public function test_events_menu_items()
+    {
+        $this->seed(EventSeeder::class);
+        $this->seed(UserSeeder::class);
+
+        $event = Event::first();
+        $item = MenuItem::factory()
+            ->for(MenuSection::factory()->recycle($event)->create())
+            ->create();
+
+        $this
+            ->actingAs(User::query()->first(), 'api')
+            ->getJson("api/events/{$event->id}/menu_items")
+            ->assertStatus(200)
+            ->assertJsonStructure([
+                '*' => [
+                    'name',
+                    'price',
+                    'menu_section_id',
+                ],
+            ]);
     }
 }

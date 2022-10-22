@@ -18,7 +18,7 @@ class MenuItemController extends Controller
      */
     public function index(MenuSection $menuSection)
     {
-        return $menuSection->items()->get();
+        return $menuSection->menuItems()->get();
     }
 
     /**
@@ -30,7 +30,7 @@ class MenuItemController extends Controller
      */
     public function store(StoreMenuItemRequest $request, MenuSection $menuSection): MenuItem
     {
-        return $menuSection->items()->create($request->all());
+        return $menuSection->menuItems()->create($request->all());
     }
 
     /**
@@ -41,7 +41,7 @@ class MenuItemController extends Controller
      */
     public function show(MenuItem $menuItem): MenuItem
     {
-        $menuItem->load('section');
+        $menuItem->load('menu_section');
 
         return $menuItem;
     }

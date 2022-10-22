@@ -18,7 +18,7 @@ class MenuSectionController extends Controller
      */
     public function index(Event $event)
     {
-        return $event->menuSections()->with('items')->get();
+        return $event->menu_sections()->with('menuItems')->get();
     }
 
     /**
@@ -42,7 +42,7 @@ class MenuSectionController extends Controller
      */
     public function show(Event $event, MenuSection $menuSection): MenuSection
     {
-        $menuSection->load('items');
+        $menuSection->load('menuItems');
 
         return $menuSection;
     }
