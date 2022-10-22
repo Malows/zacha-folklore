@@ -14,6 +14,7 @@ class UpdateMenuSectionRequest extends BaseRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'order' => ['required', 'integer', 'min:0'],
+            'event_id' => ['required', 'integer', 'exists:events,id'],
         ];
     }
 }
