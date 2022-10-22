@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Http\Requests;
 
-use App\Http\Requests\StoreMenuSectionRequest as Request;
+use App\Http\Requests\UpdateMenuSectionRequest as Request;
 
 class UpdateMenuSectionRequestTest extends BaseRequestTest
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Http\Controllers;
+namespace Tests\Feature\Domain;
 
 use App\Domain\ReservationDomain;
 use App\Models\Event;

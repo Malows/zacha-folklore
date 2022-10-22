@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Http\Controllers;
+namespace Tests\Feature\Domain;
 
 use App\Domain\EventDomain;
 use App\Models\Event;
