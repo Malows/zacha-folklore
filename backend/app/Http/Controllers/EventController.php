@@ -7,13 +7,15 @@ use App\Http\Requests\EventRequests\AddTicketsRequest;
 use App\Http\Requests\EventRequests\StoreRequest;
 use App\Http\Requests\EventRequests\UpdateRequest;
 use App\Models\Event;
+use App\Models\MenuItem;
+use Illuminate\Database\Eloquent\Collection;
 
 class EventController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Collection<int, Event>
      */
     public function index()
     {
@@ -87,5 +89,16 @@ class EventController extends Controller
         $event->save();
 
         return $event;
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param  Event  $event
+     * @return Collection<int, MenuItem>
+     */
+    public function menuItems(Event $event)
+    {
+        return $event->menuItems()->get();
     }
 }
