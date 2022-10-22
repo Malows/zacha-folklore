@@ -16,10 +16,18 @@ class ViewController extends Controller
      */
     public function index()
     {
-        $sections = MenuSection::query()
+        $event = Event::query()->active()->first();
+
+        if (!$event) {
+            return View::make('missing_event_menu');
+        }
+
+        $sections = $event->menuSection()
             ->orderBy('order')
-            ->with('items')
+            ->with('menuItems')
             ->get();
+
+
 
         return View::make('menu', ['sections' => $sections]);
     }
