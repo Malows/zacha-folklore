@@ -45,6 +45,22 @@ class Event extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function menuSections()
+    {
+        return $this->hasMany(MenuSection::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function menuItems()
+    {
+        return $this->hasManyThrough(MenuItem::class, MenuSection::class);
+    }
+
+    /**
      * Scope a query to only include unused reservations.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
