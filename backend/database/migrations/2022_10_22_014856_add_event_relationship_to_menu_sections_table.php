@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('menu_sections', function (Blueprint $table) {
-            $table->foreignIdFor(Event::class);
+            // $table->foreignIdFor(Event::class)->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('menu_sections', function (Blueprint $table) {
-            $table->dropForeign(['event_id']);
+            // $table->dropForeign(['event_id']);
         });
     }
 };
