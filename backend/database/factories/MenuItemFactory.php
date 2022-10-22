@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\MenuSection;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,6 +20,7 @@ class MenuItemFactory extends Factory
         return [
             'name' => $this->faker->word,
             'price' => $this->faker->randomFloat(2, 1),
+            'menu_section_id' => MenuSection::factory(),
         ];
     }
 }

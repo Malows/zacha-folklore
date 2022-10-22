@@ -19,8 +19,8 @@ class StoreMenuItemRequestTest extends BaseRequestTest
         $keys = array_keys($keys);
         sort($keys);
 
-        $this->assertEquals(3, count($keys));
-        $this->assertEquals(['menu_section_id', 'name', 'price'], $keys);
+        $this->assertEquals(2, count($keys));
+        $this->assertEquals(['name', 'price'], $keys);
     }
 
     /**
@@ -36,6 +36,5 @@ class StoreMenuItemRequestTest extends BaseRequestTest
 
         $this->assertEquals(['required', 'string', 'max:255'], $rules['name']);
         $this->assertEquals(['required', 'numeric'], $rules['price']);
-        $this->assertEquals(['required', 'integer', 'exists:menu_sections,id'], $rules['menu_section_id']);
     }
 }

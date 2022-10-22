@@ -30,9 +30,11 @@ class ReservationControllerTest extends TestCase
         $this->seed(EventSeeder::class);
         $this->seed(ReservationSeeder::class);
 
+        $event = Event::first();
+
         $this
             ->actingAs(User::query()->first(), 'api')
-            ->getJson('api/reservations')
+            ->getJson("api/events/{$event->id}/reservations")
             ->assertStatus(200)
             ->assertJsonStructure([
                 '*' => [
@@ -68,13 +70,13 @@ class ReservationControllerTest extends TestCase
 
         $disk = Storage::fake('reservations');
 
-        $activeEvent = Event::query()->active()->first();
+        $event = Event::query()->active()->first();
 
-        $data = Reservation::factory()->make()->toArray();
+        $data = Reservation::factory()->recycle($event)->make()->toArray();
 
         $response = $this
             ->actingAs(User::query()->first(), 'api')
-            ->postJson('api/reservations', $data);
+            ->postJson("api/events/{$event->id}/reservations", $data);
 
         $response->assertStatus(201)
             ->assertJsonStructure([
@@ -91,7 +93,7 @@ class ReservationControllerTest extends TestCase
                 'event_id',
             ])
             ->assertJson([
-                'event_id' => $activeEvent->id,
+                'event_id' => $event->id,
             ]);
 
         $uuid = $response->json('qr_path');

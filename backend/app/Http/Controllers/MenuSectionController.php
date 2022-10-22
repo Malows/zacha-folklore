@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMenuSectionRequest;
 use App\Http\Requests\UpdateMenuSectionRequest;
+use App\Models\Event;
 use App\Models\MenuSection;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -13,22 +14,24 @@ class MenuSectionController extends Controller
      * Display a listing of the resource.
      *`
      *
+     * @param  Event  $event
      * @return Collection<int, MenuSection>
      */
-    public function index()
+    public function index(Event $event)
     {
-        return MenuSection::query()->with('items')->get();
+        return $event->menuSections()->with('menuItems')->get();
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  StoreMenuSectionRequest  $request
+     * @param  Event  $event
      * @return MenuSection
      */
-    public function store(StoreMenuSectionRequest $request): MenuSection
+    public function store(StoreMenuSectionRequest $request, Event $event): MenuSection
     {
-        return MenuSection::create($request->all());
+        return $event->menuSections()->create($request->all());
     }
 
     /**
@@ -39,7 +42,7 @@ class MenuSectionController extends Controller
      */
     public function show(MenuSection $menuSection): MenuSection
     {
-        $menuSection->load('items');
+        $menuSection->load('menuItems');
 
         return $menuSection;
     }

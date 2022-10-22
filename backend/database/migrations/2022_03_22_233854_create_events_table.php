@@ -15,7 +15,11 @@ return new class extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
+
+            $table->string('name')->default('');
             $table->date('event_day');
+            $table->string('address')->nullable();
+            $table->json('location')->nullable();
             $table->timestamp('started_at')->nullable();
             $table->boolean('is_active')->default(false);
 

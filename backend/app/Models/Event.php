@@ -13,6 +13,9 @@ class Event extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
+        'name',
+        'address',
+        'location',
         'event_day',
         'started_at',
         'is_active',
@@ -30,6 +33,7 @@ class Event extends Model
         'event_day' => 'date',
         'started_at' => 'datetime',
         'is_active' => 'boolean',
+        'location' => 'array',
     ];
 
     /**
@@ -38,6 +42,22 @@ class Event extends Model
     public function reservations()
     {
         return $this->hasMany(Reservation::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function menuSections()
+    {
+        return $this->hasMany(MenuSection::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function menuItems()
+    {
+        return $this->hasManyThrough(MenuItem::class, MenuSection::class);
     }
 
     /**

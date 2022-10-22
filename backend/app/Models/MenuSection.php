@@ -14,8 +14,19 @@ class MenuSection extends Model
         'order',
     ];
 
-    public function items()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function menuItems()
     {
         return $this->hasMany(MenuItem::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function event()
+    {
+        return $this->belongsTo(Event::class);
     }
 }

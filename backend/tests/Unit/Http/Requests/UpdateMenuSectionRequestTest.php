@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Http\Requests;
 
-use App\Http\Requests\StoreMenuSectionRequest as Request;
+use App\Http\Requests\UpdateMenuSectionRequest as Request;
 
 class UpdateMenuSectionRequestTest extends BaseRequestTest
 {
@@ -19,8 +19,8 @@ class UpdateMenuSectionRequestTest extends BaseRequestTest
         $keys = array_keys($keys);
         sort($keys);
 
-        $this->assertEquals(2, count($keys));
-        $this->assertEquals(['name', 'order'], $keys);
+        $this->assertEquals(3, count($keys));
+        $this->assertEquals(['event_id', 'name', 'order'], $keys);
     }
 
     /**
@@ -36,5 +36,6 @@ class UpdateMenuSectionRequestTest extends BaseRequestTest
 
         $this->assertEquals(['required', 'string', 'max:255'], $rules['name']);
         $this->assertEquals(['required', 'integer', 'min:0'], $rules['order']);
+        $this->assertEquals(['required', 'integer', 'exists:events,id'], $rules['event_id']);
     }
 }

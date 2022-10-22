@@ -6,6 +6,7 @@ use App\Domain\EventDomain;
 use App\Domain\ReservationDomain;
 use App\Http\Requests\StoreReservationRequest;
 use App\Http\Requests\UpdateReservationRequest;
+use App\Models\Event;
 use App\Models\Reservation;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Storage;
@@ -15,24 +16,26 @@ class ReservationController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  Event  $event
      * @return Collection<int, Reservation>
      */
-    public function index()
+    public function index(Event $event)
     {
-        return Reservation::all();
+        return $event->reservations()->get();
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  StoreReservationRequest  $request
+     * @param  Event  $event
      * @return Reservation
      */
-    public function store(StoreReservationRequest $request): Reservation
+    public function store(StoreReservationRequest $request, Event $event): Reservation
     {
-        $event = EventDomain::tryToGetActiveEvent();
+        // $event = EventDomain::tryToGetActiveEvent();
 
-        abort_unless($event, 422, 'Missing active event');
+        // abort_unless($event, 422, 'Missing active event');
 
         return ReservationDomain::factory(
             $event,

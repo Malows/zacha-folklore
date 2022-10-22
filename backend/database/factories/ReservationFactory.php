@@ -28,6 +28,37 @@ class ReservationFactory extends Factory
 
             'email' => $this->faker->email,
             'phone' => $this->faker->phoneNumber,
+
+            'is_paid' => false,
+            'is_used' => false,
         ];
+    }
+
+    /**
+     * Indicate that the reservation is paid.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function paid()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'is_paid' => true,
+            ];
+        });
+    }
+
+    /**
+     * Indicate that the reservation is used.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function used()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'is_used' => true,
+            ];
+        });
     }
 }

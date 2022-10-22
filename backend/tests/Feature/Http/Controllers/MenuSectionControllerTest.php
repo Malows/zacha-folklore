@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Http\Controllers;
 
+use App\Models\Event;
 use App\Models\MenuSection;
 use App\Models\User;
 use Database\Seeders\MenuSectionSeeder;
@@ -26,9 +27,11 @@ class MenuSectionControllerTest extends TestCase
         $this->seed(MenuSectionSeeder::class);
         $this->seed(UserSeeder::class);
 
+        $event = Event::first();
+
         $this
             ->actingAs(User::query()->first(), 'api')
-            ->getJson('api/menu_sections')
+            ->getJson("api/events/{$event->id}/menu_sections")
             ->assertStatus(200)
             ->assertJsonStructure([
                 '*' => [
@@ -52,11 +55,13 @@ class MenuSectionControllerTest extends TestCase
 
         $this->assertDatabaseCount('menu_sections', 0);
 
-        $data = MenuSection::factory()->make()->toArray();
+        $event = Event::factory()->create();
+
+        $data = MenuSection::factory()->recycle($event)->make()->toArray();
 
         $this
             ->actingAs(User::query()->first(), 'api')
-            ->postJson('api/menu_sections', $data)
+            ->postJson("api/events/{$event->id}/menu_sections", $data)
             ->assertStatus(201)
             ->assertJsonStructure([
                 'name',

@@ -26,14 +26,15 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/password', 'password');
     });
 
-    Route::apiResources([
-        'events' => EventController::class,
-        'menu_items' => MenuItemController::class,
-        'menu_sections' => MenuSectionController::class,
-        'reservations' => ReservationController::class,
-        'users' => UserController::class,
-    ]);
+    Route::apiResource('events', EventController::class);
+    Route::apiResource('events.menu_sections', MenuSectionController::class)->shallow();
+    Route::apiResource('events.reservations', ReservationController::class)->shallow();
+    Route::apiResource('menu_sections.menu_items', MenuItemController::class)->shallow();
+    Route::apiResource('users', UserController::class);
 });
+
+Route::get('/events/{event}/menu_items', [EventController::class, 'menuItems'])
+    ->name('events.menu_items');
 
 Route::get('/reservations/uuid/{reservation:uuid}', [ReservationController::class, 'show'])
     ->name('reservations.show_uuid');

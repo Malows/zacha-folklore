@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreMenuItemRequest;
 use App\Http\Requests\UpdateMenuItemRequest;
 use App\Models\MenuItem;
+use App\Models\MenuSection;
 use Illuminate\Database\Eloquent\Collection;
 
 class MenuItemController extends Controller
@@ -12,22 +13,24 @@ class MenuItemController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  MenuSection  $menuSection
      * @return Collection<int, MenuItem>
      */
-    public function index()
+    public function index(MenuSection $menuSection)
     {
-        return MenuItem::all();
+        return $menuSection->menuItems()->get();
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  StoreMenuItemRequest  $request
+     * @param  MenuSection  $menuSection
      * @return MenuItem
      */
-    public function store(StoreMenuItemRequest $request): MenuItem
+    public function store(StoreMenuItemRequest $request, MenuSection $menuSection): MenuItem
     {
-        return MenuItem::create($request->all());
+        return $menuSection->menuItems()->create($request->all());
     }
 
     /**
@@ -38,7 +41,7 @@ class MenuItemController extends Controller
      */
     public function show(MenuItem $menuItem): MenuItem
     {
-        $menuItem->load('section');
+        $menuItem->load('menuSection');
 
         return $menuItem;
     }

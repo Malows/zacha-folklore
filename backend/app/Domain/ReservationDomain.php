@@ -13,7 +13,7 @@ class ReservationDomain
      * Reservation factory
      *
      * @param  Reservation  $reservation
-     * @return string
+     * @return Reservation
      */
     public static function factory(Event $event, Reservation $reservation, $disk): Reservation
     {
@@ -33,8 +33,6 @@ class ReservationDomain
 
         $reservation->qr_path = $name;
         $reservation->qr_url = $disk->url($name);
-        // $reservation->is_paid = false;
-        // $reservation->is_used = false;
 
         $reservation->save();
 

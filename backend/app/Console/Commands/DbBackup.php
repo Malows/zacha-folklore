@@ -33,12 +33,14 @@ class DbBackup extends Command
         $host = env('DB_HOST');
         $db = env('DB_DATABASE');
 
-        $filename = "backup-" . Carbon::now()->format('Y-m-d') . ".gz";
+        $filename = 'backup-'.Carbon::now()->format('Y-m-d').'.gz';
+        $path = storage_path("app/backup/{$filename}");
 
-        $command = "mysqldump --user={$user} --password={$pass} --host={$host} {$db} | gzip > " . storage_path() . "/app/backup/" . $filename;
-        $returnVar = NULL;
-        $output  = NULL;
+        $command = "mysqldump --user={$user} --password={$pass} --host={$host} {$db} | gzip > {$path}";
+        $returnVar = null;
+        $output = null;
         exec($command, $output, $returnVar);
+
         return 0;
     }
 }

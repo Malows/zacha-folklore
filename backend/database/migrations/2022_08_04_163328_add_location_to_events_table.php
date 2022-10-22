@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::table('events', function (Blueprint $table) {
-            $table->string('name')->after('id')->default('');
-            $table->string('address')->after('event_day')->nullable();
-            $table->json('location')->after('event_day')->nullable();
+            // $table->string('name')->after('id')->default('');
+            // $table->string('address')->after('event_day')->nullable();
+            // $table->json('location')->after('event_day')->nullable();
         });
     }
 
@@ -28,7 +28,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('events', function (Blueprint $table) {
-            $table->dropColumn(['address', 'location']);
+            // $table->dropColumn(['address', 'location']);
         });
     }
 };

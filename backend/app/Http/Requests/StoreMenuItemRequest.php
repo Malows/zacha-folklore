@@ -14,7 +14,6 @@ class StoreMenuItemRequest extends BaseRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'price' => ['required', 'numeric'],
-            'menu_section_id' => ['required', 'integer', 'exists:menu_sections,id'],
         ];
     }
 }

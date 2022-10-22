@@ -20,24 +20,24 @@ class ReservationSeeder extends Seeder
             return;
         }
 
-        $event = Event::query()->active()->first();
+        foreach (Event::query()->active()->get() as $event) {
+            Reservation::factory()
+                ->for($event)
+                ->count(5)
+                ->create();
 
-        Reservation::factory()->count(5)->create([
-            'is_paid' => false,
-            'is_used' => false,
-            'event_id' => $event->id,
-        ]);
+            Reservation::factory()
+                ->for($event)
+                ->count(5)
+                ->paid()
+                ->create();
 
-        Reservation::factory()->count(5)->create([
-            'is_paid' => true,
-            'is_used' => false,
-            'event_id' => $event->id,
-        ]);
-
-        Reservation::factory()->count(5)->create([
-            'is_paid' => true,
-            'is_used' => true,
-            'event_id' => $event->id,
-        ]);
+            Reservation::factory()
+                ->for($event)
+                ->count(5)
+                ->paid()
+                ->used()
+                ->create();
+        }
     }
 }
