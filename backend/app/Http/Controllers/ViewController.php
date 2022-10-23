@@ -27,7 +27,9 @@ class ViewController extends Controller
             ->with('menuItems')
             ->get();
 
-
+        if ($section->isEmpty()) {
+            return View::make('without_menu_sections');
+        }
 
         return View::make('menu', ['sections' => $sections]);
     }
