@@ -8,7 +8,8 @@ export function onRequest (reservation) {
     email: reservation?.email ?? null,
     phone: reservation?.phone ?? null,
     is_paid: reservation.isPaid,
-    is_used: reservation.isUsed
+    is_used: reservation.isUsed,
+    event_id: reservation.eventId
   }
 
   if (reservation.id) {
@@ -30,6 +31,7 @@ export function onResponse (reservation) {
     isUsed: reservation.is_used,
     qrUrl: reservation.qr_url,
     uuid: reservation.uuid,
+    eventId: reservation.event_id,
     event: reservation.event
       ? eventResponse(reservation.event)
       : null
