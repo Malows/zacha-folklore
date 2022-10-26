@@ -15,23 +15,23 @@ class TransitiveGeneric extends Generic {
   /**
    * Format the url according the payload parameter.
    *
-   * @param {Record<string, unknown>|undefined} parameter
+   * @param {Record<string, unknown>|undefined} payload
    *
    * @returns {string}
    */
-  transitiveUrl (parameter) {
-    return `${this._url}/${this.parentSection}/${String(parameter[this.idParent])}/${this.resourceSection}`
+  transitiveUrl (payload) {
+    return `${this._url}/${this.parentSection}/${payload[this.idParent]}/${this.resourceSection}`
   }
 
   /**
    * Format the url according the payload parameter.
    *
-   * @param {Record<string, unknown>|undefined} parameter
+   * @param {Record<string, unknown>|undefined} payload
    *
    * @returns {string}
    */
-  url (parameter) {
-    return `${this._url}/${this.resourceSection}/${String(parameter[this._idProperty])}`
+  url (payload) {
+    return `${this._url}/${this.resourceSection}/${payload[this._idProperty]}`
   }
 
   /**

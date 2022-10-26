@@ -38,13 +38,27 @@ import FilterableList from 'components/shared/filterable/FilterableList.vue'
 import DashboardItem from 'components/listItems/DashboardItem.vue'
 import QuickUpdateDialog from 'components/dialogs/reservations/QuickUpdateDialog.vue'
 
-const { store, quasar } = environment()
+const { store, quasar, router } = environment()
 
 const reservation = ref(null)
 
+const event = computed(() => store.state.events.selectedEvents)
 const reservations = computed(() => store.getters['reservations/notUsedReservations'])
 
-onMounted(() => pull(store, quasar, 'reservations/fetch'))
+onMounted(async () => {
+  await pull(store, quasar, 'events/fetch')
+
+  if (!event.value) {
+    quasar.notify({
+      color: 'info',
+      message: 'No hay un evento seleccionado. Por favor elija con que evento desea trabajar',
+      timeout: 4000
+    })
+    return router.push({ name: 'events selection' })
+  }
+
+  pull(store, quasar, 'reservations/fetch', event.value)
+})
 
 function handleClick (item) {
   reservation.value = item
