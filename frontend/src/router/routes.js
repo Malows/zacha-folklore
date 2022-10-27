@@ -18,7 +18,7 @@ const routes = [
       route('', 'home', () => import('pages/IndexPage.vue')),
 
       route('evento', 'events index', () => import('pages/EventPage.vue')),
-      route('seleccopnar-evento', 'events selection', () => import('pages/events/SelectionPage.vue')),
+      route('seleccionar-evento', 'events selection', () => import('pages/events/SelectionPage.vue')),
 
       route('eventos', 'events index', () => import('pages/events/IndexPage.vue')),
       route('eventos/crear', 'events create', () => import('pages/events/CreatePage.vue')),
