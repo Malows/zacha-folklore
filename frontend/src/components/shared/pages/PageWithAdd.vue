@@ -1,5 +1,5 @@
 <template>
-  <page :title="props.title">
+  <common-page :title="props.title">
     <template v-if="!props.hideBtn">
       <sticky-path
         v-if="props.to"
@@ -14,11 +14,11 @@
     </template>
 
     <slot />
-  </page>
+  </common-page>
 </template>
 
 <script setup>
-import Page from 'components/shared/pages/Page.vue'
+import CommonPage from 'src/components/shared/pages/CommonPage.vue'
 import StickyBtn from 'components/shared/stickyButtons/StickyBtn.vue'
 import StickyPath from 'components/shared/stickyButtons/StickyPath.vue'
 

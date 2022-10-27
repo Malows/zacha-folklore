@@ -1,5 +1,5 @@
 <template>
-  <page title="Crear Reserva">
+  <common-page title="Crear Reserva">
     <q-form>
       <q-input
         v-model="payload.name"
@@ -45,7 +45,7 @@
         @click="submit"
       />
     </q-form>
-  </page>
+  </common-page>
 </template>
 
 <script setup>
@@ -56,7 +56,7 @@ import { reactive } from 'vue'
 import environment from 'src/composable/environment'
 import { task } from 'src/utils/api'
 
-import Page from 'components/shared/pages/Page.vue'
+import CommonPage from 'src/components/shared/pages/CommonPage.vue'
 
 const payload = reactive({
   name: '',

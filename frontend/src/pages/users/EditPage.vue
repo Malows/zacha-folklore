@@ -1,5 +1,5 @@
 <template>
-  <page title="Crear Usuario">
+  <common-page title="Crear Usuario">
     <q-form>
       <q-input
         v-model="name"
@@ -16,7 +16,7 @@
         @click="submit"
       />
     </q-form>
-  </page>
+  </common-page>
 </template>
 
 <script setup>
@@ -25,7 +25,7 @@ import { ref, onMounted, computed } from 'vue'
 import environment from 'src/composable/environment'
 import { pull, task } from 'src/utils/api'
 
-import Page from 'components/shared/pages/Page.vue'
+import CommonPage from 'src/components/shared/pages/CommonPage.vue'
 
 const name = ref('')
 const email = ref('')

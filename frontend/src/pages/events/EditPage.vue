@@ -1,5 +1,5 @@
 <template>
-  <page
+  <common-page
     v-if="reservation"
     title="Editar Evento"
   >
@@ -41,7 +41,7 @@
         @click="submit"
       />
     </q-form>
-  </page>
+  </common-page>
 </template>
 
 <script setup>
@@ -50,7 +50,7 @@ import { reactive, onMounted, computed } from 'vue'
 import environment from 'src/composable/environment'
 import { pull, task } from 'src/utils/api'
 
-import Page from 'components/shared/pages/Page.vue'
+import CommonPage from 'src/components/shared/pages/CommonPage.vue'
 
 const payload = reactive({
   name: '',
