@@ -1,5 +1,6 @@
 <template>
   <common-page title="Crear Sección de Menú">
+    <display-selected-event :event="event" />
     <q-form>
       <q-input
         v-model="name"
@@ -25,9 +26,11 @@
 import { ref, computed, onMounted } from 'vue'
 
 import environment from 'src/composable/environment'
+import { checkEvent } from 'src/composable/checkRequirement'
 import { pull, task } from 'src/utils/api'
 
 import CommonPage from 'src/components/shared/pages/CommonPage.vue'
+import DisplaySelectedEvent from 'components/DisplaySelectedEvent.vue'
 
 const { router, store, quasar } = environment()
 
@@ -35,17 +38,21 @@ const name = ref('')
 const order = ref(1)
 
 const sections = computed(() => store.state.menuSections.menuSections)
+const event = computed(() => store.state.events.selectedEvent)
 
 const payload = computed(() => ({
   name: name.value,
-  order: order.value
+  order: order.value,
+  eventId: event.value?.id
 }))
 
 onMounted(async () => {
+  const eventId = checkEvent(store, router, quasar)
+
   let sample = sections?.value ?? []
 
   if (sample.length === 0) {
-    sample = await pull(store, quasar, 'menuSections/fetch')
+    sample = await pull(store, quasar, 'menuSections/fetch', { eventId })
     sample = sample.data
   }
 

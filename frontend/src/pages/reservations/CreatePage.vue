@@ -1,5 +1,6 @@
 <template>
   <common-page title="Crear Reserva">
+    <display-selected-event :event="event" />
     <q-form>
       <q-input
         v-model="payload.name"
@@ -49,14 +50,16 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue'
+import { reactive, onMounted, computed } from 'vue'
 // import useVuelidate from '@vuelidate/core'
 // import { required, email, minValue } from '@vuelidate/validators'
 
 import environment from 'src/composable/environment'
+import { checkEvent } from 'src/composable/checkRequirement'
 import { task } from 'src/utils/api'
 
 import CommonPage from 'src/components/shared/pages/CommonPage.vue'
+import DisplaySelectedEvent from 'components/DisplaySelectedEvent.vue'
 
 const payload = reactive({
   name: '',
@@ -79,10 +82,14 @@ const rules = {
 
 const { router, store, quasar } = environment()
 
+onMounted(() => checkEvent(store, router, quasar))
+
+const event = computed(() => store.state.events.selectedEvent)
+
 // const $v = useVuelidate(rules, payload)
 
 function submit () {
-  task(store, quasar, 'reservations/create', payload)
+  task(store, quasar, 'reservations/create', { ...payload, eventId: event.value.id })
     .then(() => {
       quasar.notify('Reserva creada correctamente')
       router.push({ name: 'reservations index' })

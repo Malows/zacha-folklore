@@ -3,6 +3,7 @@
     title="Menú"
     :to="{ name: 'menu create' }"
   >
+    <display-selected-event :event="event" />
     <filterable-list :items="sections">
       <template #default="{ item }">
         <section-item :section="item" />
@@ -15,15 +16,22 @@
 import { onMounted, computed } from 'vue'
 
 import environment from 'src/composable/environment'
+import { checkEvent } from 'src/composable/checkRequirement'
 import { pull } from 'src/utils/api'
 
 import PageWithAdd from 'components/shared/pages/PageWithAdd.vue'
 import FilterableList from 'components/shared/filterable/FilterableList.vue'
 import SectionItem from 'components/listItems/SectionItem.vue'
+import DisplaySelectedEvent from 'components/DisplaySelectedEvent.vue'
 
-const { store, quasar } = environment()
+const { store, router, quasar } = environment()
 
+const event = computed(() => store.state.events.selectedEvent)
 const sections = computed(() => store.state.menuSections.menuSections)
 
-onMounted(() => pull(store, quasar, 'menuSections/fetch'))
+onMounted(() => {
+  const eventId = checkEvent(store, router, quasar)
+
+  pull(store, quasar, 'menuSections/fetch', { eventId })
+})
 </script>
