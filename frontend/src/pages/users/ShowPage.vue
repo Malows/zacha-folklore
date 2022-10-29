@@ -4,18 +4,18 @@
     title="Ver Usuario"
   >
     <template #actions>
-      <action
+      <action-btn
         label="Editar"
         icon="edit"
         :to="editRoute"
       />
-      <action
+      <action-btn
         label="Cambiar contraseña"
         icon="vpn_key"
         disable
         @click="showModalPassword"
       />
-      <action
+      <action-btn
         label="Eliminar"
         icon="delete"
         color="negative"
@@ -49,7 +49,7 @@ import environment from 'src/composable/environment'
 import { pull } from 'src/utils/api'
 
 import PageWithActions from 'components/shared/pages/PageWithActions.vue'
-import Action from 'components/shared/stickyButtons/Action.vue'
+import ActionBtn from 'src/components/shared/stickyButtons/ActionBtn.vue'
 import InlineData from 'components/shared/InlineData.vue'
 import ChangePasswordDialog from 'components/dialogs/users/ChangePasswordDialog.vue'
 import DeleteDialog from 'components/dialogs/users/DeleteDialog.vue'
