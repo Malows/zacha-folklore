@@ -13,7 +13,6 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
 import environment from 'src/composable/environment'
 
 const props = defineProps({
@@ -23,17 +22,11 @@ const props = defineProps({
   }
 })
 
-const route = computed(() => ({
-  name: 'events show',
-  params: {
-    eventId: props.event.id
-  }
-}))
-
-const { store, router } = environment()
+const { store, router, quasar } = environment()
 
 const handleClick = () => {
   store.dispatch('events/selectEvent', props.event.value)
+  quasar.notify('Evento seleccionado')
   router.push({ name: 'home' })
 }
 </script>

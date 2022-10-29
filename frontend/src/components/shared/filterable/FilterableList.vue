@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="width">
     <filter-input
       v-model="searchField"
       @change="minPage"
@@ -71,3 +71,9 @@ function minPage () {
     : 1
 }
 </script>
+
+<style scoped>
+.width {
+  min-width: 50vw;
+}
+</style>

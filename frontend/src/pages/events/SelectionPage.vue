@@ -1,11 +1,11 @@
 <template>
   <page-with-add
-    title="Eventos"
+    title="Seleccionar evento"
     :to="{ name: 'events create' }"
   >
     <filterable-list :items="events">
       <template #default="{ item }">
-        <event-item :event="item" />
+        <select-event-item :event="item" />
       </template>
     </filterable-list>
   </page-with-add>
@@ -19,7 +19,7 @@ import { pull } from 'src/utils/api'
 
 import PageWithAdd from 'components/shared/pages/PageWithAdd.vue'
 import FilterableList from 'components/shared/filterable/FilterableList.vue'
-import EventItem from 'components/listItems/EventItem.vue'
+import SelectEventItem from 'components/listItems/SelectEventItem.vue'
 
 const { store, quasar } = environment()
 

@@ -28,4 +28,16 @@ events.mutations.selectEvent = function (state, id) {
   state.selectedEvent = state.events.find(x => x.id === id) ?? null
 }
 
+events.mutations.removeEvent = function (state, payload) {
+  const index = state.events.findIndex((x) => x.id === payload.id)
+
+  if (index !== -1) {
+    state.events.splice(index, 1)
+  }
+
+  if (state.selectedEvent?.id === payload.id) {
+    state.selectedEvent = null
+  }
+}
+
 export default events
