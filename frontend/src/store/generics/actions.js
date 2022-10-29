@@ -74,3 +74,30 @@ export default function genericActions ({ plural, singular, namespace = true, se
     }
   }
 }
+
+/**
+ * Store actions for handle transitive crud queries
+ *
+ * @param {ActionsInterface} param0
+ *
+ * @returns {Object}
+ */
+export function transitiveGenericActions ({ plural, singular, namespace = true, service }) {
+  plural = capitalize(plural)
+  const auxiliaryPlural = namespace ? plural : ''
+  const fetchAction = `fetch${auxiliaryPlural}`
+
+  const data = genericActions({ plural, singular, namespace, service })
+
+  data[fetchAction] = async function ({ commit }, payload) {
+    const response = await service.fetch(payload)
+
+    if (response.isOk) {
+      commit(`set${plural}`, response.data)
+    }
+
+    return response
+  }
+
+  return data
+}
