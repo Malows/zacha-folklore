@@ -23,7 +23,7 @@ export function onResponse (section) {
     name: section.name,
     order: section.order,
     eventId: section.event_id,
-    items: itemsListResponse(section.menuItems ?? [])
+    items: itemsListResponse(section.menu_items ?? [])
   }
 }
 
