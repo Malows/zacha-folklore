@@ -1,18 +1,12 @@
 <template>
   <q-item
     clickable
-    :to="route"
     exact
+    @click="handleClick"
   >
     <q-item-section>
       <q-item-label>
-        {{ props.event.name }}
-      </q-item-label>
-    </q-item-section>
-
-    <q-item-section avatar>
-      <q-item-label>
-        {{ toPlainString(props.event.eventDay) }}
+        {{ props.event.label }}
       </q-item-label>
     </q-item-section>
   </q-item>
@@ -20,7 +14,7 @@
 
 <script setup>
 import { computed } from 'vue'
-import { toPlainString } from 'src/utils/date'
+import environment from 'src/composable/environment'
 
 const props = defineProps({
   event: {
@@ -35,4 +29,11 @@ const route = computed(() => ({
     eventId: props.event.id
   }
 }))
+
+const { store, router } = environment()
+
+const handleClick = () => {
+  store.dispatch('events/selectEvent', props.event.value)
+  router.push({ name: 'home' })
+}
 </script>
