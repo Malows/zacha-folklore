@@ -18,8 +18,8 @@
         color="primary"
         label="Seleccionar"
         @click="submit"
-        />
-        <q-btn
+      />
+      <q-btn
         flat
         color="primary"
         label="Cancelar"
