@@ -1,8 +1,8 @@
-import genericModule from '../generics'
+import { transitiveGenericModule } from '../generics'
 import { optionsMapper } from '../generics/getters'
 import { menuSectionService } from 'src/services/Crud'
 
-const sections = genericModule({
+const sections = transitiveGenericModule({
   singular: 'menuSection',
   plural: 'menuSections',
   collection: 'menuSections',
