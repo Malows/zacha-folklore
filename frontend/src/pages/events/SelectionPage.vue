@@ -25,5 +25,5 @@ const { store, quasar } = environment()
 
 onMounted(() => pull(store, quasar, 'events/fetch'))
 
-const events = computed(() => store.state.events.events)
+const events = computed(() => store.getters['events/eventsOptions'])
 </script>
