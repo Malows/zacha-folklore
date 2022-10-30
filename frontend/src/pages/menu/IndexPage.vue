@@ -4,6 +4,7 @@
     :to="{ name: 'menu create' }"
   >
     <display-selected-event :event="event" />
+    <copy-menu :sections="sections" />
     <filterable-list :items="sections">
       <template #default="{ item }">
         <section-item :section="item" />
@@ -22,7 +23,8 @@ import { pull } from 'src/utils/api'
 import PageWithAdd from 'components/shared/pages/PageWithAdd.vue'
 import FilterableList from 'components/shared/filterable/FilterableList.vue'
 import SectionItem from 'components/listItems/SectionItem.vue'
-import DisplaySelectedEvent from 'components/DisplaySelectedEvent.vue'
+import DisplaySelectedEvent from 'src/components/banners/DisplaySelectedEvent.vue'
+import CopyMenu from 'src/components/banners/CopyMenu.vue'
 
 const { store, router, quasar } = environment()
 

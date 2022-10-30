@@ -22,7 +22,7 @@ import { pull } from 'src/utils/api'
 import PageWithAdd from 'components/shared/pages/PageWithAdd.vue'
 import FilterableList from 'components/shared/filterable/FilterableList.vue'
 import EventItem from 'components/listItems/EventItem.vue'
-import DisplaySelectedEvent from 'components/DisplaySelectedEvent.vue'
+import DisplaySelectedEvent from 'src/components/banners/DisplaySelectedEvent.vue'
 
 const { store, quasar } = environment()
 

@@ -27,7 +27,7 @@ import { reservationFilter } from 'src/utils/filters'
 import PageWithAdd from 'components/shared/pages/PageWithAdd.vue'
 import FilterableList from 'components/shared/filterable/FilterableList.vue'
 import ReservationItem from 'components/listItems/ReservationItem.vue'
-import DisplaySelectedEvent from 'components/DisplaySelectedEvent.vue'
+import DisplaySelectedEvent from 'src/components/banners/DisplaySelectedEvent.vue'
 
 const { store, quasar, router } = environment()
 

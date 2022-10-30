@@ -42,7 +42,7 @@ import { reservationFilter } from 'src/utils/filters'
 import FilterableList from 'components/shared/filterable/FilterableList.vue'
 import DashboardItem from 'components/listItems/DashboardItem.vue'
 import QuickUpdateDialog from 'components/dialogs/reservations/QuickUpdateDialog.vue'
-import DisplaySelectedEvent from 'src/components/DisplaySelectedEvent.vue'
+import DisplaySelectedEvent from 'src/components/banners/DisplaySelectedEvent.vue'
 
 const { store, quasar, router } = environment()
 

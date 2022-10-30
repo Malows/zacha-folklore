@@ -59,7 +59,7 @@ import { checkEvent } from 'src/composable/checkRequirement'
 import { task } from 'src/utils/api'
 
 import CommonPage from 'src/components/shared/pages/CommonPage.vue'
-import DisplaySelectedEvent from 'components/DisplaySelectedEvent.vue'
+import DisplaySelectedEvent from 'src/components/banners/DisplaySelectedEvent.vue'
 
 const payload = reactive({
   name: '',
