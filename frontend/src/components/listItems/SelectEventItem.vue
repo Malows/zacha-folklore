@@ -6,15 +6,13 @@
   >
     <q-item-section>
       <q-item-label>
-        {{ props.event.label }}
+        {{ props.event.name }}
       </q-item-label>
     </q-item-section>
   </q-item>
 </template>
 
 <script setup>
-import environment from 'src/composable/environment'
-
 const props = defineProps({
   event: {
     type: Object,
@@ -22,11 +20,9 @@ const props = defineProps({
   }
 })
 
-const { store, router, quasar } = environment()
+const emits = defineEmits(['select'])
 
 const handleClick = () => {
-  store.dispatch('events/selectEvent', props.event.value)
-  quasar.notify('Evento seleccionado')
-  router.push({ name: 'home' })
+  emits('select', props.event)
 }
 </script>
