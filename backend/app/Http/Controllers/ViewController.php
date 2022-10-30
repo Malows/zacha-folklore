@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MenuSection;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\View;
@@ -18,7 +17,7 @@ class ViewController extends Controller
     {
         $event = Event::query()->active()->first();
 
-        if (!$event) {
+        if (! $event) {
             return View::make('missing_event_menu');
         }
 
