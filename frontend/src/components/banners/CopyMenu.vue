@@ -12,7 +12,7 @@
         flat
         color="white"
         label="Si"
-        :to="{ name: 'events selection' }"
+        :to="{ name: 'menu copy' }"
       />
       <q-btn
         flat

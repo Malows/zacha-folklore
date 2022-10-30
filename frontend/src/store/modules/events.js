@@ -1,6 +1,9 @@
 import genericModule from '../generics'
 import { optionsMapper } from '../generics/getters'
 import { eventService } from 'src/services/Crud'
+import { EventExtraService } from 'src/services/Custom'
+
+const extraServices = new EventExtraService()
 
 const events = genericModule({
   singular: 'event',
@@ -38,6 +41,20 @@ events.mutations.removeEvent = function (state, payload) {
   if (state.selectedEvent?.id === payload.id) {
     state.selectedEvent = null
   }
+}
+
+events.actions.withMenu = async function ({ commit }) {
+  const response = await extraServices.withMenu()
+
+  if (response.isOk) {
+    commit('setEvents', response.data)
+  }
+
+  return response
+}
+
+events.actions.copyMenu = function (_, payload) {
+  return extraServices.copyMenu(payload)
 }
 
 export default events
