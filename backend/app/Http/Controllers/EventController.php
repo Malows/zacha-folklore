@@ -128,13 +128,9 @@ class EventController extends Controller
 
         $to = Event::query()->find($request->to);
 
-        foreach ($from->menuSections as $section) {
-            $items = $section->menuItems->only(['name', 'price'])->toArray();
+        abort_if($to->menuSections()->count() > 0, 400, 'Event has menu sections');
 
-            $model = $to->menuSections()->create($section->toArray());
-
-            $model->menuItems()->createMany($items);
-        }
+        EventDomain::copyMenuFromEvent($from, $to);
 
         $to->load('menuSections.menuItems');
 

@@ -324,5 +324,11 @@ class EventControllerTest extends TestCase
         $to->refresh();
 
         $this->assertEquals(1, $to->menuSections()->count());
+
+        // Can't make a copy over a event that already have a menu
+        $response = $this
+            ->actingAs(User::query()->first(), 'api')
+            ->postJson('api/events_copy_menu', ['from' => $from->id, 'to' => $to->id])
+            ->assertStatus(400);
     }
 }

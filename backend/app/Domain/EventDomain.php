@@ -7,6 +7,12 @@ use App\Models\Reservation;
 
 class EventDomain
 {
+    /**
+     * Handle the addition of a reservation on the event data
+     *
+     * @param  Event  $event
+     * @param  Reservation  $reservation
+     */
     public static function addReservation(Event $event, Reservation $reservation)
     {
         $event->reserved_tickets += $reservation->amount;
@@ -18,6 +24,12 @@ class EventDomain
         $event->save();
     }
 
+    /**
+     * Update event data when the reservation turns to unpaid
+     *
+     * @param  Event  $event
+     * @param  Reservation  $reservation
+     */
     public static function makeReservationUnpaid(Event $event, Reservation $reservation)
     {
         $event->pre_paid_reserved_tickets -= $reservation->amount;
@@ -25,6 +37,11 @@ class EventDomain
         $event->save();
     }
 
+    /**
+     * Try to get an active event or the next event
+     *
+     * @return Event | null
+     */
     public static function tryToGetActiveEvent()
     {
         $event = Event::active()->first();
@@ -48,7 +65,13 @@ class EventDomain
         return null;
     }
 
-    public static function updateReservationsAmounts(Event $event)
+    /**
+     * Update the computed data of reservation on the event
+     *
+     * @param  Event  $event
+     * @return Event
+     */
+    public static function updateReservationsAmounts(Event $event): Event
     {
         $reservations = $event->reservations()->get();
 
@@ -61,11 +84,42 @@ class EventDomain
         return $event;
     }
 
+    /**
+     * Turn every other event to inactive
+     *
+     * @param  Event  $event
+     */
     public static function deactivateOtherEvents(Event $event)
     {
         Event::query()
             ->where('id', '!=', $event->id)
             ->where(['is_active' => true])
             ->update(['is_active' => false]);
+    }
+
+    /**
+     * Copy all the menu sections and menu items from one event to another
+     *
+     * @param  Event  $event
+     * @param  Event  $event
+     */
+    public static function copyMenuFromEvent(Event $from, Event $to)
+    {
+        $sections = $from->menuSections()
+            ->with('menuItems')
+            ->orderBy('order')
+            ->get();
+
+        foreach ($sections as $section) {
+            $items = $section->menuItems
+                ->map(fn ($item) => $item->only(['name', 'price']))
+                ->toArray();
+
+            $data = $section->only(['name', 'order']);
+
+            $newSection = $to->menuSections()->create($data);
+
+            $newSection->menuItems()->createMany($items);
+        }
     }
 }
