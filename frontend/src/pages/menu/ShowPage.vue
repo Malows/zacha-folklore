@@ -4,12 +4,12 @@
     title="Ver Sección de Menú"
   >
     <template #actions>
-      <action
+      <action-btn
         label="Editar"
         icon="edit"
         :to="editRoute"
       />
-      <action
+      <action-btn
         label="Eliminar"
         icon="delete"
         color="negative"
@@ -79,7 +79,7 @@ import environment from 'src/composable/environment'
 import { pull } from 'src/utils/api'
 
 import PageWithActions from 'components/shared/pages/PageWithActions.vue'
-import Action from 'components/shared/stickyButtons/Action.vue'
+import ActionBtn from 'src/components/shared/stickyButtons/ActionBtn.vue'
 import InlineData from 'components/shared/InlineData.vue'
 import DeleteDialog from 'components/dialogs/menuSections/DeleteDialog.vue'
 

@@ -36,5 +36,11 @@ Route::middleware('auth:api')->group(function () {
 Route::get('/events/{event}/menu_items', [EventController::class, 'menuItems'])
     ->name('events.menu_items');
 
+Route::get('/events_with_menu', [EventController::class, 'withMenu'])
+    ->name('events.with_menu');
+
+Route::post('/events_copy_menu', [EventController::class, 'copyMenu'])
+    ->name('events.copy_menu');
+
 Route::get('/reservations/uuid/{reservation:uuid}', [ReservationController::class, 'show'])
     ->name('reservations.show_uuid');

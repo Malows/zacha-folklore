@@ -4,47 +4,23 @@
     :to="route"
     exact
   >
-    <q-item-section
-      v-show="props.event.isActive"
-      avatar
-    >
-      <q-item-label>
-        <q-icon
-          name="circle"
-          color="primary"
-        />
-      </q-item-label>
-    </q-item-section>
-
     <q-item-section>
       <q-item-label>
-        {{ props.event.lastName }}, {{ props.event.name }}
+        {{ props.event.name }}
       </q-item-label>
     </q-item-section>
 
-    <q-item-section
-      v-show="props.event.isPaid"
-      avatar
-    >
-      <q-icon
-        name="paid"
-        color="primary"
-      />
-    </q-item-section>
-    <q-item-section
-      v-show="props.event.isUsed"
-      avatar
-    >
-      <q-icon
-        name="emoji_people"
-        color="primary"
-      />
+    <q-item-section avatar>
+      <q-item-label>
+        {{ toPlainString(props.event.eventDay) }}
+      </q-item-label>
     </q-item-section>
   </q-item>
 </template>
 
 <script setup>
 import { computed } from 'vue'
+import { toPlainString } from 'src/utils/date'
 
 const props = defineProps({
   event: {

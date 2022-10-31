@@ -4,16 +4,21 @@
     title="Ver Evento"
   >
     <template #actions>
-      <action
+      <action-btn
         label="Editar"
         icon="edit"
         :to="editRoute"
       />
-      <action
+      <action-btn
         label="Eliminar"
         icon="delete"
         color="negative"
         @click="showModalDelete"
+      />
+      <action-btn
+        label="Seleccionar"
+        icon="priority"
+        @click="showModalSelect"
       />
     </template>
 
@@ -48,6 +53,10 @@
     <q-dialog v-model="modalDelete">
       <delete-dialog :event="event" />
     </q-dialog>
+
+    <q-dialog v-model="modalSelect">
+      <select-dialog :event="event" />
+    </q-dialog>
   </page-with-actions>
 </template>
 
@@ -59,9 +68,10 @@ import environment from 'src/composable/environment'
 import { pull } from 'src/utils/api'
 
 import PageWithActions from 'components/shared/pages/PageWithActions.vue'
-import Action from 'components/shared/stickyButtons/Action.vue'
+import ActionBtn from 'src/components/shared/stickyButtons/ActionBtn.vue'
 import InlineData from 'components/shared/InlineData.vue'
 import DeleteDialog from 'components/dialogs/events/DeleteDialog.vue'
+import SelectDialog from 'components/dialogs/events/SelectDialog.vue'
 
 const { store, quasar, route } = environment()
 
@@ -69,6 +79,7 @@ const event = computed(() => store.getters['events/event'])
 const icon = computed(() => event.value?.isActive ? { type: 'check', color: 'positive' } : { type: 'close', color: 'negative' })
 
 const [modalDelete, showModalDelete] = modalFactory()
+const [modalSelect, showModalSelect] = modalFactory()
 
 const editRoute = computed(() => ({
   name: 'events edit',

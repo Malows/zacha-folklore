@@ -1,5 +1,5 @@
 <template>
-  <page
+  <common-page
     v-if="reservation"
     title="Editar Reserva"
   >
@@ -45,7 +45,7 @@
         @click="submit"
       />
     </q-form>
-  </page>
+  </common-page>
 </template>
 
 <script setup>
@@ -54,7 +54,7 @@ import { ref, onMounted, computed } from 'vue'
 import environment from 'src/composable/environment'
 import { pull, task } from 'src/utils/api'
 
-import Page from 'components/shared/pages/Page.vue'
+import CommonPage from 'src/components/shared/pages/CommonPage.vue'
 
 const name = ref('')
 const lastName = ref('')

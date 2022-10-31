@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Domain\EventDomain;
 use App\Http\Requests\EventRequests\AddTicketsRequest;
+use App\Http\Requests\EventRequests\CopyMenuRequest;
 use App\Http\Requests\EventRequests\StoreRequest;
 use App\Http\Requests\EventRequests\UpdateRequest;
 use App\Models\Event;
@@ -100,5 +101,39 @@ class EventController extends Controller
     public function menuItems(Event $event)
     {
         return $event->menuItems()->get();
+    }
+
+    /**
+     * Get the events that have menu sections
+     *
+     * @return Collection<int, Event>
+     */
+    public function withMenu()
+    {
+        return Event::query()
+            ->has('menuSections')
+            ->orderBy('event_day')
+            ->get();
+    }
+
+    /**
+     * Copy the menu from one event to another
+     *
+     * @param  CopyMenuRequest  $request
+     * @return Event
+     */
+    public function copyMenu(CopyMenuRequest $request): Event
+    {
+        $from = Event::query()->with('menuSections.menuItems')->find($request->from);
+
+        $to = Event::query()->find($request->to);
+
+        abort_if($to->menuSections()->count() > 0, 400, 'Event has menu sections');
+
+        EventDomain::copyMenuFromEvent($from, $to);
+
+        $to->load('menuSections.menuItems');
+
+        return $to;
     }
 }

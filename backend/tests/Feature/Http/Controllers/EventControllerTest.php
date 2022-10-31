@@ -241,4 +241,94 @@ class EventControllerTest extends TestCase
                 ],
             ]);
     }
+
+    /**
+     * A basic feature test example.
+     *
+     * @return void
+     *
+     * @group events
+     * @group controllers
+     */
+    public function test_events_with_menu_sections()
+    {
+        $this->seed(EventSeeder::class);
+        $this->seed(UserSeeder::class);
+
+        $event = Event::first();
+        $item = MenuItem::factory()
+            ->for(MenuSection::factory()->recycle($event)->create())
+            ->create();
+
+        // add event without menu sections
+        Event::factory()->create();
+
+        $response = $this
+            ->actingAs(User::query()->first(), 'api')
+            ->getJson('api/events_with_menu')
+            ->assertStatus(200)
+            ->assertJsonStructure([
+                '*' => [
+                    'id',
+                    'name',
+                    'location',
+                    'address',
+                    'event_day',
+                    'started_at',
+                    'is_active',
+                    // 'reserved_tickers',
+                    'pre_paid_reserved_tickets',
+                    'common_tickets',
+                ],
+            ]);
+
+        $this->assertCount(1, $response->json());
+    }
+
+    /**
+     * A basic feature test example.
+     *
+     * @return void
+     *
+     * @group events
+     * @group controllers
+     */
+    public function test_events_copy_menu()
+    {
+        $this->seed(UserSeeder::class);
+
+        $from = Event::factory()->create();
+        $to = Event::factory()->create();
+
+        $item = MenuItem::factory()
+            ->for(MenuSection::factory()->recycle($from)->create())
+            ->create();
+
+        $response = $this
+            ->actingAs(User::query()->first(), 'api')
+            ->postJson('api/events_copy_menu', ['from' => $from->id, 'to' => $to->id])
+            ->assertStatus(200)
+            ->assertJsonStructure([
+                'id',
+                'name',
+                'location',
+                'address',
+                'event_day',
+                'started_at',
+                'is_active',
+                // 'reserved_tickers',
+                'pre_paid_reserved_tickets',
+                'common_tickets',
+            ]);
+
+        $to->refresh();
+
+        $this->assertEquals(1, $to->menuSections()->count());
+
+        // Can't make a copy over a event that already have a menu
+        $response = $this
+            ->actingAs(User::query()->first(), 'api')
+            ->postJson('api/events_copy_menu', ['from' => $from->id, 'to' => $to->id])
+            ->assertStatus(400);
+    }
 }

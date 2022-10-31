@@ -10,6 +10,10 @@ export function onRequest (section) {
     data.id = section.id
   }
 
+  if (section.eventId) {
+    data.event_id = section.eventId
+  }
+
   return data
 }
 
@@ -18,7 +22,8 @@ export function onResponse (section) {
     id: section.id,
     name: section.name,
     order: section.order,
-    items: itemsListResponse(section.items ?? [])
+    eventId: section.event_id,
+    items: itemsListResponse(section.menu_items ?? [])
   }
 }
 
