@@ -31,8 +31,8 @@ return new class extends Migration
 
             $table->foreignIdFor(Event::class)
                 ->constrained()
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
 
             $table->timestamps();
             $table->softDeletes();

@@ -20,8 +20,8 @@ return new class extends Migration
             $table->decimal('price');
             $table->foreignIdFor(MenuSection::class)
                 ->constrained()
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
             $table->timestamps();
         });
     }
