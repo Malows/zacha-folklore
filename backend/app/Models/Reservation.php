@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -16,8 +17,6 @@ class Reservation extends Model
         'last_name',
         'amount',
         'uuid',
-        'qr_path',
-        'qr_url',
         'email',
         'phone',
         'is_paid',
@@ -52,5 +51,29 @@ class Reservation extends Model
     public function scopeUnused(Builder $query)
     {
         $query->where('is_used', false);
+    }
+
+    /**
+     * Get the QR disk path.
+     *
+     * @return \Illuminate\Database\Eloquent\Casts\Attribute
+     */
+    protected function qrPath(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value, $attributes) => url($attributes['uuid'] . '.png'),
+        );
+    }
+
+    /**
+     * Get the QR HTTP URL.
+     *
+     * @return \Illuminate\Database\Eloquent\Casts\Attribute
+     */
+    protected function qrUrl(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value, $attributes) => url('/storage/reservations/' . $attributes['uuid'] . '.png'),
+        );
     }
 }

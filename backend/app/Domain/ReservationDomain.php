@@ -31,9 +31,6 @@ class ReservationDomain
                 ->generate(ReservationDomain::getQrMessage($uuid))
         );
 
-        $reservation->qr_path = $name;
-        $reservation->qr_url = $disk->url($name);
-
         $reservation->save();
 
         EventDomain::updateReservationsAmounts($event);
