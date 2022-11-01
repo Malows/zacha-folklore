@@ -7,7 +7,7 @@ const routify = (requireAuth) =>
       meta: { requireAuth }
     })
 
-const route = routify(false)
+const route = routify(true)
 const publicRoute = routify(false)
 
 const routes = [
