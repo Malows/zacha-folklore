@@ -21,10 +21,7 @@ return new class extends Migration
             $table->string('last_name');
 
             $table->unsignedInteger('amount')->default(1);
-
             $table->uuid('uuid')->index();
-            $table->string('qr_path')->nullable();
-            $table->string('qr_url')->nullable();
 
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
@@ -32,7 +29,10 @@ return new class extends Migration
             $table->boolean('is_paid')->default(true);
             $table->boolean('is_used')->default(false);
 
-            $table->foreignIdFor(Event::class);
+            $table->foreignIdFor(Event::class)
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
 
             $table->timestamps();
             $table->softDeletes();

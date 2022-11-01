@@ -18,7 +18,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedInteger('order');
-            $table->foreignIdFor(Event::class);
+            $table->foreignIdFor(Event::class)
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

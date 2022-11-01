@@ -18,7 +18,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->decimal('price');
-            $table->foreignIdFor(MenuSection::class);
+            $table->foreignIdFor(MenuSection::class)
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
