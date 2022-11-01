@@ -23,8 +23,6 @@ class ReservationFactory extends Factory
             'amount' => $this->faker->numberBetween(1, 10),
 
             'uuid' => Str::uuid(),
-            'qr_path' => $this->faker->filePath(),
-            'qr_url' => $this->faker->url,
 
             'email' => $this->faker->email,
             'phone' => $this->faker->phoneNumber,

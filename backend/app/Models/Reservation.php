@@ -25,6 +25,13 @@ class Reservation extends Model
     ];
 
     /**
+    * The accessors to append to the model's array form.
+    *
+    * @var array
+    */
+    protected $appends = ['qr_path', 'qr_url'];
+
+    /**
      * The attributes that should be cast.
      *
      * @var array<string, string>
@@ -61,7 +68,7 @@ class Reservation extends Model
     protected function qrPath(): Attribute
     {
         return Attribute::make(
-            get: fn ($value, $attributes) => url($attributes['uuid'] . '.png'),
+            get: fn ($value, $attributes) => $attributes['uuid'] . '.png',
         );
     }
 
