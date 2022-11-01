@@ -1,3 +1,5 @@
+import { fromPlainString } from 'src/utils/date'
+
 export function onRequest (item) {
   const data = {
     name: item.name,
@@ -21,9 +23,9 @@ export function onResponse (item) {
     name: item.name,
     location: item.location,
     address: item.address,
-    eventDay: item.event_day,
-    startedAt: item.started_at,
-    isActive: item.is_active,
+    eventDay: fromPlainString(item.event_day),
+    // startedAt: item.started_at,
+    isActive: Boolean(item.is_active),
     menuSections: item.menuSections,
     menuItems: item.menuItems
   }

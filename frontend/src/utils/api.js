@@ -4,9 +4,10 @@
  * @returns
  */
 function fromServerError (response) {
+  console.log({ response })
   return {
     timeout: 5000,
-    message: response.data.message
+    message: response.message
   }
 }
 
