@@ -1,7 +1,7 @@
 <template>
   <base-map
-    :modelCenter="props.marker"
-    :modelZoom="15"
+    :model-center="props.marker"
+    :model-zoom="15"
   >
     <l-marker
       v-if="props.marker"
@@ -14,6 +14,8 @@
 import { LMarker } from '@vue-leaflet/vue-leaflet'
 import { onMounted, ref } from 'vue'
 
+import { DEFAULT_GEOPOSITION } from 'src/utils/geo'
+
 import BaseMap from './BaseMap.vue'
 
 const props = defineProps({
@@ -24,9 +26,9 @@ const props = defineProps({
   }
 })
 
-const center = ref({ lat: -31.633333, lng: -60.7000 })
+const center = ref(DEFAULT_GEOPOSITION)
 
 onMounted(() => {
-  center.value = props.marker ?? { lat: -31.633333, lng: -60.7000 }
+  center.value = props.marker ?? DEFAULT_GEOPOSITION
 })
 </script>

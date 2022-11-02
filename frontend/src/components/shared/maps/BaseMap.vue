@@ -2,8 +2,8 @@
   <q-card>
     <q-card-section>
       <l-map
-        :zoom="props.zoom"
-        :center="props.center"
+        :zoom="props.modelZoom"
+        :center="props.modelCenter"
         :style="{ height }"
         @update:zoom="updateZoom"
         @update:center="updateCenter"
@@ -13,7 +13,7 @@
           layer-type="base"
           name="OpenStreetMap"
         />
-        <slot></slot>
+        <slot />
       </l-map>
     </q-card-section>
   </q-card>
@@ -23,11 +23,13 @@
 import 'leaflet/dist/leaflet.css'
 import { LMap, LTileLayer } from '@vue-leaflet/vue-leaflet'
 
+import { DEFAULT_GEOPOSITION } from 'src/utils/geo'
+
 const props = defineProps({
   modelCenter: {
     type: Object,
     required: false,
-    default: () => ({ lat: -31.633333, lng: -60.7000 })
+    default: () => DEFAULT_GEOPOSITION
   },
 
   height: {

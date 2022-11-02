@@ -1,11 +1,11 @@
 <template>
   <base-map
-    v-model:zoom="props.zoom"
-    v-model:center="props.center"
+    :model-zoom="props.zoom"
+    :model-center="props.center"
   >
     <l-marker
-      v-if="props.marker"
-      :lat-lng="[props.marker.lat, props.marker.lng]"
+      v-if="props.modelValue"
+      :lat-lng="[props.modelValue.lat, props.modelValue.lng]"
       draggable
       @move="updateMarker"
     />
@@ -14,6 +14,9 @@
 
 <script setup>
 import { LMarker } from '@vue-leaflet/vue-leaflet'
+import { onMounted } from 'vue'
+
+import { DEFAULT_GEOPOSITION } from 'src/utils/geo'
 
 import BaseMap from './BaseMap.vue'
 
@@ -27,7 +30,7 @@ const props = defineProps({
   center: {
     type: Object,
     required: false,
-    default: () => ({ lat: -31.633333, lng: -60.7000 })
+    default: () => DEFAULT_GEOPOSITION
   },
 
   zoom: {
@@ -39,8 +42,13 @@ const props = defineProps({
 
 const emits = defineEmits(['update:modelValue'])
 
+onMounted(() => {
+  if (!props.modelValue) {
+    updateMarker(DEFAULT_GEOPOSITION)
+  }
+})
+
 function updateMarker (value) {
-  console.log('value', value)
-  emits('update:modelValue', value)
+  emits('update:modelValue', value?.latlng ?? value)
 }
 </script>
