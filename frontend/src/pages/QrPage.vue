@@ -17,9 +17,10 @@
       {{ eventDay }}
     </h5>
 
-    <div>
-      <base-map />
-    </div>
+    <position-map
+      v-if="location"
+      :marker="location"
+    />
 
     <p class="text-body1">
       {{ reservation.name }} {{ reservation.lastName }}
@@ -43,12 +44,16 @@ import environment from 'src/composable/environment'
 import { pull } from 'src/utils/api'
 import { toPlainString } from 'src/utils/date'
 
-import BaseMap from 'src/components/shared/BaseMap.vue'
+import PositionMap from 'src/components/shared/maps/PositionMap.vue'
 
 const { store, quasar, route, router } = environment()
 
 const reservation = computed(() => store.state.reservations.reservations.find(x => x.uuid === route.params.uuid))
-const eventDay = computed(() => toPlainString(reservation.value?.event?.eventDay))
+const event = computed(() => reservation.value?.event)
+
+const location = computed(() => event.value?.location)
+const eventDay = computed(() => toPlainString(event.value?.eventDay))
+
 /* const contact = computed(() => {
   const { email, phone } = reservation?.value ?? {}
 
