@@ -5,6 +5,7 @@ import {
 } from 'date-fns'
 
 const regionalDateFormat = 'dd/MM/yyyy'
+const inputFormat = 'yyyy/MM/dd'
 
 /**
  *
@@ -30,6 +31,28 @@ export function fromPlainString (input) {
   }
 
   return parse(input, regionalDateFormat, new Date())
+}
+
+/**
+ *
+ * @param {*} input
+ * @returns
+ */
+export function toInput (input) {
+  return format(input, inputFormat)
+}
+
+/**
+ *
+ * @param {*} input
+ * @returns
+ */
+export function fromInput (input) {
+  if (!input) {
+    return null
+  }
+
+  return parse(input, inputFormat, new Date())
 }
 
 /**
