@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -25,10 +25,10 @@ class Reservation extends Model
     ];
 
     /**
-    * The accessors to append to the model's array form.
-    *
-    * @var array
-    */
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
     protected $appends = ['qr_path', 'qr_url'];
 
     /**
@@ -68,7 +68,7 @@ class Reservation extends Model
     protected function qrPath(): Attribute
     {
         return Attribute::make(
-            get: fn ($value, $attributes) => $attributes['uuid'] . '.png',
+            get: fn ($value, $attributes) => $attributes['uuid'].'.png',
         );
     }
 
@@ -80,7 +80,7 @@ class Reservation extends Model
     protected function qrUrl(): Attribute
     {
         return Attribute::make(
-            get: fn ($value, $attributes) => url('/storage/reservations/' . $attributes['uuid'] . '.png'),
+            get: fn ($value, $attributes) => url('/storage/reservations/'.$attributes['uuid'].'.png'),
         );
     }
 }

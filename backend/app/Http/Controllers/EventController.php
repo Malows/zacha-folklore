@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Domain\EventDomain;
+use App\Domain\MenuDomain;
 use App\Http\Requests\EventRequests\AddTicketsRequest;
 use App\Http\Requests\EventRequests\CopyMenuRequest;
 use App\Http\Requests\EventRequests\StoreRequest;
@@ -130,7 +131,7 @@ class EventController extends Controller
 
         abort_if($to->menuSections()->count() > 0, 400, 'Event has menu sections');
 
-        EventDomain::copyMenuFromEvent($from, $to);
+        MenuDomain::copyMenuFromEvent($from, $to);
 
         $to->load('menuSections.menuItems');
 

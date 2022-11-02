@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\View;
@@ -21,12 +22,12 @@ class ViewController extends Controller
             return View::make('missing_event_menu');
         }
 
-        $sections = $event->menuSection()
+        $sections = $event->menuSections()
             ->orderBy('order')
             ->with('menuItems')
             ->get();
 
-        if ($section->isEmpty()) {
+        if ($sections->isEmpty()) {
             return View::make('without_menu_sections');
         }
 

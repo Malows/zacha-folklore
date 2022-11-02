@@ -205,33 +205,4 @@ class EventDomainTest extends TestCase
         $this->assertGreaterThan(0, $event->reserved_tickets);
         $this->assertGreaterThan(0, $event->pre_paid_reserved_tickets);
     }
-
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     *
-     * @group events
-     * @group domain
-     */
-    public function test_copy_menu_from_event()
-    {
-        $from = Event::factory()->create();
-        $to = Event::factory()->create();
-
-        $item = MenuItem::factory()
-            ->for(MenuSection::factory()->recycle($from)->create())
-            ->create();
-
-        $this->assertEquals(0, $to->menuSections()->count());
-        $this->assertEquals(0, $to->menuItems()->count());
-
-        $this->assertEquals(1, $from->menuSections()->count());
-        $this->assertEquals(1, $from->menuItems()->count());
-
-        EventDomain::copyMenuFromEvent($from, $to);
-
-        $this->assertEquals(1, $to->menuSections()->count());
-        $this->assertEquals(1, $to->menuItems()->count());
-    }
 }

@@ -98,6 +98,6 @@ class ReservationController extends Controller
      */
     public function download(Reservation $reservation): mixed
     {
-        return Storage::disk('reservations')->download($reservation->qr_path);
+        return Storage::disk('reservations')->download($reservation->get('qr_path'));
     }
 }
