@@ -26,13 +26,13 @@
       {{ event.name }}
     </inline-data>
 
-    <inline-data label="Dia del evento">
-      {{ event.eventDay }}
+    <inline-data label="Día del evento">
+      {{ toPlainString(event.eventDay) }}
     </inline-data>
 
-    <inline-data label="Hora de inicio">
+    <!-- <inline-data label="Hora de inicio">
       {{ event.startedAt }}
-    </inline-data>
+    </inline-data> -->
 
     <inline-data label="Evento activo">
       <q-icon
@@ -42,7 +42,7 @@
       />
     </inline-data>
 
-    <inline-data label="Direccion">
+    <inline-data label="Dirección">
       {{ event.address }}
     </inline-data>
 
@@ -66,6 +66,7 @@ import { onMounted, computed } from 'vue'
 import modalFactory from 'src/composable/modalFactory'
 import environment from 'src/composable/environment'
 import { pull } from 'src/utils/api'
+import { toPlainString } from 'src/utils/date'
 
 import PageWithActions from 'components/shared/pages/PageWithActions.vue'
 import ActionBtn from 'src/components/shared/stickyButtons/ActionBtn.vue'

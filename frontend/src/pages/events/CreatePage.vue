@@ -6,30 +6,24 @@
         label="Nombre"
       />
 
-      <q-input
+      <calendar-input
         v-model="payload.eventDay"
-        label="Dia del evento"
-      />
-
-      <q-input
-        v-model="payload.startedAt"
-        label="Hora de inicio"
-      />
-
-      <q-toggle
-        v-model="payload.isActive"
-        label="Evento activo"
+        label="Día del evento"
       />
 
       <q-input
         v-model="payload.address"
-        label="Direccion"
+        label="Dirección"
       />
 
-      <q-input
+      <input-map
         v-model="payload.location"
-        label="Mapa"
+        class="q-mt-lg"
       />
+
+      <active-toggle v-model="payload.isActive" />
+
+      <q-separator class="q-my-lg" />
 
       <q-btn
         class="q-mt-md"
@@ -50,11 +44,14 @@ import environment from 'src/composable/environment'
 import { task } from 'src/utils/api'
 
 import CommonPage from 'src/components/shared/pages/CommonPage.vue'
+import InputMap from 'components/shared/maps/InputMap.vue'
+import ActiveToggle from 'src/components/events/ActiveToggle.vue'
+import CalendarInput from 'src/components/events/CalendarInput.vue'
 
 const payload = reactive({
   name: '',
   eventDay: null,
-  startedAt: null,
+  // startedAt: null,
   isActive: false,
   address: '',
   location: null

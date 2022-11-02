@@ -1,6 +1,6 @@
 <template>
   <common-page
-    v-if="reservation"
+    v-if="event"
     title="Editar Evento"
   >
     <q-form>
@@ -9,30 +9,24 @@
         label="Nombre"
       />
 
-      <q-input
+      <calendar-input
         v-model="payload.eventDay"
-        label="Dia del evento"
-      />
-
-      <q-input
-        v-model="payload.startedAt"
-        label="Hora de inicio"
-      />
-
-      <q-toggle
-        v-model="payload.isActive"
-        label="Evento activo"
+        label="Día del evento"
       />
 
       <q-input
         v-model="payload.address"
-        label="Direccion"
+        label="Dirección"
       />
 
-      <q-input
+      <input-map
         v-model="payload.location"
-        label="Mapa"
+        class="q-mt-lg"
       />
+
+      <active-toggle v-model="payload.isActive" />
+
+      <q-separator class="q-my-lg" />
 
       <q-btn
         class="q-mt-md"
@@ -51,11 +45,14 @@ import environment from 'src/composable/environment'
 import { pull, task } from 'src/utils/api'
 
 import CommonPage from 'src/components/shared/pages/CommonPage.vue'
+import InputMap from 'components/shared/maps/InputMap.vue'
+import ActiveToggle from 'src/components/events/ActiveToggle.vue'
+import CalendarInput from 'src/components/events/CalendarInput.vue'
 
 const payload = reactive({
   name: '',
   eventDay: null,
-  startedAt: null,
+  // startedAt: null,
   isActive: false,
   address: '',
   location: null
@@ -63,24 +60,24 @@ const payload = reactive({
 
 const { route, router, store, quasar } = environment()
 
-const reservation = computed(() => store.getters['events/event'])
+const event = computed(() => store.getters['events/event'])
 
 onMounted(async () => {
   await pull(store, quasar, 'events/get', { id: route.params.eventId })
 
-  if (reservation.value) {
-    payload.name.value = event.value.name
-    payload.eventDay.value = event.value.eventDay
-    payload.startedAt.value = event.value.startedAt
-    payload.isActive.value = event.value.isActive
-    payload.address.value = event.value.address
-    payload.location.value = event.value.location
+  if (event.value) {
+    payload.name = event.value.name
+    payload.eventDay = event.value.eventDay
+    payload.startedAt = event.value.startedAt
+    payload.isActive = event.value.isActive
+    payload.address = event.value.address
+    payload.location = event.value.location
   }
 })
 
 function submit () {
   // validation
-  task(store, quasar, 'events/update', payload.value)
+  task(store, quasar, 'events/update', payload)
     .then(() => {
       quasar.notify('Evento editado correctamente')
       router.push({ name: 'events index' })
