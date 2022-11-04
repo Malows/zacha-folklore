@@ -112,6 +112,7 @@ class EventController extends Controller
     public function withMenu()
     {
         return Event::query()
+            ->withTrashed()
             ->has('menuSections')
             ->orderBy('event_day')
             ->get();

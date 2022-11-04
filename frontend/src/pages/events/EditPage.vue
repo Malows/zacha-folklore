@@ -77,7 +77,7 @@ onMounted(async () => {
 
 function submit () {
   // validation
-  task(store, quasar, 'events/update', payload)
+  task(store, quasar, 'events/update', { ...event.value, ...payload })
     .then(() => {
       quasar.notify('Evento editado correctamente')
       router.push({ name: 'events index' })
