@@ -1,5 +1,5 @@
 <template>
-  <q-card>
+  <q-card class="dialog">
     <q-card-section>
       <div class="text-h6 q-mb-sm">
         Edición rápida
@@ -71,3 +71,9 @@ function submit () {
     })
 }
 </script>
+
+<style scoped>
+  .dialog {
+    width: clamp(80vw, 100%, 16rem);
+  }
+</style>
