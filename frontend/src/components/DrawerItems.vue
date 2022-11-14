@@ -31,7 +31,7 @@
 </template>
 
 <script setup>
-import environment from 'src/composable/environment'
+import environment from '../composable/environment'
 
 const items = [
   { icon: 'home', text: 'Inicio', to: { name: 'home' } },
