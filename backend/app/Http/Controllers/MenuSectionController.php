@@ -31,6 +31,8 @@ class MenuSectionController extends Controller
      */
     public function store(StoreMenuSectionRequest $request, Event $event): MenuSection
     {
+        $this->authorize('create', MenuSection::class);
+
         return $event->menuSections()->create($request->all());
     }
 
@@ -56,6 +58,8 @@ class MenuSectionController extends Controller
      */
     public function update(UpdateMenuSectionRequest $request, MenuSection $menuSection): MenuSection
     {
+        $this->authorize('update', MenuSection::class);
+
         $menuSection
             ->fill($request->all())
             ->save();
@@ -71,6 +75,8 @@ class MenuSectionController extends Controller
      */
     public function destroy(MenuSection $menuSection): MenuSection
     {
+        $this->authorize('delete', MenuSection::class);
+
         $menuSection->delete();
 
         return $menuSection;

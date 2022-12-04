@@ -64,4 +64,15 @@ class EventPolicy
     {
         return $user->hasPermissionTo('events.erase', 'api');
     }
+
+    /**
+     * Determine whether the user can copy an existen menu into the actual event.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function menuCopy(User $user)
+    {
+        return $user->hasPermissionTo('menu.copy', 'api');
+    }
 }

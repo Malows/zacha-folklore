@@ -30,6 +30,8 @@ class MenuItemController extends Controller
      */
     public function store(StoreMenuItemRequest $request, MenuSection $menuSection): MenuItem
     {
+        $this->authorize('create', MenuItem::class);
+
         return $menuSection->menuItems()->create($request->all());
     }
 
@@ -55,6 +57,8 @@ class MenuItemController extends Controller
      */
     public function update(UpdateMenuItemRequest $request, MenuItem $menuItem): MenuItem
     {
+        $this->authorize('update', MenuItem::class);
+
         $menuItem
             ->fill($request->all())
             ->save();
@@ -70,6 +74,8 @@ class MenuItemController extends Controller
      */
     public function destroy(MenuItem $menuItem): MenuItem
     {
+        $this->authorize('delete', MenuItem::class);
+
         $menuItem->delete();
 
         return $menuItem;

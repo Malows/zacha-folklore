@@ -32,6 +32,8 @@ class EventController extends Controller
      */
     public function store(StoreRequest $request): Event
     {
+        $this->authorize('create', Event::class);
+
         return Event::create($request->all());
     }
 
@@ -55,6 +57,8 @@ class EventController extends Controller
      */
     public function update(UpdateRequest $request, Event $event): Event
     {
+        $this->authorize('update', Event::class);
+
         if ($request->has('is_active') && $request->get('is_active')) {
             EventDomain::deactivateOtherEvents($event);
         }
@@ -72,6 +76,8 @@ class EventController extends Controller
      */
     public function destroy(Event $event): Event
     {
+        $this->authorize('delete', Event::class);
+
         $event->delete();
 
         return $event;
@@ -126,6 +132,8 @@ class EventController extends Controller
      */
     public function copyMenu(CopyMenuRequest $request): Event
     {
+        $this->authorize('menuCopy', Event::class);
+
         $from = Event::query()->with('menuSections.menuItems')->find($request->from);
 
         $to = Event::query()->find($request->to);
