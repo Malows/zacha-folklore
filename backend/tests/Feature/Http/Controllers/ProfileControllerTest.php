@@ -7,7 +7,7 @@ use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class ProfileControllerTest extends TestCase
+class ProfileControllerTest extends BaseHttpCase
 {
     use RefreshDatabase;
 
@@ -21,10 +21,10 @@ class ProfileControllerTest extends TestCase
      */
     public function test_profile_show()
     {
-        $this->seed(UserSeeder::class);
+        $users = $this->db();
 
         $this
-            ->actingAs(User::first(), 'api')
+            ->actingAs($users[0], 'api')
             ->getJson('api/user')
             ->assertStatus(200)
             ->assertJsonStructure([
@@ -43,9 +43,9 @@ class ProfileControllerTest extends TestCase
      */
     public function test_profile_update()
     {
-        $this->seed(UserSeeder::class);
+        $users = $this->db();
 
-        $user = User::first();
+        $user = $users[0];
 
         $data = $user->toArray();
         $data['name'] = 'TEST NAME';
@@ -74,9 +74,9 @@ class ProfileControllerTest extends TestCase
      */
     public function test_profile_password()
     {
-        $this->seed(UserSeeder::class);
+        $users = $this->db();
 
-        $user = User::first();
+        $user = $users[0];
 
         $oldPassword = $user->password;
 

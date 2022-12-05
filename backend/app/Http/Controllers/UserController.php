@@ -29,6 +29,8 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request): User
     {
+        $this->authorize('create', User::class);
+
         $user = new User($request->all());
 
         $user->password = Hash::make($request->password);
@@ -60,6 +62,8 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user): User
     {
+        $this->authorize('update', User::class);
+
         $user
             ->fill($request->all())
             ->save();
@@ -77,6 +81,8 @@ class UserController extends Controller
      */
     public function destroy(User $user): User
     {
+        $this->authorize('delete', User::class);
+
         $user->delete();
 
         return $user;

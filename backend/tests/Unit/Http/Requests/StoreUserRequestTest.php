@@ -37,7 +37,7 @@ class StoreUserRequestTest extends BaseRequestTest
         $this->assertEquals(['required', 'string', 'max:255'], $rules['name']);
         $this->assertEquals(['required', 'string', 'email', 'max:255', 'unique:users'], $rules['email']);
         $this->assertEquals(['required', 'string', 'min:8', 'confirmed'], $rules['password']);
-        $this->assertEquals(['array'], $rules['roles']);
+        $this->assertEquals(['required', 'array'], $rules['roles']);
         $this->assertEquals(['string', 'distinct'], $rules['roles.*']);
     }
 }

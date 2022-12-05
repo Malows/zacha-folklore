@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdatePasswordRequest;
-use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\UpdateProfileRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -27,10 +27,10 @@ class ProfileController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  UpdateUserRequest  $request
+     * @param  UpdateProfileRequest  $request
      * @return mixed
      */
-    public function update(UpdateUserRequest $request): mixed
+    public function update(UpdateProfileRequest $request): mixed
     {
         $user = $request->user();
 

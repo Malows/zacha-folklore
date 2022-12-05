@@ -4,15 +4,13 @@ namespace Tests\Feature\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\Reservation;
-use App\Models\User;
 use Database\Seeders\EventSeeder;
 use Database\Seeders\ReservationSeeder;
-use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
-class ReservationControllerTest extends TestCase
+class ReservationControllerTest extends BaseHttpCase
 {
     use RefreshDatabase;
 
@@ -26,14 +24,15 @@ class ReservationControllerTest extends TestCase
      */
     public function test_reservations_index()
     {
-        $this->seed(UserSeeder::class);
+        $users = $this->db();
+
         $this->seed(EventSeeder::class);
         $this->seed(ReservationSeeder::class);
 
         $event = Event::first();
 
         $this
-            ->actingAs(User::query()->first(), 'api')
+            ->actingAs($users[0], 'api')
             ->getJson("api/events/{$event->id}/reservations")
             ->assertStatus(200)
             ->assertJsonStructure([
@@ -63,7 +62,8 @@ class ReservationControllerTest extends TestCase
      */
     public function test_reservations_store()
     {
-        $this->seed(UserSeeder::class);
+        $users = $this->db();
+
         $this->seed(EventSeeder::class);
 
         $this->assertDatabaseCount('reservations', 0);
@@ -75,7 +75,7 @@ class ReservationControllerTest extends TestCase
         $data = Reservation::factory()->recycle($event)->make()->toArray();
 
         $response = $this
-            ->actingAs(User::query()->first(), 'api')
+            ->actingAs($users[0], 'api')
             ->postJson("api/events/{$event->id}/reservations", $data);
 
         $response->assertStatus(201)
@@ -112,14 +112,15 @@ class ReservationControllerTest extends TestCase
      */
     public function test_reservations_show()
     {
-        $this->seed(UserSeeder::class);
+        $users = $this->db();
+
         $this->seed(EventSeeder::class);
         $this->seed(ReservationSeeder::class);
 
         $reservation = Reservation::first();
 
         $this
-            ->actingAs(User::query()->first(), 'api')
+            ->actingAs($users[0], 'api')
             ->getJson("api/reservations/{$reservation->id}")
             ->assertStatus(200)
             ->assertJsonStructure([
@@ -147,7 +148,8 @@ class ReservationControllerTest extends TestCase
      */
     public function test_reservations_update()
     {
-        $this->seed(UserSeeder::class);
+        $users = $this->db();
+
         $this->seed(EventSeeder::class);
         $this->seed(ReservationSeeder::class);
 
@@ -157,7 +159,7 @@ class ReservationControllerTest extends TestCase
         $data['name'] = 'TEST NAME';
 
         $this
-            ->actingAs(User::query()->first(), 'api')
+            ->actingAs($users[0], 'api')
             ->putJson("api/reservations/{$reservation->id}", $data)
             ->assertStatus(200)
             ->assertJsonStructure([
@@ -187,14 +189,15 @@ class ReservationControllerTest extends TestCase
      */
     public function test_reservations_delete()
     {
-        $this->seed(UserSeeder::class);
+        $users = $this->db();
+
         $this->seed(EventSeeder::class);
         $this->seed(ReservationSeeder::class);
 
         $reservation = Reservation::first();
 
         $this
-            ->actingAs(User::query()->first(), 'api')
+            ->actingAs($users[0], 'api')
             ->deleteJson("api/reservations/{$reservation->id}")
             ->assertStatus(200)
             ->assertJsonStructure([

@@ -30,8 +30,7 @@ Route::middleware('auth:api')->group(function () {
     Route::apiResource('events.menu_sections', MenuSectionController::class)->shallow();
     Route::apiResource('events.reservations', ReservationController::class)->shallow();
     Route::apiResource('menu_sections.menu_items', MenuItemController::class)->shallow();
-
-    Route::apiResource('users', UserController::class)->middleware(['role:admin']);
+    Route::apiResource('users', UserController::class);
 });
 
 Route::get('/events/{event}/menu_items', [EventController::class, 'menuItems'])
