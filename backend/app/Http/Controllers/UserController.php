@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Domain\UserDomain;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
@@ -34,6 +35,8 @@ class UserController extends Controller
 
         $user->save();
 
+        $user = UserDomain::updateRoles($user, $request->roles);
+
         return $user;
     }
 
@@ -60,6 +63,8 @@ class UserController extends Controller
         $user
             ->fill($request->all())
             ->save();
+
+        $user = UserDomain::updateRoles($user, $request->roles);
 
         return $user;
     }

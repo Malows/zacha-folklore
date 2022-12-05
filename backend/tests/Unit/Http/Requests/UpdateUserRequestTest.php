@@ -19,8 +19,8 @@ class UpdateUserRequestTest extends BaseRequestTest
         $keys = array_keys($keys);
         sort($keys);
 
-        $this->assertEquals(2, count($keys));
-        $this->assertEquals(['email', 'name'], $keys);
+        $this->assertEquals(4, count($keys));
+        $this->assertEquals(['email', 'name', 'roles', 'roles.*'], $keys);
     }
 
     /**
@@ -36,5 +36,7 @@ class UpdateUserRequestTest extends BaseRequestTest
 
         $this->assertEquals(['required', 'string', 'max:255'], $rules['name']);
         $this->assertEquals(['required', 'string', 'email', 'max:255'], $rules['email']);
+        $this->assertEquals(['array'], $rules['roles']);
+        $this->assertEquals(['string', 'distinct'], $rules['roles.*']);
     }
 }

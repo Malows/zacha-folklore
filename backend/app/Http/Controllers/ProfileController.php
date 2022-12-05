@@ -17,7 +17,11 @@ class ProfileController extends Controller
      */
     public function show(Request $request): mixed
     {
-        return $request->user();
+        $user = $request->user();
+
+        $user->load('roles:name');
+
+        return $user;
     }
 
     /**
