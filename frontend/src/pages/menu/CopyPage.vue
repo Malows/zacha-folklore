@@ -18,6 +18,7 @@
 import { onMounted, computed } from 'vue'
 
 import environment from 'src/composable/environment'
+import { checkManagerRole } from 'src/composable/checkRole'
 import { checkEvent } from 'src/composable/checkRequirement'
 import { pull, task } from 'src/utils/api'
 
@@ -32,6 +33,7 @@ const event = computed(() => store.state.events.selectedEvent)
 const eventsWithou = computed(() => events.value.filter(x => x.id !== event.value.id))
 
 onMounted(async () => {
+  checkManagerRole(store, router, quasar)
   checkEvent(store, router, quasar)
 
   pull(store, quasar, 'events/withMenu')

@@ -17,6 +17,7 @@
 import { onMounted, computed } from 'vue'
 
 import environment from 'src/composable/environment'
+import { checkManagerRole } from 'src/composable/checkRole'
 import { checkEvent } from 'src/composable/checkRequirement'
 import { pull } from 'src/utils/api'
 
@@ -32,6 +33,8 @@ const event = computed(() => store.state.events.selectedEvent)
 const sections = computed(() => store.state.menuSections.menuSections)
 
 onMounted(() => {
+  checkManagerRole(store, router, quasar)
+
   const eventId = checkEvent(store, router, quasar)
 
   pull(store, quasar, 'menuSections/fetch', { eventId })

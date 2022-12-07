@@ -42,6 +42,7 @@
 import { reactive, onMounted, computed } from 'vue'
 
 import environment from 'src/composable/environment'
+import { checkManagerRole } from 'src/composable/checkRole'
 import { pull, task } from 'src/utils/api'
 
 import CommonPage from 'src/components/shared/pages/CommonPage.vue'
@@ -63,6 +64,8 @@ const { route, router, store, quasar } = environment()
 const event = computed(() => store.getters['events/event'])
 
 onMounted(async () => {
+  checkManagerRole(store, router, quasar)
+
   await pull(store, quasar, 'events/get', { id: route.params.eventId })
 
   if (event.value) {

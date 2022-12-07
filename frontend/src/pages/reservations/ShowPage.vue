@@ -77,6 +77,7 @@ import { onMounted, computed } from 'vue'
 
 import modalFactory from 'src/composable/modalFactory'
 import environment from 'src/composable/environment'
+import { checkManagerRole } from 'src/composable/checkRole'
 import { pull } from 'src/utils/api'
 
 import PageWithActions from 'components/shared/pages/PageWithActions.vue'
@@ -84,7 +85,7 @@ import ActionBtn from 'src/components/shared/stickyButtons/ActionBtn.vue'
 import InlineData from 'components/shared/InlineData.vue'
 import DeleteDialog from 'components/dialogs/reservations/DeleteDialog.vue'
 
-const { store, quasar, route } = environment()
+const { store, quasar, route, router } = environment()
 
 const reservation = computed(() => store.getters['reservations/reservation'])
 
@@ -96,6 +97,8 @@ const editRoute = computed(() => ({
 }))
 
 onMounted(async () => {
+  checkManagerRole(store, router, quasar)
+
   if (!reservation.value) {
     await pull(store, quasar, 'reservations/get', route.params.reservationId)
   }

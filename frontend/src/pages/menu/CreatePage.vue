@@ -26,6 +26,7 @@
 import { ref, computed, onMounted } from 'vue'
 
 import environment from 'src/composable/environment'
+import { checkManagerRole } from 'src/composable/checkRole'
 import { checkEvent } from 'src/composable/checkRequirement'
 import { pull, task } from 'src/utils/api'
 
@@ -47,6 +48,8 @@ const payload = computed(() => ({
 }))
 
 onMounted(async () => {
+  checkManagerRole(store, router, quasar)
+
   const eventId = checkEvent(store, router, quasar)
 
   let sample = sections?.value ?? []

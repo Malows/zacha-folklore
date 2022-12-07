@@ -65,6 +65,7 @@ import { onMounted, computed } from 'vue'
 
 import modalFactory from 'src/composable/modalFactory'
 import environment from 'src/composable/environment'
+import { checkManagerRole } from 'src/composable/checkRole'
 import { pull } from 'src/utils/api'
 import { toPlainString } from 'src/utils/date'
 
@@ -74,7 +75,7 @@ import InlineData from 'components/shared/InlineData.vue'
 import DeleteDialog from 'components/dialogs/events/DeleteDialog.vue'
 import SelectDialog from 'components/dialogs/events/SelectDialog.vue'
 
-const { store, quasar, route } = environment()
+const { store, quasar, route, router } = environment()
 
 const event = computed(() => store.getters['events/event'])
 const icon = computed(() => event.value?.isActive ? { type: 'check', color: 'positive' } : { type: 'close', color: 'negative' })
@@ -88,6 +89,8 @@ const editRoute = computed(() => ({
 }))
 
 onMounted(async () => {
+  checkManagerRole(store, router, quasar)
+
   if (!event.value) {
     await pull(store, quasar, 'events/get', route.params.eventId)
   }

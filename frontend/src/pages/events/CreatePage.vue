@@ -17,7 +17,7 @@
       />
 
       <input-map
-        v-model="payload.location"
+          v-model="payload.location"
         class="q-mt-lg"
       />
 
@@ -36,11 +36,12 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue'
+import { reactive, onMounted } from 'vue'
 // import useVuelidate from '@vuelidate/core'
 // import { required, email, minValue } from '@vuelidate/validators'
 
 import environment from 'src/composable/environment'
+import { checkManagerRole } from 'src/composable/checkRole'
 import { task } from 'src/utils/api'
 
 import CommonPage from 'src/components/shared/pages/CommonPage.vue'
@@ -58,6 +59,10 @@ const payload = reactive({
 })
 
 const { router, store, quasar } = environment()
+
+onMounted(() => {
+  checkManagerRole(store, router, quasar)
+})
 
 // const $v = useVuelidate(rules, payload)
 
