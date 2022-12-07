@@ -15,15 +15,20 @@
 import { onMounted, computed } from 'vue'
 
 import environment from 'src/composable/environment'
+import { checkAdminRole } from 'src/composable/checkRole'
 import { pull } from 'src/utils/api'
 
 import PageWithAdd from 'components/shared/pages/PageWithAdd.vue'
 import FilterableList from 'components/shared/filterable/FilterableList.vue'
 import UserItem from 'components/listItems/UserItem.vue'
 
-const { store, quasar } = environment()
+const { store, router, quasar } = environment()
 
-onMounted(() => pull(store, quasar, 'users/fetch'))
+onMounted(() => {
+  checkAdminRole(store, router, quasar)
+
+  pull(store, quasar, 'users/fetch')
+})
 
 const users = computed(() => store.state.users.users)
 </script>

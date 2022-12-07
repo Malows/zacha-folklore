@@ -28,11 +28,10 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
-import { useRouter } from 'vue-router'
-import { useStore } from 'vuex'
-import { useQuasar } from 'quasar'
+import { ref, computed, onMounted } from 'vue'
 
+import environment from 'src/composable/environment'
+import { checkAdminRole } from 'src/composable/checkRole'
 import { task } from 'src/utils/api'
 
 import CommonPage from 'src/components/shared/pages/CommonPage.vue'
@@ -43,9 +42,11 @@ const email = ref('')
 const password = ref('')
 const passwordConfirmation = ref('')
 
-const quasar = useQuasar()
-const store = useStore()
-const router = useRouter()
+const { store, router, quasar } = environment()
+
+onMounted(() => {
+  checkAdminRole(store, router, quasar)
+})
 
 const payload = computed(() => ({
   name: name.value,

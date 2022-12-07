@@ -23,6 +23,7 @@
 import { ref, onMounted, computed } from 'vue'
 
 import environment from 'src/composable/environment'
+import { checkAdminRole } from 'src/composable/checkRole'
 import { pull, task } from 'src/utils/api'
 
 import CommonPage from 'src/components/shared/pages/CommonPage.vue'
@@ -35,6 +36,8 @@ const { route, router, store, quasar } = environment()
 const user = computed(() => store.getters['users/user'])
 
 onMounted(async () => {
+  checkAdminRole(store, router, quasar)
+
   await pull(store, quasar, 'users/get', { id: route.params.userId })
 
   if (user.value) {
