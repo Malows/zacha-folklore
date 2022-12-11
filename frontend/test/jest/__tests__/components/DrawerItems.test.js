@@ -11,9 +11,8 @@ vi.mock('vue-router', () => ({
 }))
 
 vi.mock('vuex', () => ({
-  useStore: vi.fn(() => ({ dispatch })),
+  useStore: vi.fn(() => ({ dispatch }))
 }))
-
 
 import DrawerItems from 'src/components/DrawerItems.vue'
 

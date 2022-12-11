@@ -17,7 +17,7 @@
       />
 
       <input-map
-          v-model="payload.location"
+        v-model="payload.location"
         class="q-mt-lg"
       />
 

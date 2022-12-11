@@ -1,6 +1,6 @@
 import { computed } from 'vue'
 
-function common(roleSet) {
+function common (roleSet) {
   return (store, router, quasar) => {
     const roles = computed(() => store.state.session.user?.roles)
 
@@ -14,7 +14,7 @@ function common(roleSet) {
       return router.push({ name: 'login' })
     }
 
-    const match = roles.some(r => roleSet.contains(r.name))
+    const match = roles.value.some(r => roleSet.includes(r.name))
 
     if (!match) {
       quasar.notify({

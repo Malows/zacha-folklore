@@ -43,7 +43,6 @@ describe('CopyMenu component', () => {
   })
 
   test('change route if click on the copy path', async () => {
-
     useRouter.mockImplementationOnce(() => ({ push }))
 
     const wrapper = wrapperFactory({

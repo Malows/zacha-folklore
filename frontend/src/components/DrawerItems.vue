@@ -31,6 +31,7 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import environment from '../composable/environment'
 
 const privateItems = [
@@ -56,7 +57,7 @@ const items = computed(() => {
     return privateItems.slice(0, -1)
   }
 
-  return [ privateItems[0] ]
+  return [privateItems[0]]
 })
 
 const logout = () => {
