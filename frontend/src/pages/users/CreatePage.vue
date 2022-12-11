@@ -17,6 +17,9 @@
         v-model="passwordConfirmation"
         label="Confirmar Contraseña"
       />
+
+      <roles-toggle v-model="roles" />
+
       <q-btn
         class="q-mt-md"
         color="primary"
@@ -36,9 +39,11 @@ import { task } from 'src/utils/api'
 
 import CommonPage from 'src/components/shared/pages/CommonPage.vue'
 import QPassword from 'components/QPassword.vue'
+import RolesToggle from 'src/components/shared/forms/RolesToggle.vue'
 
 const name = ref('')
 const email = ref('')
+const roles = ref([])
 const password = ref('')
 const passwordConfirmation = ref('')
 
