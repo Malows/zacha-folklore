@@ -9,6 +9,9 @@
         v-model="email"
         label="Email"
       />
+
+      <roles-toggle v-model="roles" />
+
       <q-btn
         class="q-mt-md"
         color="primary"
@@ -27,9 +30,11 @@ import { checkAdminRole } from 'src/composable/checkRole'
 import { pull, task } from 'src/utils/api'
 
 import CommonPage from 'src/components/shared/pages/CommonPage.vue'
+import RolesToggle from 'src/components/shared/forms/RolesToggle.vue'
 
 const name = ref('')
 const email = ref('')
+const roles = ref([])
 
 const { route, router, store, quasar } = environment()
 
@@ -43,6 +48,7 @@ onMounted(async () => {
   if (user.value) {
     name.value = user.value.name
     email.value = user.value.email
+    roles.value = user.value.roles
   }
 })
 

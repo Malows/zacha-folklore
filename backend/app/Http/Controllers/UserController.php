@@ -18,7 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::all();
+        return User::query()->with('roles')->get();
     }
 
     /**
@@ -39,6 +39,8 @@ class UserController extends Controller
 
         $user = UserDomain::updateRoles($user, $request->roles);
 
+        $user->load('roles');
+
         return $user;
     }
 
@@ -50,6 +52,8 @@ class UserController extends Controller
      */
     public function show(User $user): User
     {
+        $user->load('roles');
+
         return $user;
     }
 
@@ -69,6 +73,8 @@ class UserController extends Controller
             ->save();
 
         $user = UserDomain::updateRoles($user, $request->roles);
+
+        $user->load('roles');
 
         return $user;
     }

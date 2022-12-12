@@ -57,7 +57,8 @@ const payload = computed(() => ({
   name: name.value,
   email: email.value,
   password: password.value,
-  passwordConfirmation: passwordConfirmation.value
+  passwordConfirmation: passwordConfirmation.value,
+  roles: roles.value
 }))
 
 function submit () {
