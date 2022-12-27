@@ -6,11 +6,12 @@ use App\Models\Event;
 use App\Models\MenuSection;
 use App\Models\User;
 use Database\Seeders\MenuSectionSeeder;
+use Database\Seeders\RolesAndPermissionsSeeder;
 use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class MenuSectionControllerTest extends TestCase
+class MenuSectionControllerTest extends BaseHttpCase
 {
     use RefreshDatabase;
 
@@ -24,13 +25,14 @@ class MenuSectionControllerTest extends TestCase
      */
     public function test_menu_sections_index()
     {
+        $users = $this->db();
+
         $this->seed(MenuSectionSeeder::class);
-        $this->seed(UserSeeder::class);
 
         $event = Event::first();
 
         $this
-            ->actingAs(User::query()->first(), 'api')
+            ->actingAs($users[0], 'api')
             ->getJson("api/events/{$event->id}/menu_sections")
             ->assertStatus(200)
             ->assertJsonStructure([
@@ -51,7 +53,7 @@ class MenuSectionControllerTest extends TestCase
      */
     public function test_menu_sections_store()
     {
-        $this->seed(UserSeeder::class);
+        $users = $this->db();
 
         $this->assertDatabaseCount('menu_sections', 0);
 
@@ -60,7 +62,7 @@ class MenuSectionControllerTest extends TestCase
         $data = MenuSection::factory()->recycle($event)->make()->toArray();
 
         $this
-            ->actingAs(User::query()->first(), 'api')
+            ->actingAs($users[0], 'api')
             ->postJson("api/events/{$event->id}/menu_sections", $data)
             ->assertStatus(201)
             ->assertJsonStructure([
@@ -81,13 +83,14 @@ class MenuSectionControllerTest extends TestCase
      */
     public function test_menu_sections_show()
     {
+        $users = $this->db();
+
         $this->seed(MenuSectionSeeder::class);
-        $this->seed(UserSeeder::class);
 
         $section = MenuSection::first();
 
         $this
-            ->actingAs(User::query()->first(), 'api')
+            ->actingAs($users[0], 'api')
             ->getJson("api/menu_sections/{$section->id}")
             ->assertStatus(200)
             ->assertJsonStructure([
@@ -106,8 +109,9 @@ class MenuSectionControllerTest extends TestCase
      */
     public function test_menu_sections_update()
     {
+        $users = $this->db();
+
         $this->seed(MenuSectionSeeder::class);
-        $this->seed(UserSeeder::class);
 
         $section = MenuSection::first();
 
@@ -115,7 +119,7 @@ class MenuSectionControllerTest extends TestCase
         $data['name'] = 'TEST NAME';
 
         $this
-            ->actingAs(User::query()->first(), 'api')
+            ->actingAs($users[0], 'api')
             ->putJson("api/menu_sections/{$section->id}", $data)
             ->assertStatus(200)
             ->assertJsonStructure([
@@ -136,13 +140,14 @@ class MenuSectionControllerTest extends TestCase
      */
     public function test_menu_sections_delete()
     {
+        $users = $this->db();
+
         $this->seed(MenuSectionSeeder::class);
-        $this->seed(UserSeeder::class);
 
         $section = MenuSection::first();
 
         $this
-            ->actingAs(User::query()->first(), 'api')
+            ->actingAs($users[0], 'api')
             ->deleteJson("api/menu_sections/{$section->id}")
             ->assertStatus(200)
             ->assertJsonStructure([

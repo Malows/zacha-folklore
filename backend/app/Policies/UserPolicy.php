@@ -6,7 +6,7 @@ use App\Models\Reservation;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ReservationPolicy
+class UserPolicy
 {
     use HandlesAuthorization;
 
@@ -18,7 +18,7 @@ class ReservationPolicy
      */
     public function create(User $user)
     {
-        return $user->hasPermissionTo('reservations.create', 'api');
+        return $user->hasPermissionTo('users.create', 'api');
     }
 
     /**
@@ -29,7 +29,7 @@ class ReservationPolicy
      */
     public function update(User $user)
     {
-        return $user->hasPermissionTo('reservations.update', 'api');
+        return $user->hasPermissionTo('users.update', 'api');
     }
 
     /**
@@ -40,7 +40,7 @@ class ReservationPolicy
      */
     public function delete(User $user)
     {
-        return $user->hasPermissionTo('reservations.delete', 'api');
+        return $user->hasPermissionTo('users.delete', 'api');
     }
 
     /**
@@ -51,7 +51,7 @@ class ReservationPolicy
      */
     public function restore(User $user)
     {
-        return $user->hasPermissionTo('reservations.restore', 'api');
+        return $user->hasPermissionTo('users.restore', 'api');
     }
 
     /**
@@ -62,6 +62,6 @@ class ReservationPolicy
      */
     public function forceDelete(User $user)
     {
-        return $user->hasPermissionTo('reservations.erase', 'api');
+        return $user->hasPermissionTo('users.erase', 'api');
     }
 }

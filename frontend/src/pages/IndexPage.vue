@@ -36,6 +36,7 @@
 import { computed, ref, onMounted } from 'vue'
 
 import environment from 'src/composable/environment'
+import { checkTicketRole } from 'src/composable/checkRole'
 import { pull } from 'src/utils/api'
 import { reservationFilter } from 'src/utils/filters'
 
@@ -52,6 +53,8 @@ const event = computed(() => store.state.events.selectedEvent)
 const reservations = computed(() => store.getters['reservations/notUsedReservations'])
 
 onMounted(async () => {
+  checkTicketRole(store, router, quasar)
+
   await pull(store, quasar, 'events/fetch')
 
   if (!event.value) {

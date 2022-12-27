@@ -76,6 +76,7 @@ import { onMounted, computed } from 'vue'
 
 import modalFactory from 'src/composable/modalFactory'
 import environment from 'src/composable/environment'
+import { checkManagerRole } from 'src/composable/checkRole'
 import { pull } from 'src/utils/api'
 
 import PageWithActions from 'components/shared/pages/PageWithActions.vue'
@@ -101,6 +102,8 @@ const editRoute = computed(() => ({
 }))
 
 onMounted(async () => {
+  checkManagerRole(store, router, quasar)
+
   if (!menuSection.value) {
     await pull(store, quasar, 'menuSections/get', { id: Number(route.params.menuSectionId) })
   }

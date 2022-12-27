@@ -17,6 +17,9 @@
         v-model="passwordConfirmation"
         label="Confirmar Contraseña"
       />
+
+      <roles-toggle v-model="roles" />
+
       <q-btn
         class="q-mt-md"
         color="primary"
@@ -28,30 +31,34 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
-import { useRouter } from 'vue-router'
-import { useStore } from 'vuex'
-import { useQuasar } from 'quasar'
+import { ref, computed, onMounted } from 'vue'
 
+import environment from 'src/composable/environment'
+import { checkAdminRole } from 'src/composable/checkRole'
 import { task } from 'src/utils/api'
 
 import CommonPage from 'src/components/shared/pages/CommonPage.vue'
 import QPassword from 'components/QPassword.vue'
+import RolesToggle from 'src/components/shared/forms/RolesToggle.vue'
 
 const name = ref('')
 const email = ref('')
+const roles = ref([])
 const password = ref('')
 const passwordConfirmation = ref('')
 
-const quasar = useQuasar()
-const store = useStore()
-const router = useRouter()
+const { store, router, quasar } = environment()
+
+onMounted(() => {
+  checkAdminRole(store, router, quasar)
+})
 
 const payload = computed(() => ({
   name: name.value,
   email: email.value,
   password: password.value,
-  passwordConfirmation: passwordConfirmation.value
+  passwordConfirmation: passwordConfirmation.value,
+  roles: roles.value
 }))
 
 function submit () {

@@ -33,6 +33,8 @@ class ReservationController extends Controller
      */
     public function store(StoreReservationRequest $request, Event $event): Reservation
     {
+        $this->authorize('create', Reservation::class);
+
         // $event = EventDomain::tryToGetActiveEvent();
 
         // abort_unless($event, 422, 'Missing active event');
@@ -66,6 +68,8 @@ class ReservationController extends Controller
      */
     public function update(UpdateReservationRequest $request, Reservation $reservation): Reservation
     {
+        $this->authorize('update', Reservation::class);
+
         $event = $reservation->event()->first();
 
         EventDomain::updateReservationsAmounts($event);
@@ -85,6 +89,8 @@ class ReservationController extends Controller
      */
     public function destroy(Reservation $reservation): Reservation
     {
+        $this->authorize('delete', Reservation::class);
+
         $reservation->delete();
 
         return $reservation;

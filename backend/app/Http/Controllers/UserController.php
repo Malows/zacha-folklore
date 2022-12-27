@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Domain\UserDomain;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
@@ -17,7 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::all();
+        return User::query()->with('roles')->get();
     }
 
     /**
@@ -28,11 +29,17 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request): User
     {
+        $this->authorize('create', User::class);
+
         $user = new User($request->all());
 
         $user->password = Hash::make($request->password);
 
         $user->save();
+
+        $user = UserDomain::updateRoles($user, $request->roles);
+
+        $user->load('roles');
 
         return $user;
     }
@@ -45,6 +52,8 @@ class UserController extends Controller
      */
     public function show(User $user): User
     {
+        $user->load('roles');
+
         return $user;
     }
 
@@ -57,9 +66,15 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user): User
     {
+        $this->authorize('update', User::class);
+
         $user
             ->fill($request->all())
             ->save();
+
+        $user = UserDomain::updateRoles($user, $request->roles);
+
+        $user->load('roles');
 
         return $user;
     }
@@ -72,6 +87,8 @@ class UserController extends Controller
      */
     public function destroy(User $user): User
     {
+        $this->authorize('delete', User::class);
+
         $user->delete();
 
         return $user;

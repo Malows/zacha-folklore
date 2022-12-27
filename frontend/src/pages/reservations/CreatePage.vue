@@ -55,6 +55,7 @@ import { reactive, onMounted, computed } from 'vue'
 // import { required, email, minValue } from '@vuelidate/validators'
 
 import environment from 'src/composable/environment'
+import { checkManagerRole } from 'src/composable/checkRole'
 import { checkEvent } from 'src/composable/checkRequirement'
 import { task } from 'src/utils/api'
 
@@ -82,7 +83,10 @@ const rules = {
 
 const { router, store, quasar } = environment()
 
-onMounted(() => checkEvent(store, router, quasar))
+onMounted(() => {
+  checkManagerRole(store, router, quasar)
+  checkEvent(store, router, quasar)
+})
 
 const event = computed(() => store.state.events.selectedEvent)
 

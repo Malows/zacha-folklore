@@ -20,6 +20,7 @@
 import { onMounted, computed } from 'vue'
 
 import environment from 'src/composable/environment'
+import { checkManagerRole } from 'src/composable/checkRole'
 import { checkEvent } from 'src/composable/checkRequirement'
 import { pull } from 'src/utils/api'
 import { reservationFilter } from 'src/utils/filters'
@@ -32,6 +33,8 @@ import DisplaySelectedEvent from 'src/components/banners/DisplaySelectedEvent.vu
 const { store, quasar, router } = environment()
 
 onMounted(() => {
+  checkManagerRole(store, router, quasar)
+
   const eventId = checkEvent(store, router, quasar)
 
   pull(store, quasar, 'reservations/fetch', { eventId })

@@ -3,11 +3,12 @@
 namespace Tests\Feature\Http\Controllers;
 
 use App\Models\User;
+use Database\Seeders\RolesAndPermissionsSeeder;
 use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class UserControllerTest extends TestCase
+class UserControllerTest extends BaseHttpCase
 {
     use RefreshDatabase;
 
@@ -21,10 +22,10 @@ class UserControllerTest extends TestCase
      */
     public function test_users_index()
     {
-        $this->seed(UserSeeder::class);
+        $users = $this->db();
 
         $this
-            ->actingAs(User::query()->first(), 'api')
+            ->actingAs($users[0], 'api')
             ->getJson('api/users')
             ->assertStatus(200)
             ->assertJsonStructure([
@@ -45,18 +46,19 @@ class UserControllerTest extends TestCase
      */
     public function test_users_store()
     {
-        $this->seed(UserSeeder::class);
+        $users = $this->db();
 
-        $USERS_AMOUNT = 2; // the admin and the common one
+        $USERS_AMOUNT = 3; // admin, manager and ticket controller
 
         $this->assertDatabaseCount('users', $USERS_AMOUNT);
 
         $data = User::factory()->make()->toArray();
         $data['password'] = 'password';
         $data['password_confirmation'] = 'password';
+        $data['roles'] = ['admin'];
 
         $this
-            ->actingAs(User::query()->first(), 'api')
+            ->actingAs($users[0], 'api')
             ->postJson('api/users', $data)
             ->assertStatus(201)
             ->assertJsonStructure([
@@ -78,9 +80,9 @@ class UserControllerTest extends TestCase
      */
     public function test_users_show()
     {
-        $this->seed(UserSeeder::class);
+        $users = $this->db();
 
-        $user = User::first();
+        $user = $users[0];
 
         $this
             ->actingAs($user, 'api')
@@ -103,15 +105,16 @@ class UserControllerTest extends TestCase
      */
     public function test_users_update()
     {
-        $this->seed(UserSeeder::class);
+        $users = $this->db();
 
-        $user = User::first();
+        $user = $users[0];
 
         $data = $user->toArray();
         $data['name'] = 'TEST NAME';
+        $data['roles'] = ['admin'];
 
         $this
-            ->actingAs(User::query()->first(), 'api')
+            ->actingAs($users[0], 'api')
             ->putJson("api/users/{$user->id}", $data)
             ->assertStatus(200)
             ->assertJsonStructure([
@@ -133,12 +136,12 @@ class UserControllerTest extends TestCase
      */
     public function test_users_delete()
     {
-        $this->seed(UserSeeder::class);
+        $users = $this->db();
 
-        $user = User::first();
+        $user = $users[0];
 
         $this
-            ->actingAs(User::query()->first(), 'api')
+            ->actingAs($users[0], 'api')
             ->deleteJson("api/users/{$user->id}")
             ->assertStatus(200)
             ->assertJsonStructure([

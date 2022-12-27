@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-class UpdateUserRequest extends BaseRequest
+class UpdateProfileRequest extends BaseRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -14,8 +14,6 @@ class UpdateUserRequest extends BaseRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
-            'roles' => ['required', 'array'],
-            'roles.*' => ['string', 'distinct'],
         ];
     }
 }

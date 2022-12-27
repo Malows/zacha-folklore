@@ -44,6 +44,7 @@
 import { ref, onMounted, computed } from 'vue'
 
 import environment from 'src/composable/environment'
+import { checkTicketRole } from 'src/composable/checkRole'
 import { pull, task } from 'src/utils/api'
 
 import CommonPage from 'src/components/shared/pages/CommonPage.vue'
@@ -63,6 +64,8 @@ const payload = computed(() => ({
 }))
 
 onMounted(async () => {
+  checkTicketRole(store, router, quasar)
+
   if (!reservation.value) {
     await pull(store, quasar, 'reservations/get', route.params.reservationId)
   }

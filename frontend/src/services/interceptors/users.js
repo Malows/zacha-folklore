@@ -2,7 +2,8 @@ export function onRequest (user) {
   const data = {
     name: user.name,
     email: user.email,
-    phone: user.phone
+    phone: user.phone,
+    roles: user.roles
   }
 
   if (user.id) {
@@ -21,7 +22,8 @@ export function onResponse (user) {
   return {
     id: user.id,
     name: user.name,
-    email: user.email
+    email: user.email,
+    roles: user?.roles.map(x => x.name) ?? []
   }
 }
 

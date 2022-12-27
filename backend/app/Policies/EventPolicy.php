@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Reservation;
+use App\Models\Event;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ReservationPolicy
+class EventPolicy
 {
     use HandlesAuthorization;
 
@@ -18,7 +18,7 @@ class ReservationPolicy
      */
     public function create(User $user)
     {
-        return $user->hasPermissionTo('reservations.create', 'api');
+        return $user->hasPermissionTo('events.create', 'api');
     }
 
     /**
@@ -29,7 +29,7 @@ class ReservationPolicy
      */
     public function update(User $user)
     {
-        return $user->hasPermissionTo('reservations.update', 'api');
+        return $user->hasPermissionTo('events.update', 'api');
     }
 
     /**
@@ -40,7 +40,7 @@ class ReservationPolicy
      */
     public function delete(User $user)
     {
-        return $user->hasPermissionTo('reservations.delete', 'api');
+        return $user->hasPermissionTo('events.delete', 'api');
     }
 
     /**
@@ -51,7 +51,7 @@ class ReservationPolicy
      */
     public function restore(User $user)
     {
-        return $user->hasPermissionTo('reservations.restore', 'api');
+        return $user->hasPermissionTo('events.restore', 'api');
     }
 
     /**
@@ -62,6 +62,17 @@ class ReservationPolicy
      */
     public function forceDelete(User $user)
     {
-        return $user->hasPermissionTo('reservations.erase', 'api');
+        return $user->hasPermissionTo('events.erase', 'api');
+    }
+
+    /**
+     * Determine whether the user can copy an existen menu into the actual event.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function menuCopy(User $user)
+    {
+        return $user->hasPermissionTo('menu.copy', 'api');
     }
 }
